@@ -3,8 +3,6 @@ import MineBox from './ui/MineBox';
 import ResourceBox from './ui/ResourceBox';
 import ResourceStack from './ui/ResourceStack';
 
-import './App.css';
-
 class App extends Component {
   render() {
     return (
