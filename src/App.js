@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import MineBox from './ui/MineBox';
 import ResourceBox from './ui/ResourceBox';
-import ResourceStack from './ui/ResourceStack';
+import ResourcePanel from './ui/ResourcePanel';
 
 class App extends Component {
   render() {
@@ -14,9 +14,7 @@ class App extends Component {
                 <ResourceBox count="4" bg_color="black" fg_color="white" size="16px" />
                 <ResourceBox count="0" bg_color="white" fg_color="black" size="16px" />
             </MineBox>
-            <ResourceStack bgColor="red" stackSize={4} />
-            <ResourceStack bgColor="blue" stackSize={0} />
-            <ResourceStack bgColor="green" stackSize={2} />
+            <ResourcePanel initialValue={4} />
         </div>
     );
   }
