@@ -1,17 +1,6 @@
 import React from 'react';
 
 class ResourceBox extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = { count: 0 };
-        this.handleClick = this.handleClick.bind(this);
-    }
-
-    handleClick() {
-        this.setState({ count: (this.state.count+1) });
-    }
-
     render() {
         return (
             <div
@@ -26,9 +15,8 @@ class ResourceBox extends React.Component {
                     userSelect: "none",
                     backgroundColor: this.props.bg_color,
                     color: this.props.fg_color}}
-                onClick={() => this.handleClick()}
             >
-                {this.state.count}
+                {this.props.count}
             </div>
         );
     }
