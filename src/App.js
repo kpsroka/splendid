@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import MineBox from './ui/MineBox.js';
-import ResourceBox from './ui/ResourceBox.js';
+import MineBox from './ui/MineBox';
+import ResourceBox from './ui/ResourceBox';
+import ResourceStack from './ui/ResourceStack';
 
 import './App.css';
 
@@ -16,6 +17,9 @@ class App extends Component {
                 <ResourceBox bg_color="white" fg_color="black" size="16px" />
             </MineBox>
             <ResourceBox bg_color="red" fg_color="white" size="120px" />
+            <ResourceStack bgColor="red" stackSize={4} />
+            <ResourceStack bgColor="blue" stackSize={0} />
+            <ResourceStack bgColor="green" stackSize={2} />
         </div>
     );
   }

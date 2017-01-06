@@ -1,0 +1,31 @@
+.stack {
+    position: relative;
+    height: 72px;
+}
+
+.stackCircle {
+    position: absolute;
+    border-width: 4px;
+    border-radius: 50%;
+    border-color: #bbb;
+    border-style: solid;
+    width: 64px;
+    height: 64px;
+}
+
+.stackCircle-base {
+    opacity: 0.5;
+    border-style: dotted;
+}
+
+.stackCircle-highlighted {
+    border-color: black;
+    font-weight: bold;
+}
+
+.stackCircleText {
+    line-height: 64px;
+    user-select: none;
+    font-size: 20px;
+    text-align: center;
+}
