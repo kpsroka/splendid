@@ -9,17 +9,37 @@ class ResourcePanel extends React.Component {
 
         let stacks = new Map();
         for (let color of colors) {
-            stacks.set(color, this.props.initialValue);
+            stacks.set(color, {size: this.props.initialValue, highlight: false});
         }
 
         this.state = { stacks: stacks }
+    }
+
+    onStackClicked(stackKey) {
+        this.setState((prevState) => this.updateHighlight(prevState, stackKey));
+    }
+
+    updateHighlight(prevState, stackKey) {
+        if (prevState.stacks.has(stackKey)) {
+            this.updateStackHighlight(prevState.stacks.get(stackKey));
+            return prevState;
+        }
+    }
+
+    updateStackHighlight(prevStackState) {
+        prevStackState.highlight = !prevStackState.highlight;
     }
 
     render() {
         let elems = [];
         this.state.stacks.forEach((value, key) =>
             elems.push(
-                <ResourceStack bgColor={key} stackSize={value} key={key} />
+                <ResourceStack
+                    bgColor={key}
+                    stackSize={value.size}
+                    key={key}
+                    highlight={value.highlight}
+                    onClickCallback={() => this.onStackClicked(key)} />
             )
         )
 

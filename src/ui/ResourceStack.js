@@ -26,19 +26,17 @@ class ResourceStack extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { highlight: false };
         this.handleClick = this.handleClick.bind(this);
     }
 
     handleClick(text) {
-        if (this.props.stackSize > 0) {
-            this.setState({ highlight: !this.state.highlight });
-        }
+        this.props.onClickCallback();
     }
 
     renderBaseCircle() {
         return (
             <ResourceStackCircle
+                key={0}
                 bgColor={this.props.bgColor}
                 extraStyles="stackCircle-base"
                 onItemClick={this.handleClick} />
@@ -48,12 +46,12 @@ class ResourceStack extends React.Component {
     renderStackCircles() {
         var circles = [];
         for (var count = 0; count < this.props.stackSize; count++) {
-            var highlighted = this.state.highlight && ((count+1) === this.props.stackSize);
+            var highlighted = this.props.highlight && ((count+1) === this.props.stackSize);
             var leftShift=(count*8) + "px";
 
             circles.push(
                 <ResourceStackCircle
-                    key={count}
+                    key={count+1}
                     leftShift={leftShift}
                     bgColor={this.props.bgColor}
                     text={count+1}
