@@ -27,7 +27,7 @@ class ResourcePanel extends React.Component {
     }
 
     updateStackHighlight(prevStackState) {
-        prevStackState.highlight = 1 - prevStackState.highlight;
+        prevStackState.highlight = (prevStackState.highlight+1) % (prevStackState.size + 1);
     }
 
     render() {
