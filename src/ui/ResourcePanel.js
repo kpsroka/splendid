@@ -9,7 +9,7 @@ class ResourcePanel extends React.Component {
 
         let stacks = new Map();
         for (let color of colors) {
-            stacks.set(color, {size: this.props.initialValue, highlight: false});
+            stacks.set(color, {size: this.props.initialValue, highlight: 0});
         }
 
         this.state = { stacks: stacks }
@@ -27,7 +27,7 @@ class ResourcePanel extends React.Component {
     }
 
     updateStackHighlight(prevStackState) {
-        prevStackState.highlight = !prevStackState.highlight;
+        prevStackState.highlight = 1 - prevStackState.highlight;
     }
 
     render() {
