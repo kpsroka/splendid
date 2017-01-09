@@ -1,7 +1,7 @@
 import React from 'react';
 import './MineBoard.css';
 
-const MineBoard = () => (
+const MineBoard = ({ mineBoard, onMineClick }) => (
     <div className="mineBoard">
         <div className="mineBoardText">Splendid!</div>
     </div>

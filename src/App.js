@@ -1,7 +1,7 @@
 import React from 'react';
 import MineBox from './ui/react/MineBox';
-import MineBoard from './ui/react/MineBoard';
 import ResourceBox from './ui/react/ResourceBox';
+import MineBoardComponent from './ui/components/MineBoardComponent';
 import ResourcePanelComponent from './ui/components/ResourcePanelComponent';
 
 const App = () => (
@@ -13,7 +13,7 @@ const App = () => (
             <ResourceBox count="4" bg_color="black" fg_color="white" size="16px" />
             <ResourceBox count="0" bg_color="white" fg_color="black" size="16px" />
         </MineBox>
-        <MineBoard />
+        <MineBoardComponent />
         <ResourcePanelComponent />
     </div>
 );
