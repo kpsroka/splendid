@@ -21,14 +21,16 @@ class MineBox extends React.Component {
 
     render() {
         return (
-            <div
-                className="mineBox"
-                style={{
-                    backgroundColor: this.props.bg_color,
-                    opacity: (this.state.selectable ? 1.0 : 0.4),
-                }}
-            >
-                {this.props.children}
+            <div className="mineBox">
+                <div
+                    className="mineBoxOverlay"
+                    style={{
+                        backgroundColor: this.props.bg_color,
+                        opacity: (this.state.selectable ? 1.0 : 0.4)
+                    }}/>
+                <div className="mineCostContainer">
+                    {this.props.children}
+                </div>
             </div>
         )
     }

@@ -1,8 +1,27 @@
 .mineBox {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     width: 80px;
     height: 120px;
     padding: 5px;
+}
+
+.mineBoxOverlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: "white";
+    z-index: 1;
+}
+
+.mineCostContainer {
+    z-index: 2;
+}
+
+.mineCostContainer > div {
+    margin-bottom: 5px;
 }
