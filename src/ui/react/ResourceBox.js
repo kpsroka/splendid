@@ -7,8 +7,6 @@ class ResourceBox extends React.Component {
             <div
                 className="resourceBox"
                 style={{
-                    width: this.props.size,
-                    height: this.props.size,
                     backgroundColor: this.props.bg_color,
                     color: this.props.fg_color
                 }}>
@@ -19,7 +17,6 @@ class ResourceBox extends React.Component {
 }
 
 ResourceBox.PropTypes = {
-    size: PropTypes.string.isRequired,
     bg_color: PropTypes.string.isRequired,
     fg_color: PropTypes.string.isRequired,
     count: PropTypes.number
