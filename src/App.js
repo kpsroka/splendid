@@ -11,8 +11,7 @@ const App = () => (
             {Config.resourceTypes.map((resourceType) => (
                 <ResourceBox
                     count={Math.floor(Math.random() * 9) + 1}
-                    bg_color={resourceType}
-                    fg_color="black" />
+                    bg_color={resourceType} />
             ))}
         </MineBox>
         <MineBoardComponent />
