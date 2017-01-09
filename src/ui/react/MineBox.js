@@ -1,4 +1,5 @@
 import React from 'react';
+import './MineBox.css';
 
 class MineBox extends React.Component {
     constructor(props) {
@@ -21,13 +22,8 @@ class MineBox extends React.Component {
     render() {
         return (
             <div
+                className="mineBox"
                 style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "flex-end",
-                    width: "120px",
-                    height: "120px",
-                    padding: "5px",
                     backgroundColor: this.props.bg_color,
                     opacity: (this.state.selectable ? 1.0 : 0.4),
                 }}
