@@ -8,7 +8,7 @@ function createDefaultState() {
         stacks: Config.resourceTypes.map((resourceType) => ({
             resourceType: resourceType,
             size: Config.maxStackHeight,
-            selectLimit: Config.maxStackHeight,
+            allowSelection: true,
             selectedCount: 0
         }))
     };

@@ -23,7 +23,7 @@ ResourcePanel.PropTypes = {
                 resourceType: PropTypes.string.isRequired,
                 size: PropTypes.number.isRequired,
                 selectedCount: PropTypes.number.isRequired,
-                selectLimit: PropTypes.number.isRequired
+                allowSelection: PropTypes.bool.isRequired
             })
         )
     })

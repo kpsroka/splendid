@@ -2,7 +2,7 @@
 ResourceStack: {
     resourceType (string),
     size (integer),
-    selectLimit (integer),
+    allowSelection (boolean)
     selectedCount (integer)
 }
 */
@@ -13,7 +13,7 @@ const ResourceStackReducer = (state, action) => {
             if (state.resourceType === action.resourceType) {
                 return {
                     ...state,
-                    selectedCount: (state.selectedCount + 1) % (state.selectLimit + 1)
+                    selectedCount: state.allowSelection ? (state.selectedCount + 1) % (state.size + 1) : 0
                 };
             } else {
                 return state;
