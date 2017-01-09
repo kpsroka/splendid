@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import ResourceBox from './ResourceBox';
 import './MineBox.css';
 
 class MineBox extends React.Component {
@@ -19,17 +20,27 @@ class MineBox extends React.Component {
         }
     }
 
+    renderResourceBoxes(costMap) {
+        let resourceBoxes = [];
+        costMap.forEach((value, key) => {
+            resourceBoxes.push(
+                <ResourceBox key={key} bg_color={key} count={value} />
+            );
+        });
+        return resourceBoxes;
+    }
+
     render() {
         return (
             <div className="mineBox">
                 <div
                     className="mineBoxOverlay"
                     style={{
-                        backgroundColor: this.props.bg_color,
+                        backgroundColor: this.props.mine.resourceType,
                         opacity: (this.state.selectable ? 1.0 : 0.4)
                     }}/>
                 <div className="mineCostContainer">
-                    {this.props.children}
+                    {this.renderResourceBoxes(this.props.mine.cost)}
                 </div>
             </div>
         )
@@ -37,8 +48,10 @@ class MineBox extends React.Component {
 }
 
 MineBox.PropTypes = {
-    bg_color: PropTypes.string,
-    children: PropTypes.arrayOf(PropTypes.node)
+    mine: PropTypes.shape({
+        resourceType: PropTypes.string.isRequired,
+        cost: PropTypes.instanceOf(Map).isRequired,
+    }).isRequired
 };
 
 export default MineBox;
