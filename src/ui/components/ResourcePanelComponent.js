@@ -2,11 +2,15 @@ import { connect } from 'react-redux';
 import Actions from '../../model/Actions';
 import ResourcePanel from '../react/ResourcePanel';
 
-const mapStateToProps = (state) => { return { resourceSupply: state.resourceSupply }};
-const mapDispatchToProps = (dispatch) => ({
+function mapStateToProps(state) {
+    return { resourceSupply: state.resourceSupply }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
         onStackClick: (resourceType) => dispatch(Actions.ChooseResourceFromStack(resourceType))
     }
-);
+}
 
 const ResourcePanelComponent = connect(mapStateToProps, mapDispatchToProps)(ResourcePanel);
 
