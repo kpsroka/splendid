@@ -1,6 +1,8 @@
 const Config = {
     resourceTypes: ["red", "cyan", "green", "yellow", "orange"],
-    maxStackHeight: 4
+    maxStackHeight: 4,
+    mineBoardRows: 3,
+    mineBoardRowSize: 4
 };
 
 export default Config;
