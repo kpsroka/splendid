@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import './ResourceBox.css';
 
 class ResourceBox extends React.Component {
@@ -17,5 +17,12 @@ class ResourceBox extends React.Component {
         );
     }
 }
+
+ResourceBox.PropTypes = {
+    size: PropTypes.string.isRequired,
+    bg_color: PropTypes.string.isRequired,
+    fg_color: PropTypes.string.isRequired,
+    count: PropTypes.number
+};
 
 export default ResourceBox;

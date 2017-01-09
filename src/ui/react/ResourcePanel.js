@@ -20,10 +20,10 @@ ResourcePanel.PropTypes = {
         locked: PropTypes.bool,
         stacks: PropTypes.arrayOf(
             PropTypes.shape({
-                resourceType: PropTypes.string,
-                size: PropTypes.number,
-                selectedCount: PropTypes.number,
-                selectLimit: PropTypes.number
+                resourceType: PropTypes.string.isRequired,
+                size: PropTypes.number.isRequired,
+                selectedCount: PropTypes.number.isRequired,
+                selectLimit: PropTypes.number.isRequired
             })
         )
     })

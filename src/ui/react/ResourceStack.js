@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import './ResourceStack.css';
 
 class ResourceStackCircle extends React.Component {
@@ -21,6 +21,14 @@ class ResourceStackCircle extends React.Component {
         );
     }
 }
+
+ResourceStackCircle.PropTypes = {
+    borderColor: PropTypes.string.isRequired,
+    bgColor: PropTypes.string.isRequired,
+    fontWeight: PropTypes.string.isRequired,
+    leftShift: PropTypes.string,
+    onItemClick: PropTypes.func.isRequired
+};
 
 class ResourceStack extends React.Component {
     constructor(props) {
@@ -70,5 +78,12 @@ class ResourceStack extends React.Component {
         );
     }
 }
+
+ResourceStack.PropTypes = {
+    bgColor: PropTypes.string.isRequired,
+    stackSize: PropTypes.number.isRequired,
+    highlight: PropTypes.number.isRequired,
+    onClickCallback: PropTypes.func.isRequired
+};
 
 export default ResourceStack;

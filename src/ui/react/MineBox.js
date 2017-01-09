@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import './MineBox.css';
 
 class MineBox extends React.Component {
@@ -33,5 +33,10 @@ class MineBox extends React.Component {
         )
     }
 }
+
+MineBox.PropTypes = {
+    bg_color: PropTypes.string,
+    children: PropTypes.arrayOf(PropTypes.node)
+};
 
 export default MineBox;
