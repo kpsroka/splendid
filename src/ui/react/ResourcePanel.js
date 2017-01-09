@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import ResourceStack from './ResourceStack';
 
 const ResourcePanel = ({ resourceSupply, onStackClick }) => (
@@ -13,6 +13,20 @@ const ResourcePanel = ({ resourceSupply, onStackClick }) => (
             />
         )}
     </div>
-)
+);
+
+ResourcePanel.PropTypes = {
+    resourceSupply: PropTypes.shape({
+        locked: PropTypes.bool,
+        stacks: PropTypes.arrayOf(
+            PropTypes.shape({
+                resourceType: PropTypes.string,
+                size: PropTypes.number,
+                selectedCount: PropTypes.number,
+                selectLimit: PropTypes.number
+            })
+        )
+    })
+};
 
 export default ResourcePanel;
