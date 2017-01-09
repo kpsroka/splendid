@@ -16,9 +16,10 @@ function createDefaultState() {
         mineBoard: {
             locked: false,
             rows:
-                new Array(Config.mineBoardRows).map((_, index) => (
-                    new Array(Config.mineBoardRowSize).map((_) => (createRandomMine((index+1) * 4)))
-                ))
+                new Array(Config.mineBoardRows).fill(null).map((_, index) => {
+                    return new Array(Config.mineBoardRowSize).fill(null).map(
+                        (_) => (createRandomMine((index + 1) * 4)))
+                })
         }
     };
 }

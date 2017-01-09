@@ -1,5 +1,6 @@
 import React from 'react';
 import './MineBoard.css';
+import MineBox from './MineBox';
 
 const MineBoard = ({ mineBoard, onMineClick }) => (
     <div className="mineBoard">
@@ -7,7 +8,7 @@ const MineBoard = ({ mineBoard, onMineClick }) => (
         {mineBoard.rows.map((row, rowIndex) => (
             <div key={rowIndex}>
                 {row.map((item, itemIndex) => (
-                    <MineBox key={itemIndex} item={item} onMineClick={() => onMineClick(rowIndex, itemIndex)} />
+                    <MineBox key={itemIndex} mine={item} onMineClick={() => onMineClick(rowIndex, itemIndex)} />
                 ))}
             </div>
         ))}

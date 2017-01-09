@@ -38,7 +38,8 @@ class MineBox extends React.Component {
                     style={{
                         backgroundColor: this.props.mine.resourceType,
                         opacity: (this.state.selectable ? 1.0 : 0.4)
-                    }}/>
+                    }}
+                    onClick={() => this.props.onMineClick()}/>
                 <div className="mineCostContainer">
                     {this.renderResourceBoxes(this.props.mine.cost)}
                 </div>
