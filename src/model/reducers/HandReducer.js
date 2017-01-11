@@ -10,22 +10,18 @@ const HandReducer = (state, action) => {
     }
 };
 
-function combineResources(...resourceArrays) {
+function combineResources(...resourceMaps) {
     let accumulator = new Map();
-    resourceArrays.forEach((resourceArray) => {
-        resourceArray.forEach((resource) => {
-            accumulator.set(resource.resourceType, (accumulator.get(resource.resourceType) || 0) + resource.size);
+    resourceMaps.forEach((resourceMap) => {
+        resourceMap.forEach((size, resourceType) => {
+            accumulator.set(resourceType, (accumulator.get(resourceType) || 0) + size);
         });
     });
-
-    return Array.from(accumulator, ([key, value]) => ({ resourceType: key, size: value }));
+    return accumulator;
 }
 
 function getSelectedResources(resourceSupply) {
-    return resourceSupply.stacks.map((stack) => ({
-        resourceType: stack.resourceType,
-        size: stack.selectedCount
-    }));
+    return new Map(resourceSupply.stacks.map((stack) => ([stack.resourceType, stack.selectedCount])));
 }
 
 export default HandReducer;

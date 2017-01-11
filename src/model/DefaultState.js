@@ -23,10 +23,9 @@ function createDefaultState() {
         },
         hand: {
             mines: [],
-            resources: Config.resourceTypes.map((resourceType) => ({
-                resourceType: resourceType,
-                size: 0
-            }))
+            resources: new Map(
+                Config.resourceTypes.map((resourceType) => ([resourceType, 0])
+            ))
         }
     };
 }
