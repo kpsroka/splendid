@@ -37,7 +37,9 @@ class MineBox extends React.Component {
                 style={{ borderStyle: (this.state.selectable ? "solid" : "dotted")}}>
                 <div
                     className="mineBoxOverlay"
-                    style={{ backgroundColor: this.props.mine.resourceType }}
+                    style={{
+                        backgroundColor: this.props.mine.resourceType,
+                        opacity: (this.state.selectable ? "1" : "0.5") }}
                     onClick={() => this.props.onMineClick()}/>
                 <div className="mineCostContainer">
                     {this.renderResourceBoxes(this.props.mine.cost)}
