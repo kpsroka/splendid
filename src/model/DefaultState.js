@@ -20,6 +20,13 @@ function createDefaultState() {
                     return new Array(Config.mineBoardRowSize).fill(null).map(
                         (_) => (createRandomMine((index + 1) * 4)))
                 })
+        },
+        hand: {
+            mines: [],
+            resources: Config.resourceTypes.map((resourceType) => ({
+                resourceType: resourceType,
+                size: 0
+            }))
         }
     };
 }
