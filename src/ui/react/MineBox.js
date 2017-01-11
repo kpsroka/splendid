@@ -32,13 +32,12 @@ class MineBox extends React.Component {
 
     render() {
         return (
-            <div className="mineBox">
+            <div
+                className="mineBox"
+                style={{ borderStyle: (this.state.selectable ? "solid" : "dotted")}}>
                 <div
                     className="mineBoxOverlay"
-                    style={{
-                        backgroundColor: this.props.mine.resourceType,
-                        opacity: (this.state.selectable ? 1.0 : 0.4)
-                    }}
+                    style={{ backgroundColor: this.props.mine.resourceType }}
                     onClick={() => this.props.onMineClick()}/>
                 <div className="mineCostContainer">
                     {this.renderResourceBoxes(this.props.mine.cost)}

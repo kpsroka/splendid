@@ -1,9 +1,12 @@
 .mineBoard {
-    width: 345px;
+    width: 360px;
     height: 380px;
     border: 2px dashed darkgrey;
-    background: #ea4;
+    background: white;
     position: relative;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-around;
 }
 
 .mineBoardText {
@@ -23,4 +26,9 @@
     align-items: center;
     overflow: hidden;
     opacity: 0.5;
+}
+
+.mineBoardRow {
+    display: flex;
+    justify-content: space-around;
 }

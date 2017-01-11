@@ -6,7 +6,7 @@ const MineBoard = ({ mineBoard, onMineClick }) => (
     <div className="mineBoard">
         <div className="mineBoardText">Splendid!</div>
         {mineBoard.rows.map((row, rowIndex) => (
-            <div key={rowIndex}>
+            <div className="mineBoardRow" key={rowIndex}>
                 {row.map((item, itemIndex) => (
                     <MineBox key={itemIndex} mine={item} onMineClick={() => onMineClick(rowIndex, itemIndex)} />
                 ))}
