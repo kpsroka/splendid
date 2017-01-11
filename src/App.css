@@ -1,7 +1,3 @@
-.playArea {
-    display: flex;
-}
-
 .appContainer {
     display: flex;
     align-items: center;
@@ -11,4 +7,13 @@
     bottom: 0;
     left: 0;
     right: 0;
+}
+
+.playArea {
+    display: flex;
+    flex-direction: column;
+}
+
+.centerArea {
+    display: flex;
 }
