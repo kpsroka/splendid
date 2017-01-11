@@ -1,6 +1,6 @@
 .mineBoard {
-    width: 360px;
-    height: 380px;
+    width: 400px;
+    height: 440px;
     border: 2px dashed darkgrey;
     background: white;
     position: relative;
