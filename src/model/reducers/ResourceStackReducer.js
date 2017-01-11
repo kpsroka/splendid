@@ -19,6 +19,13 @@ const ResourceStackReducer = (state, action) => {
                 return state;
             }
         }
+        case "GRAB_RESOURCES": {
+            return {
+                ...state,
+                size: Math.max(0, state.size - state.selectedCount),
+                selectedCount: 0
+            }
+        }
         default: return state;
     }
 };

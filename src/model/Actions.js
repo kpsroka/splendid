@@ -7,6 +7,9 @@ const Actions = {
         type: "CHOOSE_MINE",
         row: row,
         index: index
+    }),
+    GrabSelectedResources: () => ({
+        type: "GRAB_RESOURCES",
     })
 };
 

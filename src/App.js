@@ -1,7 +1,7 @@
 import React from 'react';
 import MineBoardComponent from './ui/components/MineBoardComponent';
 import ResourcePanelComponent from './ui/components/ResourcePanelComponent';
-import SubmitButton from './ui/react/SubmitButton';
+import SubmitButtonComponent from './ui/components/SubmitButtonComponent';
 import './App.css';
 
 const App = () => (
@@ -11,7 +11,7 @@ const App = () => (
                 <MineBoardComponent />
                 <ResourcePanelComponent />
             </div>
-            <SubmitButton />
+            <SubmitButtonComponent />
         </div>
     </div>
 );
