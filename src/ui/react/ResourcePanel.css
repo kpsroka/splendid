@@ -1,0 +1,5 @@
+.resourcePanel {
+    display: flex;
+    flex-direction: column;
+    margin-left: 8px;
+}

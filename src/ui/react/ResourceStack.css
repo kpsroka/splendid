@@ -1,6 +1,7 @@
 .stack {
     position: relative;
-    height: 72px;
+    height: 68px;
+    margin-bottom: 4px;
 }
 
 .stackCircle {
@@ -11,6 +12,7 @@
     border-style: solid;
     width: 64px;
     height: 64px;
+    box-sizing: border-box;
 }
 
 .stackCircle-base {
@@ -24,7 +26,7 @@
 }
 
 .stackCircleText {
-    line-height: 64px;
+    line-height: 60px;
     user-select: none;
     font-size: 20px;
     text-align: center;

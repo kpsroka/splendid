@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react';
 import ResourceStack from './ResourceStack';
+import './ResourcePanel.css';
 
 const ResourcePanel = ({ resourceSupply, onStackClick }) => (
-    <div>
+    <div className="resourcePanel">
         {resourceSupply.stacks.map(stack =>
             <ResourceStack
                 key={stack.resourceType}
