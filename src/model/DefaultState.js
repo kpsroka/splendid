@@ -1,54 +1,79 @@
 import Config from './Config';
 
-const DefaultState = createDefaultState();
+const DefaultStatePromise = createDefaultStatePromise();
 
-function createDefaultState() {
-    return {
-        resourceSupply: {
-            locked: false,
-            stacks: Config.resourceTypes.map((resourceType) => ({
-                resourceType: resourceType,
-                size: Config.maxStackHeight,
-                allowSelection: true,
-                selectedCount: 0
-            }))
-        },
-        mineBoard: {
-            locked: false,
-            rows:
-                new Array(Config.mineBoardRows).fill(null).map((_, index) => {
-                    return new Array(Config.mineBoardRowSize).fill(null).map(
-                        (_) => (createRandomMine((index + 1) * 4)))
-                })
-        },
-        hand: {
-            mines: [],
-            resources: new Map(
-                Config.resourceTypes.map((resourceType) => ([resourceType, 0])
-            ))
+function * maxCostGenerator () {
+    for (let rowIndex = 0; rowIndex < Config.mineBoardRows; rowIndex++) {
+        for (let item = 0; item < Config.mineBoardRowSize; item++) {
+            yield (rowIndex + 1) * 4;
         }
-    };
-}
-
-function createRandomMine(maxResourceCost) {
-    return {
-        resourceType: getRandomResource(),
-        cost: createCostMap(maxResourceCost)
     }
 }
 
-function getRandomResource() {
-    return Config.resourceTypes[Math.floor(Math.random() * Config.resourceTypes.length)];
+function getInitialCards() {
+    let xhr = new XMLHttpRequest();
+
+    return new Promise((resolve) => {
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200 /* OK */) {
+                    resolve(JSON.parse(xhr.responseText));
+                } else {
+                    resolve([]);
+                }
+            }
+        };
+
+
+        xhr.open("GET", "/splendid/card?resourceTypes=" + Config.resourceTypes.join(",")
+                + "&maxCardCost=" + [...maxCostGenerator()].join(","));
+        xhr.send();
+    });
 }
 
-function createCostMap(maxResourceCost) {
-    let cost = Math.floor(Math.random() * maxResourceCost) + 1;
-    let resourceMap = new Map();
-    for (let i = 0; i < cost; i++) {
-        let resourceType = getRandomResource();
-        resourceMap.set(resourceType, 1 + (resourceMap.get(resourceType) || 0));
-    }
-    return resourceMap;
+function getResourceCostMap(costObj) {
+    let costMap = new Map();
+    Config.resourceTypes.forEach((resourceType) => {
+        if (!!costObj[resourceType]) {
+            costMap.set(resourceType, costObj[resourceType]);
+        }
+    })
+    return costMap;
 }
 
-export default DefaultState;
+function createDefaultStatePromise() {
+    return getInitialCards()
+        .then(
+            (cardArray) => {
+                let cardRows = new Array(Config.mineBoardRows);
+                for (let startIndex = 0; startIndex < cardArray.length; startIndex += Config.mineBoardRowSize) {
+                    cardRows.push(
+                        cardArray.slice(startIndex, startIndex + Config.mineBoardRowSize)
+                            .map((card) => ({...card, cost: getResourceCostMap(card.cost)})));
+                }
+                return cardRows
+            })
+        .then((cardRows) => ({
+            resourceSupply: {
+                locked: false,
+                stacks: Config.resourceTypes.map((resourceType) => ({
+                    resourceType: resourceType,
+                    size: Config.maxStackHeight,
+                    allowSelection: true,
+                    selectedCount: 0
+                }))
+            },
+            mineBoard: {
+                locked: false,
+                rows: cardRows,
+            },
+            hand: {
+                mines: [],
+                resources: new Map(
+                    Config.resourceTypes.map((resourceType) => ([resourceType, 0])
+                ))
+            }
+        }));
+}
+
+export default DefaultStatePromise;

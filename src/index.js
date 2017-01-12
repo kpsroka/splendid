@@ -4,13 +4,15 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import App from './App';
 import AppReducer from './model/reducers/AppReducer';
-import DefaultState from './model/DefaultState';
+import DefaultStatePromise from './model/DefaultState';
 
-let store = createStore(AppReducer, DefaultState);
-
-ReactDOM.render(
-  <Provider store={store}>
-      <App />
-  </Provider>,
-  document.getElementById('root')
-);
+DefaultStatePromise
+    .then((state) => (createStore(AppReducer, state)))
+    .then((store) => {
+        ReactDOM.render(
+            <Provider store={store}>
+                <App />
+            </Provider>,
+            document.getElementById('root')
+        )}
+    );
