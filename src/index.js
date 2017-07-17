@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import App from './ui/App';
 import AppReducer from './model/reducers/AppReducer';
 import DefaultStatePromise from './model/DefaultState';
+import './index.css';
 
 DefaultStatePromise
     .then((state) => (createStore(AppReducer, state)))
