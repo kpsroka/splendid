@@ -1,0 +1,60 @@
+.PlayerBox-externalFrame {
+  position: relative;
+  margin-bottom: 18px;
+}
+
+.PlayerBox-internalFrame {
+  border: 1px solid black;
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+  padding: 12px;
+  background-color: yellow;
+}
+
+.PlayerBox-playerInfoFrame {
+  position: absolute;
+  bottom: -12px;
+  height: 24px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.PlayerBox-playerInfo {
+  position: relative;
+  height: 24px;
+}
+
+.PlayerBox-playerInfoContent {
+  position: relative;
+  padding: 6px;
+  z-index: 3;
+}
+
+.PlayerBox-playerInfoBackground {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+  background-color: yellow;
+  z-index: 1;
+}
+
+.PlayerBox-playerInfoBackgroundCutoff {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 50%;
+  top: 0;
+  margin-bottom: 1px;
+  background-color: yellow;
+  z-index: 2;
+}
