@@ -4,6 +4,7 @@
   "private": true,
   "proxy": "http://localhost:3001/",
   "devDependencies": {
+    "flow": "^0.2.3",
     "react-scripts": "0.8.4",
     "redux-devtools": "^3.3.1"
   },
