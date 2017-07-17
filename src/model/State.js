@@ -18,9 +18,15 @@ export type Player = {
   hand:PlayerHand,
 };
 
+export type ResourceFactorySelection = {|
+  row:number,
+  column:number,
+|};
+
 export type Board = {
   factoriesByRow:Array<Array<ResourceFactory>>,
   resources:Array<Resource>,
+  selection:Array<Resource>|ResourceFactorySelection
 };
 
 export type State = {
