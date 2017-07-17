@@ -1,9 +1,9 @@
 import React from 'react';
-import MineBoardComponent from './ui/components/MineBoardComponent';
-import ResourcePanelComponent from './ui/components/ResourcePanelComponent';
-import SubmitButtonComponent from './ui/components/SubmitButtonComponent';
-import PlayerBox from './ui/react/PlayerBox.js';
-import PlayerField from './ui/react/PlayerField.js';
+import MineBoardComponent from './components/MineBoardComponent';
+import ResourcePanelComponent from './components/ResourcePanelComponent';
+import SubmitButtonComponent from './components/SubmitButtonComponent';
+import PlayerBox from './react/PlayerBox.js';
+import PlayerField from './react/PlayerField.js';
 import './App.css';
 
 const App = () => (
