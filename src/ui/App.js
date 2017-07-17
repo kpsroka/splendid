@@ -7,9 +7,9 @@ import PlayerField from './react/PlayerField.js';
 import './App.css';
 
 const App = () => (
-    <div className="appContainer">
-        <div className="playArea">
-            <div className="centerArea">
+    <div className="App-appContainer">
+        <div className="App-playArea">
+            <div className="App-centerArea">
                 <MineBoardComponent />
                 <ResourcePanelComponent />
             </div>

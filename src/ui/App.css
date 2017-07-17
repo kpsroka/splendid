@@ -1,4 +1,4 @@
-.appContainer {
+.App-container {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -9,11 +9,11 @@
     right: 0;
 }
 
-.playArea {
+.App-centerArea {
     display: flex;
-    flex-direction: column;
 }
 
-.centerArea {
+.App-playArea {
     display: flex;
+    flex-direction: column;
 }
