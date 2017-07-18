@@ -11,8 +11,8 @@ function PlayerBox(props) {
               <span className="PlayerBox-playerInfoSeparator">&nbsp;&middot;&nbsp;</span>
               <span className="PlayerBox-playerScore">{props.score}</span>
             </div>
-            <div className="PlayerBox-playerInfoBackground" />
-            <div className="PlayerBox-playerInfoBackgroundCutoff" />
+            <div className="PlayerBox-playerInfoBackground"/>
+            <div className="PlayerBox-playerInfoBackgroundCutoff"/>
           </div>
         </div>
         <div className="PlayerBox-internalFrame">

@@ -15,7 +15,9 @@ class NewGameForm extends React.PureComponent {
             <input type="text"
                    name="playerName"
                    className="NewGameForm-textInput"
-                   onInput={(inputEvent) => {this.setState({playerName: inputEvent.target.value})}}>
+                   onInput={(inputEvent) => {
+                     this.setState({playerName: inputEvent.target.value})
+                   }}>
             </input>
           </div>
           <div className="NewGameForm-inputRow">
@@ -23,7 +25,9 @@ class NewGameForm extends React.PureComponent {
             <input type="range"
                    min="2" max="5"
                    defaultValue={this.state.numberOfPlayers}
-                   onInput={(inputEvent) => {this.setState({numberOfPlayers: inputEvent.target.value})}}>
+                   onInput={(inputEvent) => {
+                     this.setState({numberOfPlayers: inputEvent.target.value})
+                   }}>
             </input>
             <div>{this.state.numberOfPlayers}</div>
           </div>
@@ -31,7 +35,10 @@ class NewGameForm extends React.PureComponent {
             <button className="NewGameForm-button">Start</button>
           </div>
           <div className="NewGameForm-buttonRow">
-            <button className="NewGameForm-button" onClick={() => {this.props.onAbort();}}>Go back</button>
+            <button className="NewGameForm-button" onClick={() => {
+              this.props.onAbort();
+            }}>Go back
+            </button>
           </div>
         </div>
     );

@@ -4,10 +4,10 @@ import './App.css';
 
 const App = () => (
     <div className="App-appContainer">
-        <WelcomeScreen />
-        <div className="App-playArea">
-            <div className="centerArea" />
-        </div>
+      <WelcomeScreen />
+      <div className="App-playArea">
+        <div className="centerArea"/>
+      </div>
     </div>
 );
 

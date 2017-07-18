@@ -1,8 +1,8 @@
 // @flow
 
-import type { State } from "./State";
+import type {State} from "./State";
 
-function createDefaultState():State {
+function createDefaultState(): State {
   return {
     gameId: null,
     players: [],
@@ -14,6 +14,6 @@ function createDefaultState():State {
   };
 }
 
-const DefaultState:State = createDefaultState();
+const DefaultState: State = createDefaultState();
 
 export default DefaultState;

@@ -1,19 +1,19 @@
 .App-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .App-centerArea {
-    display: flex;
+  display: flex;
 }
 
 .App-playArea {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }

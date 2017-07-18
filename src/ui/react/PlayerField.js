@@ -1,8 +1,8 @@
 import React from 'react';
 
-function PlayerField () {
+function PlayerField() {
   return (
-      <div style={{height: "120px", backgroundColor: "pink"}} />
+      <div style={{height: "120px", backgroundColor: "pink"}}/>
   )
 }
 

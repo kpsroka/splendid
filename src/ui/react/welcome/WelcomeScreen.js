@@ -21,13 +21,13 @@ class WelcomeScreen extends React.PureComponent {
 
   renderControls() {
     if (this.state.showNewGameForm) {
-      return <NewGameForm onAbort={() => this.setState({showNewGameForm: false})} />
+      return <NewGameForm onAbort={() => this.setState({showNewGameForm: false})}/>
     } else {
       return (
-        <button className="WelcomeScreen-button"
-                onClick={() => this.setState({showNewGameForm: true})}>
-          Start new game
-        </button>
+          <button className="WelcomeScreen-button"
+                  onClick={() => this.setState({showNewGameForm: true})}>
+            Start new game
+          </button>
       );
     }
   }
