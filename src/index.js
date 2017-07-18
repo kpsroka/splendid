@@ -6,20 +6,18 @@ import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import App from './ui/App';
 import AppReducer from './model/reducers/AppReducer';
-import DefaultStatePromise from './model/DefaultState';
+import DefaultState from './model/DefaultState';
 import './index.css';
 
 const loggerMiddleware = createLogger();
+const store = createStore(
+    AppReducer,
+    DefaultState,
+    applyMiddleware(thunkMiddleware, loggerMiddleware));
 
-DefaultStatePromise
-    .then((state) => (
-        createStore(AppReducer, state, applyMiddleware(thunkMiddleware, loggerMiddleware))))
-    .then((store) => {
-      ReactDOM.render(
-          <Provider store={store}>
-            <App />
-          </Provider>,
-          document.getElementById('root')
-      )
-    }
+ReactDOM.render(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    document.getElementById('root')
 );

@@ -40,7 +40,8 @@ export type UiState = {
 };
 
 export type State = {
+  gameId:?string,
   players:Array<Player>,
-  board:Board,
+  board:?Board,
   ui:UiState
 };
