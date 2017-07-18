@@ -29,7 +29,18 @@ export type Board = {
   selection:Array<Resource>|ResourceFactorySelection
 };
 
+export type UiMessage = {
+  text:string,
+  severity:'INFO'|'ERROR'
+}
+
+export type UiState = {
+  asyncInProgress:boolean,
+  message:?UiMessage,
+};
+
 export type State = {
   players:Array<Player>,
   board:Board,
+  ui:UiState
 };
