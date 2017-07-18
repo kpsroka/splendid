@@ -1,5 +1,5 @@
 import React from 'react';
-import NewGameForm from './NewGameForm.js';
+import NewGameComponent from '../../components/NewGameComponent.js';
 import './WelcomeScreen.css';
 
 class WelcomeScreen extends React.PureComponent {
@@ -21,7 +21,7 @@ class WelcomeScreen extends React.PureComponent {
 
   renderControls() {
     if (this.state.showNewGameForm) {
-      return <NewGameForm onAbort={() => this.setState({showNewGameForm: false})}/>
+      return <NewGameComponent onAbort={() => this.setState({showNewGameForm: false})}/>
     } else {
       return (
           <button className="WelcomeScreen-button"

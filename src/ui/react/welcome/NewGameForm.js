@@ -32,12 +32,15 @@ class NewGameForm extends React.PureComponent {
             <div>{this.state.numberOfPlayers}</div>
           </div>
           <div className="NewGameForm-buttonRow">
-            <button className="NewGameForm-button">Start</button>
+            <button className="NewGameForm-button"
+                    onClick={() => this.props.createNewGame(this.state.playerName, this.state.numberOfPlayers)}>
+              Start
+            </button>
           </div>
           <div className="NewGameForm-buttonRow">
-            <button className="NewGameForm-button" onClick={() => {
-              this.props.onAbort();
-            }}>Go back
+            <button className="NewGameForm-button"
+                    onClick={() => this.props.onAbort()}>
+              Go back
             </button>
           </div>
         </div>
