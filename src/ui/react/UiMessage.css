@@ -1,0 +1,45 @@
+.UiMessage-container {
+  position: fixed;
+  top: 8px;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 2;
+}
+
+.UiMessage-message {
+  border: 1px solid white;
+  border-radius: 8px;
+  padding: 6px;
+  color: white;
+  opacity: 0.7;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.UiMessage-hidden {
+  display: none;
+}
+
+.UiMessage-severityInfo {
+  background-color: navy;
+}
+
+.UiMessage-severityError {
+  background-color: firebrick;
+}
+
+.UiMessage-text,
+.UiMessage-dismiss {
+  padding: 0 3px;
+}
+
+.UiMessage-dismiss:hover {
+  cursor: pointer;
+}
