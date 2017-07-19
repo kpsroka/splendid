@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { NEW_GAME_ACTION_TYPE } from '../../actions/NewGameAction.js';
+import { NEW_GAME_ACTION_TYPE } from '../../actions/Actions.js';
 import NewGameForm from '../react/welcome/NewGameForm.js';
 
 function mapStateToProps() { return {}; }

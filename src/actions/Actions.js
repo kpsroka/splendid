@@ -1,3 +1,5 @@
+export const NEW_GAME_ACTION_TYPE = 'NEW_GAME';
+
 const Actions = {
   ChooseResourceFromStack: (resourceType) => ({
     type: "CHOOSE_STACK_RESOURCE",

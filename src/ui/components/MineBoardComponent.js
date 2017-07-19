@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import Actions from '../../model/Actions';
+import Actions from '../../actions/Actions';
 import MineBoard from '../react/MineBoard';
 
 function mapStateToProps(state) {
