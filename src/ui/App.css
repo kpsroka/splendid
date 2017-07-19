@@ -8,12 +8,3 @@
   left: 0;
   right: 0;
 }
-
-.App-centerArea {
-  display: flex;
-}
-
-.App-playArea {
-  display: flex;
-  flex-direction: column;
-}
