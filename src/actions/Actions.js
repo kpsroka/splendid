@@ -42,7 +42,7 @@ const Actions = {
             })
         .catch(
             error => {
-              dispatch(PrivateActions.SetUiMessage(error.message()));
+              dispatch(PrivateActions.SetUiMessage(error.message, 'ERROR'));
             }
         );
       }
