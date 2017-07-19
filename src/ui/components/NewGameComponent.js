@@ -1,16 +1,14 @@
 import { connect } from 'react-redux';
-import { NEW_GAME_ACTION_TYPE } from '../../actions/Actions.js';
+import Actions from '../../actions/Actions.js';
 import NewGameForm from '../react/welcome/NewGameForm.js';
 
 function mapStateToProps() { return {}; }
 
 function mapDispatchToProps(dispatch) {
   return {
-    createNewGame: (playerName, playerCount) => dispatch({
-      type: NEW_GAME_ACTION_TYPE,
-      playerName: playerName,
-      playerCount: playerCount
-    }),
+    createNewGame: (playerName, playerCount) => {
+      dispatch(Actions.NewGame(playerName, playerCount));
+    },
   }
 }
 

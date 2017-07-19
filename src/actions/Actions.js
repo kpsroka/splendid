@@ -1,4 +1,4 @@
-export const NEW_GAME_ACTION_TYPE = 'NEW_GAME';
+import CreateGame from './async/CreateGame.js';
 
 const Actions = {
   ChooseResourceFromStack: (resourceType) => ({
@@ -12,7 +12,17 @@ const Actions = {
   }),
   GrabSelectedResources: () => ({
     type: "GRAB_RESOURCES",
-  })
+  }),
+  NewGame: (playerName, playerCount) => (
+      () => {
+        CreateGame(playerName, playerCount)
+        .then(
+            response => response.json(),
+            error => console.log("Received error: " + error))
+        .then(
+            (json) => console.log(json));
+      }
+  )
 };
 
 export default Actions;
