@@ -36,8 +36,7 @@ const Actions = {
             },
             () => { throw new Error(`Network failure`); })
         .then(
-            (json) => {
-              console.log(json);
+            () => {
               dispatch(PrivateActions.SetUiMessage('Created new game'));
             })
         .catch(
