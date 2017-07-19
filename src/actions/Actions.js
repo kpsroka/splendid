@@ -47,7 +47,10 @@ const Actions = {
             }
         );
       }
-  )
+  ),
+  DismissMessage: () => ({
+    type: 'DISMISS_MESSAGE'
+  }),
 };
 
 export default Actions;

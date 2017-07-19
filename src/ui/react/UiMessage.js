@@ -17,7 +17,8 @@ export default function UiMessage(props) {
       <div className="UiMessage-container">
         <div className={`UiMessage-message ${messageClassName}`}>
           <div className="UiMessage-text">{text}</div>
-          <div className="UiMessage-dismiss">×</div>
+          <div className="UiMessage-dismiss"
+              onClick={() => props.onDismissMessage()}>×</div>
         </div>
       </div>
   );

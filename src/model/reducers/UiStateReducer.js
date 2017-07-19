@@ -10,6 +10,11 @@ export default function UiStateReducer(state, action) {
       newState.ui.message = newMessage;
       return newState;
     }
+    case 'DISMISS_MESSAGE': {
+      let newState = Object.assign({}, state);
+      newState.ui.message = null;
+      return newState;
+    }
   }
 
   return state;
