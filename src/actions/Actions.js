@@ -1,14 +1,4 @@
-import CreateGame from './async/CreateGame.js';
-
-const PrivateActions = {
-  SetUiMessage: (text, severity='INFO') => ({
-    type: '_SET_UI_MESSAGE',
-    text: text,
-    severity: severity
-  })
-};
-
-const Actions = {
+/* const Actions = {
   ChooseResourceFromStack: (resourceType) => ({
     type: 'CHOOSE_STACK_RESOURCE',
     resourceType: resourceType
@@ -21,36 +11,10 @@ const Actions = {
   GrabSelectedResources: () => ({
     type: 'GRAB_RESOURCES',
   }),
-  NewGame: (playerName, playerCount) => (
-      (dispatch) => {
-        dispatch(PrivateActions.SetUiMessage('Starting new game'));
+}
+*/
 
-        CreateGame(playerName, playerCount)
-        .then(
-            response => {
-              if (response.ok) {
-                return response.json();
-              } else {
-                return response.json().then(errorResponse => {
-                  throw new Error(`Failed to create new game: ${errorResponse.message}`);
-                })
-              }
-            },
-            () => { throw new Error('Network failure'); })
-        .then(
-            () => {
-              dispatch(PrivateActions.SetUiMessage('Created new game'));
-            })
-        .catch(
-            error => {
-              dispatch(PrivateActions.SetUiMessage(error.message, 'ERROR'));
-            }
-        );
-      }
-  ),
-  DismissMessage: () => ({
-    type: 'DISMISS_MESSAGE'
-  }),
+export const ActionTypes = {
+  DismissMessage: 'DISMISS_MESSAGE',
+  SetUiMessage: '_SET_UI_MESSAGE',
 };
-
-export default Actions;

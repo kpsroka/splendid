@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Actions from '../../actions/Actions.js';
+import DismissMessageAction from '../../actions/DismissMessageAction.js';
 import UiMessage from '../react/UiMessage.js';
 
 function mapStateToProps(state) {
@@ -10,7 +10,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    onDismissMessage: () => dispatch(Actions.DismissMessage())
+    onDismissMessage: () => dispatch(DismissMessageAction())
   };
 }
 
