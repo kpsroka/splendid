@@ -31,10 +31,12 @@ const Actions = {
               if (response.ok) {
                 return response.json();
               } else {
-                throw new Error(`Failed to create new game`);
+                return response.json().then(errorResponse => {
+                  throw new Error(`Failed to create new game: ${errorResponse.message}`);
+                })
               }
             },
-            () => { throw new Error(`Network failure`); })
+            () => { throw new Error('Network failure'); })
         .then(
             () => {
               dispatch(PrivateActions.SetUiMessage('Created new game'));
