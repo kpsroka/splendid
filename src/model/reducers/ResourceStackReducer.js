@@ -7,9 +7,11 @@
  }
  */
 
+import { ActionTypes } from '../../actions/Actions.js';
+
 const ResourceStackReducer = (state, action) => {
   switch (action.type) {
-    case "CHOOSE_STACK_RESOURCE": {
+    case ActionTypes.ChooseResourceFromStack: {
       if (state.resourceType === action.resourceType) {
         return {
           ...state,
@@ -19,7 +21,7 @@ const ResourceStackReducer = (state, action) => {
         return state;
       }
     }
-    case "GRAB_RESOURCES": {
+    case ActionTypes.GrabSelectedResources: {
       return {
         ...state,
         size: Math.max(0, state.size - state.selectedCount),

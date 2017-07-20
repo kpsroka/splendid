@@ -1,6 +1,8 @@
+import { ActionTypes } from '../../actions/Actions.js';
+
 const HandReducer = (state, action) => {
   switch (action.type) {
-    case "GRAB_RESOURCES": {
+    case ActionTypes.GrabSelectedResources: {
       return {
         ...state.hand,
         resources: combineResources(state.hand.resources, getSelectedResources(state.resourceSupply))
