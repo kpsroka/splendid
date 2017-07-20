@@ -1,4 +1,5 @@
 import SetUiMessage from './SetUiMessageAction.js';
+import SetGameConfig from './SetGameConfigAction.js'
 import CheckResponse from './async/CheckResponse.js';
 import CreateGame from './async/CreateGame.js';
 import FetchGameConfig from './async/FetchGameConfig.js';
@@ -13,7 +14,7 @@ export default function NewGame(playerName, playerCount) {
           dispatch(SetUiMessage(`Created new game (${gameRef.id})`));
           return CheckResponse(FetchGameConfig(gameRef.id));
         })
-    .then(gameConfig => { console.log(gameConfig); })
+    .then(gameConfig => { SetGameConfig(gameConfig); })
     .catch(
         error => {
           dispatch(SetUiMessage(error.message, 'ERROR'));
