@@ -8,7 +8,10 @@ function isFactorySelection(selection) {
 
 function mapStateToProps(state) {
   if (!state.board) {
-    return {};
+    return {
+      factoriesByRow: [],
+      selection: null
+    };
   } else {
     return {
       factoriesByRow: state.board.factoriesByRow,
