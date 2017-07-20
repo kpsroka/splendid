@@ -1,17 +1,13 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
 import ResourceBox from './ResourceBox';
-import './MineBox.css';
+import './Factory.css';
 
-class MineBox extends React.Component {
+class Factory extends React.Component {
   constructor(props) {
     super(props);
     this.state = {selected: false, selectable: false};
 
     this.handleClick = this.handleClick.bind(this);
-  }
-
-  setSelectable(selectable) {
-    this.setState({selectable: selectable});
   }
 
   handleClick() {
@@ -33,28 +29,21 @@ class MineBox extends React.Component {
   render() {
     return (
         <div
-            className="mineBox"
+            className="Factory-container"
             style={{borderStyle: (this.state.selectable ? "solid" : "dotted")}}>
           <div
-              className="mineBoxOverlay"
+              className="Factory-overlay"
               style={{
-                backgroundColor: this.props.mine.resourceType,
+                backgroundColor: this.props.factory.color,
                 opacity: (this.state.selectable ? "1" : "0.5")
               }}
-              onClick={() => this.props.onMineClick()}/>
-          <div className="mineCostContainer">
-            {this.renderResourceBoxes(this.props.mine.cost)}
+              onClick={() => this.props.onFactoryClick()}/>
+          <div className="Factory-costContainer">
+            {this.renderResourceBoxes(this.props.factory.cost)}
           </div>
         </div>
     )
   }
 }
 
-MineBox.PropTypes = {
-  mine: PropTypes.shape({
-    resourceType: PropTypes.string.isRequired,
-    cost: PropTypes.instanceOf(Map).isRequired,
-  }).isRequired
-};
-
-export default MineBox;
+export default Factory;

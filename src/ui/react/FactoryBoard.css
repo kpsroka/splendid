@@ -1,4 +1,4 @@
-.mineBoard {
+.FactoryBoard-container {
   width: 400px;
   height: 440px;
   border: 2px dashed darkgrey;
@@ -9,7 +9,7 @@
   justify-content: space-around;
 }
 
-.mineBoardText {
+.FactoryBoard-text {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -29,7 +29,7 @@
   opacity: 0.5;
 }
 
-.mineBoardRow {
+.FactoryBoard-row {
   display: flex;
   justify-content: space-around;
 }
