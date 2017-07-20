@@ -1,4 +1,5 @@
 import React from 'react';
+import './PlayField.css';
 
 export default class PlayField extends React.PureComponent {
   render() {

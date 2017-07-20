@@ -1,0 +1,33 @@
+.PlayField-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background-color: mediumblue;
+  color: white;
+}
+
+.PlayField-fieldArea {
+  height: 64vh;
+  width: 100vw;
+
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+}
+
+.PlayField-thisPlayerArea {
+  height: 33vh;
+  width: 100vw;
+}
+
+.PlayField-otherPlayersArea {
+  height: 100%;
+  width: 27.5vw;
+}
