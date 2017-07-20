@@ -31,3 +31,10 @@
   height: 100%;
   width: 27.5vw;
 }
+
+.PlayField-thisPlayerArea,
+.PlayField-otherPlayersArea {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
