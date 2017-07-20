@@ -1,7 +1,8 @@
+import GameConfigReducer from './GameConfigReducer.js';
 import UiStateReducer from './UiStateReducer.js';
 
 function AppReducer(state, action) {
-  return UiStateReducer(state, action);
+  return GameConfigReducer(UiStateReducer(state, action), action);
 //  return {
 //        mineBoard: state.mineBoard,
 //        resourceSupply: ResourceSupplyReducer(state.resourceSupply, action),

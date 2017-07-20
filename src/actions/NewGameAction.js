@@ -14,7 +14,7 @@ export default function NewGame(playerName, playerCount) {
           dispatch(SetUiMessage(`Created new game (${gameRef.id})`));
           return CheckResponse(FetchGameConfig(gameRef.id));
         })
-    .then(gameConfig => { SetGameConfig(gameConfig); })
+    .then(gameConfig => { dispatch(SetGameConfig(gameConfig)); })
     .catch(
         error => {
           dispatch(SetUiMessage(error.message, 'ERROR'));
