@@ -2,6 +2,10 @@ import React from 'react';
 import './PlayerBox.css';
 
 function PlayerBox(props) {
+  if (props.disabled) {
+    return null;
+  }
+
   return (
       <div className="PlayerBox-externalFrame">
         <div className="PlayerBox-playerInfoFrame">
