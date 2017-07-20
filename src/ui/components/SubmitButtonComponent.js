@@ -1,6 +1,6 @@
-import {connect} from 'react-redux';
-import Actions from '../../actions/Actions';
-import SubmitButton from '../react/SubmitButton';
+import { connect } from 'react-redux';
+import SubmitButton from '../react/SubmitButton.js';
+import GrabSelectedResourcesAction from '../../actions/GrabSelectedResourcesAction.js';
 
 function mapStateToProps(state) {
   return {
@@ -21,7 +21,7 @@ function canGrabResources(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    onClick: () => dispatch(Actions.GrabSelectedResources())
+    onClick: () => dispatch(GrabSelectedResourcesAction())
   }
 }
 
