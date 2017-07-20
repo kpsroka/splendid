@@ -1,26 +1,19 @@
 import SetUiMessage from './SetUiMessageAction.js';
+import CheckResponse from './async/CheckResponse.js';
 import CreateGame from './async/CreateGame.js';
+import FetchGameConfig from './async/FetchGameConfig.js';
 
 export default function NewGame(playerName, playerCount) {
   return (dispatch) => {
     dispatch(SetUiMessage('Starting new game'));
 
-    CreateGame(playerName, playerCount)
+    CheckResponse(CreateGame(playerName, playerCount))
     .then(
-        response => {
-          if (response.ok) {
-            return response.json();
-          } else {
-            return response.json().then(errorResponse => {
-              throw new Error(`Failed to create new game: ${errorResponse.message}`);
-            })
-          }
-        },
-        () => { throw new Error('Network failure'); })
-    .then(
-        () => {
-          dispatch(SetUiMessage('Created new game'));
+        gameRef => {
+          dispatch(SetUiMessage(`Created new game (${gameRef.id})`));
+          return CheckResponse(FetchGameConfig(gameRef.id));
         })
+    .then(gameConfig => { console.log(gameConfig); })
     .catch(
         error => {
           dispatch(SetUiMessage(error.message, 'ERROR'));
