@@ -16,6 +16,7 @@
 
 export const ActionTypes = {
   ChooseFactoryFromBoard: 'CHOOSE_FACTORY',
+  ChooseResourceFromStack: 'CHOOSE_STACK_RESOURCE',
   DismissMessage: 'DISMISS_MESSAGE',
   SetUiMessage: '_SET_UI_MESSAGE',
 };

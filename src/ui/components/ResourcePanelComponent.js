@@ -1,14 +1,14 @@
-import {connect} from 'react-redux';
-import Actions from '../../actions/Actions';
-import ResourcePanel from '../react/ResourcePanel';
+import { connect } from 'react-redux';
+import ResourcePanel from '../react/ResourcePanel.js';
+import ChooseResourceFromStackAction from '../../actions/ChooseResourceFromStackAction.js';
 
 function mapStateToProps(state) {
-  return {resourceSupply: state.resourceSupply}
+  return { resourceSupply: state.resourceSupply }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    onStackClick: (resourceType) => dispatch(Actions.ChooseResourceFromStack(resourceType))
+    onStackClick: (resourceType) => dispatch(ChooseResourceFromStackAction(resourceType))
   }
 }
 
