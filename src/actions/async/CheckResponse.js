@@ -13,8 +13,12 @@ export default function CheckResponse(fetchPromise) {
                 });
           }
         } else {
-          return response.json().then(errorResponse => {
-            throw new Error(errorResponse.message);
+          return response.text().then(errorResponse => {
+            if (errorResponse) {
+              throw new Error(errorResponse);
+            } else {
+              throw new Error(response.statusText);
+            }
           });
         }
       },
