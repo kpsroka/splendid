@@ -7,15 +7,16 @@ function isFactorySelection(selection) {
 }
 
 function mapStateToProps(state) {
-  if (!state.board) {
+  if (!state.gameState) {
     return {
       factoriesByRow: [],
       selection: null
     };
   } else {
+    let boardState = state.gameState.board;
     return {
-      factoriesByRow: state.board.factoriesByRow,
-      selection: isFactorySelection(state.board.selection) ? state.board.selection : null
+      factoriesByRow: boardState.factoriesByRow,
+      selection: isFactorySelection(boardState.selection) ? boardState.selection : null
     };
   }
 }

@@ -29,6 +29,17 @@ export type Board = {
   selection: Array<Resource> | ResourceFactorySelection
 };
 
+export type PlayerState = {
+  score: number,
+  hand: PlayerHand,
+};
+
+export type GameState = {
+  round: number,
+  board: Board,
+  playerState: Array<PlayerState>
+};
+
 export type UiMessage = {
   text: string,
   severity: 'INFO' | 'ERROR'
@@ -42,6 +53,6 @@ export type UiState = {
 export type State = {
   gameId: ?string,
   players: Array<Player>,
-  board: ?Board,
+  gameState: ?GameState,
   ui: UiState
 };
