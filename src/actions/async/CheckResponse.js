@@ -1,20 +1,29 @@
+function isJsonResponse(response) {
+  let contentType = response.headers.get('content-type');
+  return (contentType && contentType.includes('application/json'));
+}
+
 export default function CheckResponse(fetchPromise) {
   return fetchPromise.then(
       response => {
+        const responsePromise = isJsonResponse(response) ? response.json() : response.text();
+
         if (response.ok) {
-          let contentType = response.headers.get('content-type');
-          if (contentType && contentType.includes('application/json')) {
-            return response.json();
+          if (isJsonResponse(response)) {
+            return responsePromise;
           } else {
-            return response.text().then(
+            return responsePromise.then(
                 textResponse => {
                   console.log(`Unexpected response: ${textResponse}`);
                   throw new Error(`Server failure`)
                 });
           }
         } else {
-          return response.text().then(errorResponse => {
-            if (errorResponse) {
+          return responsePromise.then(errorResponse => {
+            if (errorResponse.message) {
+              throw new Error(errorResponse.message);
+            }
+            else if (errorResponse) {
               throw new Error(errorResponse);
             } else {
               throw new Error(response.statusText);
