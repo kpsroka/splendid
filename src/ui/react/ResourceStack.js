@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react';
+import RESOURCE_COLORS from '../ResourceColorMap.js';
 import './ResourceStack.css';
 
 class ResourceStackCircle extends React.Component {
@@ -9,7 +10,7 @@ class ResourceStackCircle extends React.Component {
             style={{
               left: this.props.leftShift ? this.props.leftShift : 0,
               borderColor: this.props.borderColor,
-              backgroundColor: this.props.bgColor,
+              backgroundColor: RESOURCE_COLORS[this.props.bgColor],
             }}
             onClick={() => this.props.onItemClick(this.props.text)}>
           <div
@@ -24,7 +25,7 @@ class ResourceStackCircle extends React.Component {
 
 ResourceStackCircle.PropTypes = {
   borderColor: PropTypes.string.isRequired,
-  bgColor: PropTypes.string.isRequired,
+  bgColor: PropTypes.number.isRequired,
   fontWeight: PropTypes.string.isRequired,
   leftShift: PropTypes.string,
   onItemClick: PropTypes.func.isRequired

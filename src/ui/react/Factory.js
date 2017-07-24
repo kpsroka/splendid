@@ -1,5 +1,6 @@
 import React from 'react';
 import ResourceBox from './ResourceBox';
+import RESOURCE_COLORS from '../ResourceColorMap.js';
 import './Factory.css';
 
 class Factory extends React.Component {
@@ -34,7 +35,7 @@ class Factory extends React.Component {
           <div
               className="Factory-overlay"
               style={{
-                backgroundColor: this.props.factory.color,
+                backgroundColor: RESOURCE_COLORS[this.props.factory.color],
                 opacity: (this.state.selectable ? "1" : "0.5")
               }}
               onClick={() => this.props.onFactoryClick()}/>

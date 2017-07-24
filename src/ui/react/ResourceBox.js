@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react';
+import RESOURCE_COLORS from '../ResourceColorMap.js';
 import './ResourceBox.css';
 
 class ResourceBox extends React.Component {
@@ -7,7 +8,7 @@ class ResourceBox extends React.Component {
         <div
             className="resourceBox"
             style={{
-              backgroundColor: this.props.bg_color,
+              backgroundColor: RESOURCE_COLORS[this.props.bg_color],
             }}>
           {this.props.count}
         </div>
@@ -16,7 +17,7 @@ class ResourceBox extends React.Component {
 }
 
 ResourceBox.PropTypes = {
-  bg_color: PropTypes.string.isRequired,
+  bg_color: PropTypes.number.isRequired,
   count: PropTypes.number
 };
 

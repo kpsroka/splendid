@@ -21,7 +21,7 @@ ResourcePanel.PropTypes = {
     locked: PropTypes.bool,
     stacks: PropTypes.arrayOf(
         PropTypes.shape({
-          resourceType: PropTypes.string.isRequired,
+          resourceType: PropTypes.number.isRequired,
           size: PropTypes.number.isRequired,
           selectedCount: PropTypes.number.isRequired,
           allowSelection: PropTypes.bool.isRequired
