@@ -30,7 +30,6 @@ export type Board = {
 };
 
 export type PlayerState = {
-  score: number,
   hand: PlayerHand,
 };
 
