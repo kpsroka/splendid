@@ -4,5 +4,6 @@ export const ActionTypes = {
   GrabSelectedResources: 'GRAB_SELECTED_RESOURCES',
   DismissMessage: 'DISMISS_MESSAGE',
   SetGameConfig: '_SET_GAME_CONFIG',
+  SetGameState: '_SET_GAME_STATE',
   SetUiMessage: '_SET_UI_MESSAGE',
 };

@@ -1,3 +1,3 @@
 export default function FetchGameState(gameRefId) {
-  return fetch(`/getState?id=${gameRefId}`);
+  return fetch(`/game/getState?id=${gameRefId}`);
 }
