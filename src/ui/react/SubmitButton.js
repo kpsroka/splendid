@@ -1,8 +1,7 @@
 import React, {PropTypes} from 'react';
-import Config from '../../model/Config';
 
 const SubmitButton = ({active, onClick}) => (
-    <button disabled={!active} onClick={() => onClick()}>{Config.submitButtonText}</button>
+    <button disabled={!active} onClick={() => onClick()}>Get</button>
 );
 
 SubmitButton.PropTypes = {
