@@ -20,7 +20,7 @@ export type Player = {
 
 export type ResourceFactorySelection = {|
   row: number,
-  column: number,
+  item: number,
 |};
 
 export type Board = {
