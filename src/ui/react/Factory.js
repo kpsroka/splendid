@@ -1,6 +1,5 @@
 import React from 'react';
 import ResourceBox from './ResourceBox';
-import RESOURCE_COLORS from '../ResourceColorMap.js';
 import './Factory.css';
 
 class Factory extends React.Component {
@@ -17,11 +16,12 @@ class Factory extends React.Component {
     }
   }
 
-  renderResourceBoxes(costMap) {
+  renderResourceBoxes(colorCosts) {
     let resourceBoxes = [];
-    costMap.forEach((value, key) => {
+    Object.keys(colorCosts).forEach((color) => {
+      console.log(`${color} -> ${colorCosts[color]}`);
       resourceBoxes.push(
-          <ResourceBox key={key} bg_color={key} count={value}/>
+          <ResourceBox key={color} bg_color={color} count={colorCosts[color]}/>
       );
     });
     return resourceBoxes;
@@ -35,12 +35,12 @@ class Factory extends React.Component {
           <div
               className="Factory-overlay"
               style={{
-                backgroundColor: RESOURCE_COLORS[this.props.factory.color],
+                backgroundColor: this.props.bgColor,
                 opacity: (this.state.selectable ? "1" : "0.5")
               }}
               onClick={() => this.props.onFactoryClick()}/>
           <div className="Factory-costContainer">
-            {this.renderResourceBoxes(this.props.factory.cost)}
+            {this.renderResourceBoxes(this.props.costColors)}
           </div>
         </div>
     )

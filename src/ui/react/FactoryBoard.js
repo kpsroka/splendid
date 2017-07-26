@@ -1,5 +1,5 @@
 import React from 'react';
-import Factory from './Factory.js';
+import FactoryComponent from '../components/FactoryComponent.js';
 import './FactoryBoard.css';
 
 export default function FactoryBoard(props) {
@@ -9,9 +9,11 @@ export default function FactoryBoard(props) {
         {props.factoriesByRow.map((row, rowIndex) => (
             <div className="FactoryBoard-row" key={rowIndex}>
               {row.map((item, itemIndex) => (
-                  <Factory
+                  <FactoryComponent
                       key={itemIndex}
                       factory={item}
+                      rowIndex={rowIndex}
+                      itemIndex={itemIndex}
                       onFactoryClick={() => props.onFactoryClick(rowIndex, itemIndex)} />
               ))}
             </div>
