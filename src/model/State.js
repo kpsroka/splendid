@@ -5,8 +5,8 @@ export type Resource = number;
 export type ResourceFactory = {
   color: Resource,
   cost: Array<Resource>,
-  points: number;
-}
+  points: number
+};
 
 export type PlayerHand = {
   factories: Array<ResourceFactory>,
