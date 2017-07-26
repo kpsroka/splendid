@@ -3,7 +3,18 @@ import ResourcePanel from '../react/ResourcePanel.js';
 import ChooseResourceFromStackAction from '../../actions/ChooseResourceFromStackAction.js';
 
 function mapStateToProps(state) {
-  return { resourceSupply: state.resourceSupply }
+  if (!state.gameState) {
+    return { resources: {} }
+  }
+
+  let resources = state.gameState.board.resources.sort().reduce(
+      (combinedCost, nextCost) => {
+        combinedCost[nextCost] = combinedCost.hasOwnProperty(nextCost) ? combinedCost[nextCost] : 1;
+        return combinedCost;
+      },
+      {});
+
+  return { resources: resources }
 }
 
 function mapDispatchToProps(dispatch) {

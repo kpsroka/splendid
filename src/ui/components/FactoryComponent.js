@@ -10,16 +10,10 @@ function mapStateToProps(state, ownProps) {
   let bgColor = RESOURCE_COLORS[resourceFactory.color];
   let costColors = resourceFactory.cost.sort().reduce(
       (combinedCost, nextCost) => {
-        if (combinedCost.hasOwnProperty(nextCost)) {
-          combinedCost[nextCost]++;
-        } else {
-          combinedCost[nextCost] = 1;
-        }
+        combinedCost[nextCost] = combinedCost.hasOwnProperty(nextCost) ? combinedCost[nextCost] : 1;
         return combinedCost;
       },
       {});
-
-  console.log(costColors);
 
   return {
     bgColor: bgColor,

@@ -1,6 +1,7 @@
 import React from 'react';
 import FactoryBoardComponent from '../../components/FactoryBoardComponent.js';
 import PlayerBoxComponent from '../../components/PlayerBoxComponent.js';
+import ResourcePanelComponent from '../../components/ResourcePanelComponent';
 import './PlayField.css';
 
 export default function PlayField() {
@@ -13,6 +14,7 @@ export default function PlayField() {
           </div>
           <div className="PlayField-playableArea">
             <FactoryBoardComponent />
+            <ResourcePanelComponent />
           </div>
           <div className="PlayField-otherPlayersArea">
             <PlayerBoxComponent playerIndex={3} />
