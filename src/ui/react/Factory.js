@@ -31,14 +31,12 @@ class Factory extends React.Component {
     return (
         <div
             className="Factory-container"
-            style={{borderStyle: (this.state.selectable ? "solid" : "dotted")}}>
-          <div
-              className="Factory-overlay"
-              style={{
-                backgroundColor: this.props.bgColor,
-                opacity: (this.state.selectable ? "1" : "0.5")
-              }}
-              onClick={() => this.props.onFactoryClick()}/>
+            style={{
+              borderStyle: (this.state.selected ? "solid" : "dotted"),
+              backgroundColor: this.props.bgColor,
+              opacity: (this.state.selectable ? "1" : "0.7")
+            }}
+            onClick={() => this.props.onFactoryClick()}>
           <div className="Factory-costContainer">
             {this.renderResourceBoxes(this.props.costColors)}
           </div>
