@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import Factory from '../react/Factory.js';
 import RESOURCE_COLORS from '../ResourceColorMap.js';
+import ChooseFactoryFromBoardAction from '../../actions/ChooseFactoryFromBoardAction.js';
 
 function mapStateToProps(state, ownProps) {
   let boardState = state.gameState.board;
@@ -27,6 +28,12 @@ function mapStateToProps(state, ownProps) {
   }
 }
 
-const FactoryComponent = connect(mapStateToProps)(Factory);
+function mapDispatchToProps(dispatch, ownProps) {
+  return {
+    onFactoryClick: () => dispatch(ChooseFactoryFromBoardAction(ownProps.rowIndex, ownProps.itemIndex))
+  }
+}
+
+const FactoryComponent = connect(mapStateToProps, mapDispatchToProps)(Factory);
 
 export default FactoryComponent;

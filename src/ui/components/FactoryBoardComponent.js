@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import FactoryBoard from '../react/FactoryBoard.js';
-import ChooseFactoryFromBoardAction from '../../actions/ChooseFactoryFromBoardAction.js';
 
 function isFactorySelection(selection) {
   return selection && !(selection instanceof 'array');
@@ -21,12 +20,6 @@ function mapStateToProps(state) {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    onFactoryClick: (row, item) => dispatch(ChooseFactoryFromBoardAction(row, item))
-  };
-}
-
-const FactoryBoardComponent = connect(mapStateToProps, mapDispatchToProps)(FactoryBoard);
+const FactoryBoardComponent = connect(mapStateToProps)(FactoryBoard);
 
 export default FactoryBoardComponent;
