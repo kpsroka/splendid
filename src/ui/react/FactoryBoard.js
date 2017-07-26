@@ -11,10 +11,8 @@ export default function FactoryBoard(props) {
               {row.map((item, itemIndex) => (
                   <FactoryComponent
                       key={itemIndex}
-                      factory={item}
                       rowIndex={rowIndex}
-                      itemIndex={itemIndex}
-                      onFactoryClick={() => props.onFactoryClick(rowIndex, itemIndex)} />
+                      itemIndex={itemIndex} />
               ))}
             </div>
         ))}
