@@ -1,16 +1,17 @@
 import React from 'react';
 import ResourceStack from './ResourceStack';
+import RESOURCE_COLORS from '../ResourceColorMap.js';
 import './ResourcePanel.css';
 
 const ResourcePanel = ({resources, onStackClick}) => (
     <div className="ResourcePanel-container">
-      {Object.keys(resources).map(color =>
+      {RESOURCE_COLORS.map((cssColor, colorIndex) =>
           <ResourceStack
-              key={color}
-              bgColor={color}
-              stackSize={resources[color]}
+              key={colorIndex}
+              bgColor={colorIndex}
+              stackSize={resources[colorIndex]}
               highlight={0}
-              onClickCallback={() => onStackClick(color)}
+              onClickCallback={() => onStackClick(colorIndex)}
           />
       )}
     </div>
