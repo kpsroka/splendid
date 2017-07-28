@@ -6,15 +6,15 @@ class ResourceStackCircle extends React.Component {
   render() {
     return (
         <div
-            className={"stackCircle" + (this.props.extraStyles ? " " + this.props.extraStyles : "")}
+            className={"ResourceStack-circle" + (this.props.extraStyles ? " " + this.props.extraStyles : "")}
             style={{
-              left: this.props.leftShift ? this.props.leftShift : 0,
+              top: this.props.topShift ? this.props.topShift : 0,
               borderColor: this.props.borderColor,
               backgroundColor: RESOURCE_COLORS[this.props.bgColor],
             }}
-            onClick={() => this.props.onItemClick(this.props.text)}>
+            onClick={() => this.props.onItemClick()}>
           <div
-              className="stackCircleText"
+              className="ResourceStack-circleText"
               style={{fontWeight: this.props.fontWeight}}>
             {this.props.text ? this.props.text : ""}
           </div>
@@ -38,7 +38,7 @@ class ResourceStack extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick(text) {
+  handleClick() {
     this.props.onClickCallback();
   }
 
@@ -47,24 +47,30 @@ class ResourceStack extends React.Component {
         <ResourceStackCircle
             key={0}
             bgColor={this.props.bgColor}
-            extraStyles="stackCircle-base"
+            extraStyles={[
+                "ResourceStack-circle-base",
+                (this.props.stackSize === 0 ? "ResourceStack-circle-head" : "ResourceStack-circle-rest")]
+                .join(" ")}
             onItemClick={this.handleClick}/>
     );
   }
 
   renderStackCircles() {
-    var circles = [];
-    for (var count = 0; count < this.props.stackSize; count++) {
-      var highlighted = (count + this.props.highlight) >= this.props.stackSize;
-      var leftShift = (count * 8) + "px";
+    let circles = [];
+    for (let count = 0; count < this.props.stackSize; count++) {
+      let highlighted = (count + this.props.highlight) >= this.props.stackSize;
+      let topShift = (count * 8) + "px";
 
       circles.push(
           <ResourceStackCircle
               key={count + 1}
-              leftShift={leftShift}
+              topShift={topShift}
               bgColor={this.props.bgColor}
               text={count + 1}
-              extraStyles={highlighted ? "stackCircle-highlighted" : ""}
+              extraStyles={[
+                highlighted ? "ResourceStack-circle-highlighted" : "",
+                (count === this.props.stackSize - 1 ? "ResourceStack-circle-head" : "ResourceStack-circle-rest")]
+                .join(" ")}
               onItemClick={this.handleClick}/>);
     }
     return circles;
@@ -72,7 +78,7 @@ class ResourceStack extends React.Component {
 
   render() {
     return (
-        <div className="stack">
+        <div className="ResourceStack-container">
           {this.renderBaseCircle()}
           {this.renderStackCircles()}
         </div>

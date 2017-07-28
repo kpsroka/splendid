@@ -1,11 +1,10 @@
-.stack {
+.ResourceStack-container {
   position: relative;
-  height: 68px;
+  width: 68px;
   margin-bottom: 4px;
 }
 
-.stackCircle {
-  position: absolute;
+.ResourceStack-circle {
   border-width: 4px;
   border-radius: 50%;
   border-color: #bbb;
@@ -15,17 +14,25 @@
   box-sizing: border-box;
 }
 
-.stackCircle-base {
+.ResourceStack-circle-base {
   opacity: 0.5;
   border-style: dotted;
 }
 
-.stackCircle-highlighted {
+.ResourceStack-circle-highlighted {
   border-color: black;
   font-weight: bold;
 }
 
-.stackCircleText {
+.ResourceStack-circle-head {
+  position: relative;
+}
+
+.ResourceStack-circle-rest {
+  position: absolute;
+}
+
+.ResourceStack-circleText {
   line-height: 60px;
   user-select: none;
   font-size: 20px;
