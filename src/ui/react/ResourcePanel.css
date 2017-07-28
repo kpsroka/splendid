@@ -1,6 +1,5 @@
-.resourcePanel {
+.ResourcePanel-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-between;
-  margin-left: 8px;
 }

@@ -3,7 +3,7 @@ import ResourceStack from './ResourceStack';
 import './ResourcePanel.css';
 
 const ResourcePanel = ({resources, onStackClick}) => (
-    <div className="resourcePanel">
+    <div className="ResourcePanel-container">
       {Object.keys(resources).map(color =>
           <ResourceStack
               key={color}
