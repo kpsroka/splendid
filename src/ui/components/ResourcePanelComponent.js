@@ -9,7 +9,7 @@ function mapStateToProps(state) {
 
   let resources = state.gameState.board.resources.sort().reduce(
       (combinedCost, nextCost) => {
-        combinedCost[nextCost] = combinedCost.hasOwnProperty(nextCost) ? combinedCost[nextCost] : 1;
+        combinedCost[nextCost] = combinedCost.hasOwnProperty(nextCost) ? (combinedCost[nextCost] + 1) : 1;
         return combinedCost;
       },
       {});
