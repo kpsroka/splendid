@@ -59,7 +59,7 @@ class ResourceStack extends React.Component {
     let circles = [];
     for (let count = 0; count < this.props.stackSize; count++) {
       let highlighted = (count + this.props.highlight) >= this.props.stackSize;
-      let topShift = (count * 8) + "px";
+      let topShift = (count * 1.5) + "vh";
 
       circles.push(
           <ResourceStackCircle

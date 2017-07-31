@@ -1,17 +1,21 @@
 .ResourceStack-container {
   position: relative;
-  width: 68px;
+  width: 8vw;
   margin-bottom: 4px;
 }
 
 .ResourceStack-circle {
-  border-width: 4px;
+  border-width: 0.3vh;
   border-radius: 50%;
   border-color: #bbb;
   border-style: solid;
-  width: 64px;
-  height: 64px;
+  width: 7vh;
+  height: 7vh;
   box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .ResourceStack-circle-base {
@@ -33,8 +37,6 @@
 }
 
 .ResourceStack-circleText {
-  line-height: 60px;
   user-select: none;
   font-size: 20px;
-  text-align: center;
 }
