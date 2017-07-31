@@ -9,7 +9,7 @@ const ResourcePanel = ({resources, onStackClick}) => (
           <ResourceStack
               key={colorIndex}
               bgColor={colorIndex}
-              stackSize={resources[colorIndex]}
+              stackSize={resources[colorIndex] || 0}
               highlight={0}
               onClickCallback={() => onStackClick(colorIndex)}
           />

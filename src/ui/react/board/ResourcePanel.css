@@ -1,5 +1,6 @@
 .ResourcePanel-container {
   width: 40vw;
+  height: 14vh;
 
   display: flex;
   flex-direction: row;
