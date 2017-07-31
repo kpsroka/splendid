@@ -1,7 +1,8 @@
 .FactoryBoard-container {
-  width: 400px;
-  height: 440px;
-  border: 2px dashed darkgrey;
+  width: 45vw;
+  height: 55vh;
+  padding: 0.5vmin 0.5vw;
+
   background: white;
   position: relative;
   display: flex;

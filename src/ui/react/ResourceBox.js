@@ -6,7 +6,7 @@ class ResourceBox extends React.Component {
   render() {
     return (
         <div
-            className="resourceBox"
+            className="ResourceBox-container"
             style={{
               backgroundColor: RESOURCE_COLORS[this.props.bg_color],
             }}>
