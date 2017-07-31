@@ -1,10 +1,10 @@
 import { ActionTypes } from '../../actions/Actions.js';
 
-export default function GameStateReducer(state, action) {
+export default function GameStateReducer(gameState, action) {
   switch (action.type) {
     case ActionTypes.SetGameState: {
-      return { ...state, gameState: action.gameState };
+      return action.gameState;
     }
-    default: return state;
+    default: return gameState;
   }
 }

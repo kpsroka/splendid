@@ -1,6 +1,6 @@
 import { ActionTypes } from '../../actions/Actions.js';
 
-export default function UiStateReducer(state, action) {
+export default function UiStateReducer(ui, action) {
   switch (action.type) {
     case ActionTypes.SetUiMessage: {
       let newMessage = {
@@ -8,16 +8,12 @@ export default function UiStateReducer(state, action) {
         severity: action.severity
       };
 
-      let newState = Object.assign({}, state);
-      newState.ui.message = newMessage;
-      return newState;
+      return { ...ui, message: newMessage };
     }
     case ActionTypes.DismissMessage: {
-      let newState = Object.assign({}, state);
-      newState.ui.message = null;
-      return newState;
+      return { ...ui, message: null };
     }
     default:
-      return state;
+      return ui;
   }
 }
