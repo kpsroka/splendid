@@ -4,8 +4,8 @@ export default function BoardReducer(board, action) {
   switch (action.type) {
     case ActionTypes.ChooseResourceFromStack: {
       if (Array.isArray(board.selection) || board.selection == null) {
-        if (canSelectResource(board.selection, action.resourceType)) {
-          let newBoardSelection = (board.selection || []).splice();
+        let newBoardSelection = Array.isArray(board.selection) ? board.selection.slice() : [];
+        if (canSelectResource(newBoardSelection, action.resourceType)) {
           if (countResources(newBoardSelection, action.resourceType) ===
               countResources(board.resources, action.resourceType)) {
             newBoardSelection = newBoardSelection.filter(x => x !== action.resourceType);
