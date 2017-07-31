@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import FactoryBoard from '../react/board/FactoryBoard.js';
 
 function isFactorySelection(selection) {
-  return selection && !(selection instanceof 'array');
+  return selection && !Array.isArray(selection);
 }
 
 function mapStateToProps(state) {
