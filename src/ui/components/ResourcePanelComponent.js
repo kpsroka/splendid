@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import ResourcePanel from '../react/ResourcePanel.js';
+import ResourcePanel from '../react/board/ResourcePanel.js';
 import ChooseResourceFromStackAction from '../../actions/ChooseResourceFromStackAction.js';
 
 function mapStateToProps(state) {
