@@ -18,15 +18,27 @@ export type Player = {
   hand: PlayerHand,
 };
 
-export type ResourceFactorySelection = {|
+export type NoSelection = {|
+  type: 'NO_SELECTION',
+|}
+
+export type FactorySelection = {|
+  type: 'FACTORY_SELECTION',
   row: number,
   item: number,
 |};
 
+export type ResourceSelection = {|
+  type: 'RESOURCE_SELECTION',
+  selection: Array<Resource>
+|}
+
+export type Selection = NoSelection | FactorySelection | ResourceSelection;
+
 export type Board = {
   factoriesByRow: Array<Array<ResourceFactory>>,
   resources: Array<Resource>,
-  selection: Array<Resource> | ResourceFactorySelection
+  selection: Selection
 };
 
 export type PlayerState = {

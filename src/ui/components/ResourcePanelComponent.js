@@ -7,9 +7,10 @@ function mapStateToProps(state) {
     return { resources: {}, selection: {} }
   }
 
-  let resources = state.gameState.board.resources.sort().reduce(reduceResources, {});
-  let selection = Array.isArray(state.gameState.board.selection)
-      ? state.gameState.board.selection.sort().reduce(reduceResources, {})
+  let board = state.gameState.board;
+  let resources = board.resources.sort().reduce(reduceResources, {});
+  let selection = board.selection.type === 'RESOURCE_SELECTION'
+      ? board.selection.selection.sort().reduce(reduceResources, {})
       : {};
 
   return { resources: resources, selection: selection };

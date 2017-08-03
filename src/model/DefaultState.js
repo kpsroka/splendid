@@ -1,12 +1,12 @@
 // @flow
 
-import type {State} from "./State";
+import type { State } from "./State";
 
-function createDefaultState(): State {
+function createDefaultState():State {
   return {
     gameId: null,
     players: [],
-    board: null,
+    gameState: null,
     ui: {
       asyncInProgress: false,
       message: null

@@ -1,10 +1,6 @@
 import { connect } from 'react-redux';
 import FactoryBoard from '../react/board/FactoryBoard.js';
 
-function isFactorySelection(selection) {
-  return selection && !Array.isArray(selection);
-}
-
 function mapStateToProps(state) {
   if (!state.gameState) {
     return {
@@ -15,7 +11,7 @@ function mapStateToProps(state) {
     let boardState = state.gameState.board;
     return {
       factoriesByRow: boardState.factoriesByRow,
-      selection: isFactorySelection(boardState.selection) ? boardState.selection : null
+      selection: boardState.selection.type === 'FACTORY_SELECTION' ? boardState.selection : null
     };
   }
 }
