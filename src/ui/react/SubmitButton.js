@@ -1,12 +1,9 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
 
-const SubmitButton = ({active, onClick}) => (
-    <button disabled={!active} onClick={() => onClick()}>Get</button>
-);
-
-SubmitButton.PropTypes = {
-  active: PropTypes.bool.isRequired,
-  onClick: PropTypes.func.isRequired
-};
-
-export default SubmitButton;
+export default function SubmitButton(props) {
+  return (
+    <button className={props.styleName} disabled={!props.active} onClick={() => props.onClick()}>
+      {props.text}
+    </button>
+  );
+}

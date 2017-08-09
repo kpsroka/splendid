@@ -4,7 +4,7 @@ import ChooseResourceFromStackAction from '../../actions/ChooseResourceFromStack
 
 function mapStateToProps(state) {
   if (!state.gameState) {
-    return { resources: {}, selection: {} }
+    return { resources: {}, selection: {}, canTakeResources: false }
   }
 
   let board = state.gameState.board;
@@ -13,7 +13,10 @@ function mapStateToProps(state) {
       ? board.selection.selection.sort().reduce(reduceResources, {})
       : {};
 
-  return { resources: resources, selection: selection };
+  let canTakeResources = (board.selection.length === 3 ||
+      (board.selection.length === 2 && Object.getOwnPropertyNames(selection).length === 1));
+
+  return { resources: resources, selection: selection, canTakeResources: canTakeResources };
 }
 
 function mapDispatchToProps(dispatch) {

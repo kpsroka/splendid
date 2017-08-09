@@ -6,3 +6,10 @@
   flex-direction: row;
   justify-content: space-between;
 }
+
+.ResourcePanel-buttonContainer {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
