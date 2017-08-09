@@ -78,7 +78,7 @@ function getResourceCountAfterClick(
     } else if (selectedResourceTypes.size === 2) {
       return selectedResourceTypes.has(resourceType) ? 0 : 1;
     } else if (selectedResourceTypes.size === 1) {
-      return (selectedResourcesOfType > 0 || selection.length === 1) ? (selectedResourcesOfType + 1) % 4 : 0;
+      return (selectedResourcesOfType > 0 || selection.length === 1) ? (selectedResourcesOfType + 1) % 3 : 0;
     }
   }
 
