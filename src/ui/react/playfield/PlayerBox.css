@@ -17,6 +17,10 @@
   border-radius: 6px;
   padding: 12px;
   background-color: ghostwhite;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .PlayerBox-playerInfoFrame {

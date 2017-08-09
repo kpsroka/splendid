@@ -1,4 +1,7 @@
 import React from 'react';
+import RESOURCE_COLORS from '../../ResourceColorMap.js';
+import PlayerResourceSupplyComponent from '../../components/PlayerResourceSupplyComponent.js';
+
 import './PlayerBox.css';
 
 function PlayerBox(props) {
@@ -18,10 +21,20 @@ function PlayerBox(props) {
           </div>
         </div>
         <div className="PlayerBox-internalFrame">
-          {props.children}
+          {renderResourceSupplies(props.playerIndex)}
         </div>
       </div>
   );
+}
+
+function renderResourceSupplies(playerIndex) {
+  let resourceSupplies = [];
+
+  for (let i = 0; i < RESOURCE_COLORS.length; i++) {
+    resourceSupplies.push(<PlayerResourceSupplyComponent key={i} playerIndex={playerIndex} resource={i} />);
+  }
+
+  return resourceSupplies;
 }
 
 export default PlayerBox;

@@ -1,0 +1,15 @@
+.PlayerResourceSupply-container {
+  display: flex;
+  width: 6vw;
+  padding: 1vmin;
+  justify-content: space-around;
+  align-items: center
+}
+
+.PlayerResourceSupply-factoryCount {
+
+}
+
+.PlayerResourceSupply-resourceCount {
+
+}
