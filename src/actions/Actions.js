@@ -10,6 +10,7 @@ export const ActionTypes = {
   SetGameConfig: '_SET_GAME_CONFIG',
   SetGameState: '_SET_GAME_STATE',
   SetUiMessage: '_SET_UI_MESSAGE',
+  TakeResourcesFromStack: 'TAKE_RESOURCES',
 };
 
 export type Action = ChooseResourceFromStack;

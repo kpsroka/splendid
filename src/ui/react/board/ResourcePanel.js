@@ -4,7 +4,7 @@ import SubmitButton from '../SubmitButton.js';
 import RESOURCE_COLORS from '../../ResourceColorMap.js';
 import './ResourcePanel.css';
 
-const ResourcePanel = ({resources, selection, canTakeResources, onStackClick}) => (
+const ResourcePanel = ({resources, selection, canTakeResources, onStackClick, onTake}) => (
     <div className="ResourcePanel-container">
       {RESOURCE_COLORS.map((cssColor, colorIndex) =>
           <ResourceStack
@@ -16,7 +16,7 @@ const ResourcePanel = ({resources, selection, canTakeResources, onStackClick}) =
           />
       )}
       <div className="ResourcePanel-buttonContainer">
-        <SubmitButton text="Take" active={canTakeResources} onClick={() => {}} styleName="" />
+        <SubmitButton text="Take" active={canTakeResources} onClick={() => { onTake(); }} styleName="" />
       </div>
     </div>
 );
