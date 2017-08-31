@@ -61,8 +61,14 @@ export type UiState = {
   message: ?UiMessage,
 };
 
+export type GameRef = {
+  gameId: string,
+  playerToken: string
+}
+
 export type State = {
   gameId: ?string,
+  gameRef: ?GameRef,
   players: Array<Player>,
   gameState: ?GameState,
   ui: UiState

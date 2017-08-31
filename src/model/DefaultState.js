@@ -7,6 +7,7 @@ function createDefaultState():State {
     gameId: null,
     players: [],
     gameState: null,
+    gameRef: null,
     ui: {
       asyncInProgress: false,
       message: null
