@@ -13,9 +13,9 @@ export const ActionTypes = {
   TakeResourcesFromStack: 'TAKE_RESOURCES',
 };
 
-export type Action = ChooseResourceFromStack;
-
 export type ChooseResourceFromStack = {
   type:'CHOOSE_STACK_RESOURCE',
   resourceType:Resource
 }
+
+export type Action = ChooseResourceFromStack;
