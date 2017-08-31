@@ -15,16 +15,15 @@ export default function NewGame(playerName, playerCount) {
     CheckResponse(CreateGame(playerName, playerCount))
     .then(
         gameRef => {
-          dispatch(SetUiMessage(`Created new game (${gameRef.id})`));
-          gameRefId = gameRef.id;
-          return CheckResponse(FetchGameConfig(gameRef.id));
+          dispatch(SetUiMessage(`Created new game (${gameRef.gameId})`));
+          gameRefId = gameRef.gameId;
+          return CheckResponse(FetchGameConfig(gameRef.gameId));
         })
     .then(gameConfig => {
       dispatch(SetGameConfig(gameConfig));
       return CheckResponse(FetchGameState(gameRefId));
     })
     .then(gameState => {
-      console.log("Game state: " + JSON.stringify(gameState));
       dispatch(SetGameState(gameState));
     })
     .catch(
