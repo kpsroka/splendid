@@ -67,7 +67,6 @@ export type GameRef = {
 }
 
 export type State = {
-  gameId: ?string,
   gameRef: ?GameRef,
   players: Array<Player>,
   gameState: ?GameState,
