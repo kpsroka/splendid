@@ -1,3 +1,3 @@
-export function TakeResources(gameRefId, playerIndex, resources) {
-  return fetch(`/game/act?id=${gameRefId}&action=TakeResources&player=${playerIndex}&payload=${resources}`);
+export function TakeResources(gameRef, resources) {
+  return fetch(`/game/act?id=${gameRef.gameId}&action=TakeResources&playerToken=${gameRef.playerToken}&payload=${resources}`);
 }

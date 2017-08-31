@@ -11,8 +11,7 @@ export default function TakeResourcesFromStackAction() {
     if (selection.type === 'RESOURCE_SELECTION') {
       CheckResponse(
           TakeResources(
-              state.gameRef.gameId,
-              0,
+              state.gameRef,
               state.gameState.board.selection.selection.join()))
       .then(
           gameState => { dispatch(SetGameState(gameState)); }
