@@ -9,7 +9,11 @@ export default function TakeResourcesFromStackAction() {
 
     let selection = state.gameState.board.selection;
     if (selection.type === 'RESOURCE_SELECTION') {
-      CheckResponse(TakeResources(state.gameId, 0, state.gameState.board.selection.selection.join()))
+      CheckResponse(
+          TakeResources(
+              state.gameRef.gameId,
+              0,
+              state.gameState.board.selection.selection.join()))
       .then(
           gameState => { dispatch(SetGameState(gameState)); }
       )
