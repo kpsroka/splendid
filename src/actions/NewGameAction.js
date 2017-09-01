@@ -10,18 +10,18 @@ export default function NewGame(playerName, playerCount) {
   return (dispatch) => {
     dispatch(SetUiMessage('Starting new game'));
 
-    let gameRefId;
+    let localGameRef;
 
     CheckResponse(CreateGame(playerName, playerCount))
     .then(
         gameRef => {
+          localGameRef = gameRef;
           dispatch(SetUiMessage(`Created new game (${gameRef.gameId})`));
-          gameRefId = gameRef.gameId;
-          return CheckResponse(FetchGameConfig(gameRef.gameId));
+          return CheckResponse(FetchGameConfig(gameRef));
         })
     .then(gameConfig => {
       dispatch(SetGameConfig(gameConfig));
-      return CheckResponse(FetchGameState(gameRefId));
+      return CheckResponse(FetchGameState(localGameRef));
     })
     .then(gameState => {
       dispatch(SetGameState(gameState));

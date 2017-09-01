@@ -1,3 +1,3 @@
-export default function FetchGameConfig(gameRefId) {
-  return fetch(`/game/getConfig?id=${gameRefId}`);
+export default function FetchGameConfig(gameRef) {
+  return fetch(`/game/getConfig?id=${gameRef.gameId}&playerToken=${gameRef.playerToken}`);
 }
