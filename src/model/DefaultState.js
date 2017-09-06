@@ -4,7 +4,6 @@ import type { State } from "./State";
 
 function createDefaultState():State {
   return {
-    gameId: null,
     players: [],
     gameState: null,
     gameRef: null,
