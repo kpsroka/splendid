@@ -48,7 +48,8 @@ export type PlayerState = {
 export type GameState = {
   round: number,
   board: Board,
-  playerState: Array<PlayerState>
+  playerState: Array<PlayerState>,
+  currentPlayerIndex: ?number
 };
 
 export type UiMessage = {
