@@ -1,11 +1,12 @@
 import React from 'react';
 import NewGameComponent from '../../components/NewGameComponent.js';
+import JoinGameComponent from '../../components/JoinGameComponent.js';
 import './WelcomeScreen.css';
 
 class WelcomeScreen extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.state = {showNewGameForm: false};
+    this.state = {showNewGameForm: false, showJoinGameForm: false};
   }
 
   render() {
@@ -22,12 +23,20 @@ class WelcomeScreen extends React.PureComponent {
   renderControls() {
     if (this.state.showNewGameForm) {
       return <NewGameComponent onAbort={() => this.setState({showNewGameForm: false})}/>
+    } else if (this.state.showJoinGameForm) {
+      return <JoinGameComponent onAbort={() => this.setState({showJoinGameForm: false})}/>
     } else {
       return (
-          <button className="WelcomeScreen-button"
-                  onClick={() => this.setState({showNewGameForm: true})}>
-            Start new game
-          </button>
+          <div className="WelcomeScreen-buttonContainer">
+            <button className="WelcomeScreen-button"
+                    onClick={() => this.setState({showNewGameForm: true})}>
+              Start new game
+            </button>
+            <button className="WelcomeScreen-button"
+                    onClick={() => this.setState({showJoinGameForm: true})}>
+              Join game
+            </button>
+          </div>
       );
     }
   }

@@ -18,3 +18,12 @@
   margin: 24px 0;
   user-select: none;
 }
+
+.WelcomeScreen-buttonContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.WelcomeScreen-button + .WelcomeScreen-button {
+  margin-top: 24px;
+}
