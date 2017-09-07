@@ -7,7 +7,7 @@ import FetchGameState from './async/FetchGameState.js';
 
 export default function GetGameData(gameRef) {
   return (dispatch) => {
-    dispatch(SetUiMessage('Joining game ' + gameRef.id));
+    dispatch(SetUiMessage(`Joining game ${gameRef.gameId}`));
 
     CheckResponse(FetchGameConfig(gameRef))
     .then(
