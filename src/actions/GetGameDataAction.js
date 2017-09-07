@@ -1,9 +1,9 @@
+import PollGameState from './PollGameStateAction.js';
 import SetUiMessage from './SetUiMessageAction.js';
 import SetGameConfig from './SetGameConfigAction.js';
 import SetGameState from './SetGameStateAction.js';
 import CheckResponse from './async/CheckResponse.js';
 import FetchGameConfig from './async/FetchGameConfig.js';
-import FetchGameState from './async/FetchGameState.js';
 
 export default function GetGameData(gameRef) {
   return (dispatch) => {
@@ -13,7 +13,7 @@ export default function GetGameData(gameRef) {
     .then(
         gameConfig => {
           dispatch(SetGameConfig(gameConfig));
-          return CheckResponse(FetchGameState(gameRef));
+          dispatch(PollGameState(gameRef));
         })
     .then(gameState => {
       dispatch(SetGameState(gameState));
