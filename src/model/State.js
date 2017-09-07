@@ -46,7 +46,6 @@ export type PlayerState = {
 };
 
 export type GameState = {
-  round: number,
   board: Board,
   playerState: Array<PlayerState>,
   currentPlayerIndex: ?number
