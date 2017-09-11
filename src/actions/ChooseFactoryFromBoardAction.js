@@ -1,9 +1,9 @@
 import { ActionTypes } from './Actions.js';
 
-export default function ChooseFactoryFromBoard(row, index) {
+export default function ChooseFactoryFromBoard(row, item) {
   return {
     type: ActionTypes.ChooseFactoryFromBoard,
     row: row,
-    index: index
+    item: item
   };
 }

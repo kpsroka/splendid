@@ -7,53 +7,59 @@ import { ActionTypes } from '../../actions/Actions.js';
 
 export default function BoardReducer(board:Board, action:Action):Board {
   if (action.type === ActionTypes.ChooseResourceFromStack) {
-    let selection = board.selection;
-    if (selection.type === 'FACTORY_SELECTION') {
+    return chooseResourceFromStack(board, action.resourceType);
+  } else if (action.type === ActionTypes.ChooseFactoryFromBoard) {
+    return chooseFactoryFromBoard(board, action.row, action.item);
+  }
+
+  return board;
+}
+
+function chooseResourceFromStack(board:Board, resourceType:number):Board {
+  let selection = board.selection;
+  if (selection.type === 'FACTORY_SELECTION') {
+    return board;
+  } else if (selection.type === 'NO_SELECTION') {
+    return {
+      ...board,
+      selection: {
+        type: 'RESOURCE_SELECTION',
+        selection: [resourceType]
+      }
+    }
+  } else {
+    let oldResourceCount = countResources(selection.selection, resourceType);
+    let newResourceCount = getResourceCountAfterClick(
+        countResources(board.resources, resourceType),
+        oldResourceCount,
+        selection.selection,
+        resourceType);
+
+    if (oldResourceCount === newResourceCount) {
       return board;
-    } else if (selection.type === 'NO_SELECTION') {
+    }
+
+    let newBoardSelection: Array<Resource> =
+        selection.selection.filter(x => x !== resourceType);
+    for (let i = 0; i < newResourceCount; i++) {
+      newBoardSelection.push(resourceType);
+    }
+
+    if (newBoardSelection.length === 0) {
+      return {
+        ...board,
+        selection: { type: 'NO_SELECTION' }
+      }
+    } else {
       return {
         ...board,
         selection: {
           type: 'RESOURCE_SELECTION',
-          selection: [action.resourceType]
+          selection: newBoardSelection
         }
-      }
-    } else {
-      let oldResourceCount = countResources(selection.selection, action.resourceType);
-      let newResourceCount = getResourceCountAfterClick(
-          countResources(board.resources, action.resourceType),
-          oldResourceCount,
-          selection.selection,
-          action.resourceType);
-
-      if (oldResourceCount === newResourceCount) {
-        return board;
-      }
-
-      let newBoardSelection: Array<Resource> =
-          selection.selection.filter(x => x !== action.resourceType);
-      for (let i = 0; i < newResourceCount; i++) {
-        newBoardSelection.push(action.resourceType);
-      }
-
-      if (newBoardSelection.length === 0) {
-        return {
-          ...board,
-          selection: { type: 'NO_SELECTION' }
-        }
-      } else {
-        return {
-          ...board,
-          selection: {
-            type: 'RESOURCE_SELECTION',
-            selection: newBoardSelection
-          }
-        };
-      }
+      };
     }
   }
-
-  return board;
 }
 
 function countResources(resourceArray:Array<Resource>, resourceType:Resource):number {
@@ -83,4 +89,38 @@ function getResourceCountAfterClick(
   }
 
   throw new Error("Should have exhausted all possibilities");
+}
+
+function chooseFactoryFromBoard(board:Board, row:number, item:number):Board {
+  let selection = board.selection;
+  if (selection.type === 'RESOURCE_SELECTION') {
+    return board;
+  } else if (selection.type === 'NO_SELECTION') {
+    return {
+      ...board,
+      selection: {
+        type: 'FACTORY_SELECTION',
+        row: row,
+        item: item
+      }
+    }
+  } else {
+    if (board.selection.row === row && board.selection.item === item) {
+      return {
+        ...board,
+        selection: {
+          type: 'NO_SELECTION'
+        }
+      }
+    } else {
+      return {
+        ...board,
+        selection: {
+          type: 'FACTORY_SELECTION',
+          row: row,
+          item: item
+        }
+      }
+    }
+  }
 }

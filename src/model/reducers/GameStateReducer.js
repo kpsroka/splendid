@@ -6,7 +6,8 @@ export default function GameStateReducer(gameState, action) {
     case ActionTypes.SetGameState: {
       return action.gameState;
     }
-    case ActionTypes.ChooseResourceFromStack: {
+    case ActionTypes.ChooseResourceFromStack:
+    case ActionTypes.ChooseFactoryFromBoard: {
       if (gameState.currentPlayerIndex === 0) {
         return {...gameState, board: BoardReducer(gameState.board, action)};
       } else {

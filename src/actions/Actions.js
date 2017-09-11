@@ -13,9 +13,15 @@ export const ActionTypes = {
   TakeResourcesFromStack: 'TAKE_RESOURCES',
 };
 
+export type ChooseFactoryFromBoard = {
+  type:'CHOOSE_FACTORY',
+  row:number,
+  item:number
+}
+
 export type ChooseResourceFromStack = {
   type:'CHOOSE_STACK_RESOURCE',
   resourceType:Resource
 }
 
-export type Action = ChooseResourceFromStack;
+export type Action = ChooseFactoryFromBoard | ChooseResourceFromStack;

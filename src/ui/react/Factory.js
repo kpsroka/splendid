@@ -5,15 +5,6 @@ import './Factory.css';
 class Factory extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {selected: false, selectable: false};
-
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick() {
-    if (this.state.selectable) {
-      this.setState({selected: !this.state.selected});
-    }
   }
 
   renderResourceBoxes(colorCosts) {
@@ -31,9 +22,8 @@ class Factory extends React.Component {
         <div
             className="Factory-container"
             style={{
-              borderStyle: (this.state.selected ? "solid" : "dotted"),
+              borderStyle: (this.props.selected ? "solid" : "dotted"),
               backgroundColor: this.props.bgColor,
-              opacity: (this.state.selectable ? "1" : "0.7")
             }}
             onClick={() => this.props.onFactoryClick()}>
           <div className="Factory-costContainer">

@@ -15,10 +15,15 @@ function mapStateToProps(state, ownProps) {
       },
       {});
 
+  let selection = boardState.selection.type === 'FACTORY_SELECTION' ? boardState.selection : null;
+
   return {
     bgColor: bgColor,
     costColors: costColors,
-    points: resourceFactory.points
+    points: resourceFactory.points,
+    selected: selection !== null &&
+        selection.row === ownProps.rowIndex &&
+        selection.item === ownProps.itemIndex
   }
 }
 

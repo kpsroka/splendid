@@ -11,7 +11,6 @@ function mapStateToProps(state) {
     let boardState = state.gameState.board;
     return {
       factoriesByRow: boardState.factoriesByRow,
-      selection: boardState.selection.type === 'FACTORY_SELECTION' ? boardState.selection : null
     };
   }
 }
