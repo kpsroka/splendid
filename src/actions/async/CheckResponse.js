@@ -3,22 +3,27 @@ function isJsonResponse(response) {
   return (contentType && contentType.includes('application/json'));
 }
 
-export default function CheckResponse(fetchPromise) {
+export default function CheckResponse(fetchPromise, rejectEmptyResponse=true) {
   return fetchPromise.then(
       response => {
-        const responsePromise = isJsonResponse(response) ? response.json() : response.text();
 
         if (response.ok) {
           if (isJsonResponse(response)) {
-            return responsePromise;
+            return response.json();
           } else {
-            return responsePromise.then(
+            return response.text().then(
                 textResponse => {
-                  console.log(`Unexpected response: ${textResponse}`);
-                  throw new Error(`Server failure`)
+                  if (rejectEmptyResponse || textResponse.length > 0) {
+                    console.log(`Unexpected response: ${textResponse}`);
+                    throw new Error(`Server failure`)
+                  } else {
+                    return Promise.resolve(textResponse);
+                  }
                 });
           }
         } else {
+          const responsePromise = isJsonResponse(response) ? response.json() : response.text();
+
           return responsePromise.then(errorResponse => {
             if (errorResponse.message) {
               throw new Error(errorResponse.message);
