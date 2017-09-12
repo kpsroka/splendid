@@ -1,12 +1,15 @@
 
 export function ReduceResources(resources) {
   if (Array.isArray(resources)) {
-    resources.slice().sort().reduce(reduceResourcesFn, {});
+    return resources.slice().sort().reduce(reduceResourcesFn, {});
   } else {
     return {};
   }
 }
 
+/**
+ * @return {boolean}
+ */
 export function ContainsResources(container, content) {
   let sortedContainer = container.slice().sort();
   let sortedContent = content.slice().sort();
