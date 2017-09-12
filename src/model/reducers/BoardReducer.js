@@ -17,9 +17,7 @@ export default function BoardReducer(board:Board, action:Action):Board {
 
 function chooseResourceFromStack(board:Board, resourceType:number):Board {
   let selection = board.selection;
-  if (selection.type === 'FACTORY_SELECTION') {
-    return board;
-  } else if (selection.type === 'NO_SELECTION') {
+  if (selection.type === 'FACTORY_SELECTION' || selection.type === 'NO_SELECTION') {
     return {
       ...board,
       selection: {
@@ -93,9 +91,7 @@ function getResourceCountAfterClick(
 
 function chooseFactoryFromBoard(board:Board, row:number, item:number):Board {
   let selection = board.selection;
-  if (selection.type === 'RESOURCE_SELECTION') {
-    return board;
-  } else if (selection.type === 'NO_SELECTION') {
+  if (selection.type === 'RESOURCE_SELECTION' || selection.type === 'NO_SELECTION') {
     return {
       ...board,
       selection: {
