@@ -18,7 +18,7 @@ class Factory extends React.Component {
         <div
             className="Factory-container"
             style={{
-              borderStyle: (this.props.selected ? "solid" : "dotted"),
+              borderColor: (this.props.selected ? "black" : "#bbb"),
               backgroundColor: this.props.bgColor,
             }}
             onClick={() => this.props.onFactoryClick()}>
