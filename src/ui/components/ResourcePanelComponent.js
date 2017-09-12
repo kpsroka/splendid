@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import ResourcePanel from '../react/board/ResourcePanel.js';
 import ChooseResourceFromStackAction from '../../actions/ChooseResourceFromStackAction.js';
 import TakeSelectionAction from '../../actions/TakeSelectionAction.js';
-
+import { ReduceResources } from '../../model/ResourceHelper.js';
 
 function mapStateToProps(state) {
   if (!state.gameState) {
@@ -10,9 +10,9 @@ function mapStateToProps(state) {
   }
 
   let board = state.gameState.board;
-  let resources = board.resources.sort().reduce(reduceResources, {});
+  let resources = ReduceResources(board.resources);
   let selection = board.selection.type === 'RESOURCE_SELECTION'
-      ? board.selection.selection.sort().reduce(reduceResources, {})
+      ? ReduceResources(board.selection.selection)
       : {};
 
   let canTakeResources = board.selection.type === 'RESOURCE_SELECTION' &&
@@ -27,11 +27,6 @@ function mapDispatchToProps(dispatch) {
     onStackClick: (resourceType) => dispatch(ChooseResourceFromStackAction(resourceType)),
     onTake: () => { dispatch(TakeSelectionAction())}
   }
-}
-
-function reduceResources(reduced, resource) {
-  reduced[resource] = reduced.hasOwnProperty(resource) ? (reduced[resource] + 1) : 1;
-  return reduced;
 }
 
 const ResourcePanelComponent = connect(mapStateToProps, mapDispatchToProps)(ResourcePanel);
