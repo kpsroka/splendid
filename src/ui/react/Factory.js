@@ -3,10 +3,6 @@ import ResourceBox from './ResourceBox';
 import './Factory.css';
 
 class Factory extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   renderResourceBoxes(colorCosts) {
     let resourceBoxes = [];
     Object.keys(colorCosts).forEach((color) => {
