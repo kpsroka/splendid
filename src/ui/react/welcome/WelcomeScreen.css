@@ -22,8 +22,58 @@
 .WelcomeScreen-buttonContainer {
   display: flex;
   flex-direction: column;
+  margin-top: 24px;
 }
 
 .WelcomeScreen-button + .WelcomeScreen-button {
   margin-top: 24px;
+}
+
+.WelcomeScreen-formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.WelcomeScreen-formContainer .WelcomeScreen-buttonContainer {
+  min-width: 120px;
+}
+
+.WelcomeScreen-buttonRow .WelcomeScreen-button {
+  width: 120px;
+}
+
+.WelcomeScreen-inputRow,
+.WelcomeScreen-buttonRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.WelcomeScreen-inputRow {
+  justify-content: space-between;
+}
+
+.WelcomeScreen-buttonRow {
+  justify-content: center;
+}
+
+.WelcomeScreen-inputRow + .WelcomeScreen-inputRow {
+  padding-top: 6px;
+}
+
+.WelcomeScreen-inputRow + .WelcomeScreen-buttonRow {
+  padding-top: 12px;
+}
+
+.WelcomeScreen-inputRowLabel {
+  width: 140px;
+}
+
+.WelcomeScreen-textInput {
+  border: none;
+  border-bottom: 1px solid white;
+  background-color: transparent;
+  color: white;
+  text-align: center;
 }

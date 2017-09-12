@@ -1,5 +1,5 @@
 import React from 'react';
-import './NewGameForm.css';
+import './WelcomeScreen.css';
 
 class NewGameForm extends React.PureComponent {
   constructor(props) {
@@ -9,36 +9,36 @@ class NewGameForm extends React.PureComponent {
 
   render() {
     return (
-        <div className="NewGameForm-container">
-          <div className="NewGameForm-inputRow">
-            <div className="NewGameForm-inputRowLabel">Player name</div>
-            <input type="text"
-                   name="playerName"
-                   className="NewGameForm-textInput"
-                   onInput={(inputEvent) => {
-                     this.setState({playerName: inputEvent.target.value})
-                   }}>
-            </input>
+        <div className="WelcomeScreen-formContainer">
+          <div>
+            <div className="WelcomeScreen-inputRow">
+              <div className="WelcomeScreen-inputRowLabel">Player name</div>
+              <input type="text"
+                     name="playerName"
+                     className="WelcomeScreen-textInput"
+                     onInput={(inputEvent) => {
+                       this.setState({playerName: inputEvent.target.value})
+                     }}>
+              </input>
+            </div>
+            <div className="WelcomeScreen-inputRow">
+              <div className="WelcomeScreen-inputRowLabel">Number of players</div>
+              <input type="range"
+                     min="2" max="5"
+                     defaultValue={this.state.numberOfPlayers}
+                     onInput={(inputEvent) => {
+                       this.setState({numberOfPlayers: inputEvent.target.value})
+                     }}>
+              </input>
+              <div>{this.state.numberOfPlayers}</div>
+            </div>
           </div>
-          <div className="NewGameForm-inputRow">
-            <div className="NewGameForm-inputRowLabel">Number of players</div>
-            <input type="range"
-                   min="2" max="5"
-                   defaultValue={this.state.numberOfPlayers}
-                   onInput={(inputEvent) => {
-                     this.setState({numberOfPlayers: inputEvent.target.value})
-                   }}>
-            </input>
-            <div>{this.state.numberOfPlayers}</div>
-          </div>
-          <div className="NewGameForm-buttonRow">
-            <button className="NewGameForm-button"
+          <div className="WelcomeScreen-buttonContainer">
+            <button className="WelcomeScreen-button"
                     onClick={() => this.props.createNewGame(this.state.playerName, this.state.numberOfPlayers)}>
               Start
             </button>
-          </div>
-          <div className="NewGameForm-buttonRow">
-            <button className="NewGameForm-button"
+            <button className="WelcomeScreen-button"
                     onClick={() => this.props.onAbort()}>
               Go back
             </button>
