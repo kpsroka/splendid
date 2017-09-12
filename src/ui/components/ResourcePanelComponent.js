@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import ResourcePanel from '../react/board/ResourcePanel.js';
 import ChooseResourceFromStackAction from '../../actions/ChooseResourceFromStackAction.js';
-import TakeResourcesFromStackAction from '../../actions/TakeResourcesFromStackAction.js';
+import TakeSelectionAction from '../../actions/TakeSelectionAction.js';
 
 
 function mapStateToProps(state) {
@@ -25,7 +25,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     onStackClick: (resourceType) => dispatch(ChooseResourceFromStackAction(resourceType)),
-    onTake: () => { dispatch(TakeResourcesFromStackAction())}
+    onTake: () => { dispatch(TakeSelectionAction())}
   }
 }
 
