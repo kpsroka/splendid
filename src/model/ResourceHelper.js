@@ -1,7 +1,7 @@
 
 export function ReduceResources(resources) {
   if (Array.isArray(resources)) {
-    selection.slice().sort().reduce(reduceResourcesFn, {});
+    resources.slice().sort().reduce(reduceResourcesFn, {});
   } else {
     return {};
   }
