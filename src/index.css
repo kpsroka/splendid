@@ -13,6 +13,14 @@ button {
   border: 1px solid white;
   font-size: 20px;
   height: 32px;
+  user-select: none;
+  cursor: pointer;
+}
+
+button:disabled,
+button:hover:disabled {
+  background-color: darkgray;
+  cursor: not-allowed;
 }
 
 button:hover {
