@@ -19,7 +19,11 @@ function mapStateToProps(state) {
       (board.selection.selection.length === 3 ||
       (board.selection.selection.length === 2 && Object.getOwnPropertyNames(selection).length === 1));
 
-  return { resources: resources, selection: selection, canTakeResources: canTakeResources };
+  return {
+    resources: resources,
+    selection: selection,
+    canTakeSelection: canTakeResources
+  };
 }
 
 function mapDispatchToProps(dispatch) {
