@@ -1,6 +1,6 @@
 import React from 'react';
 import ResourceStack from './ResourceStack.js';
-import SubmitButton from '../SubmitButton.js';
+import SubmitButtonComponent from './SubmitButtonComponent.js';
 import RESOURCE_COLORS from '../ResourceColorMap.js';
 import './ResourcePanel.css';
 
@@ -16,10 +16,7 @@ const ResourcePanel = (props) => (
           />
       )}
       <div className="ResourcePanel-buttonContainer">
-        <SubmitButton
-            text="Take"
-            active={props.canTakeSelection}
-            onClick={() => { props.onTake(); }} styleName="" />
+        <SubmitButtonComponent />
       </div>
     </div>
 );
