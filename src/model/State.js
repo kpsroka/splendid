@@ -2,6 +2,8 @@
 
 export type Resource = number;
 
+export type ResourceMap = {[Resource]:number};
+
 export type ResourceFactory = {
   color: Resource,
   cost: Array<Resource>,

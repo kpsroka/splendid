@@ -1,5 +1,8 @@
+// @flow
 
-export function ReduceResources(resources) {
+import type { Resource, ResourceMap } from './State.js';
+
+export function ReduceResources(resources:Array<Resource>):ResourceMap {
   if (Array.isArray(resources)) {
     return resources.slice().sort().reduce(reduceResourcesFn, {});
   } else {
@@ -10,7 +13,10 @@ export function ReduceResources(resources) {
 /**
  * @return {boolean}
  */
-export function ContainsResources(container, content) {
+export function ContainsResources(
+    container:Array<Resource>,
+    content:Array<Resource>)
+    :boolean {
   let sortedContainer = container.slice().sort();
   let sortedContent = content.slice().sort();
 
@@ -25,7 +31,7 @@ export function ContainsResources(container, content) {
       }).includes(false);
 }
 
-function reduceResourcesFn(reduced, resource) {
+function reduceResourcesFn(reduced:ResourceMap, resource:Resource):ResourceMap {
   reduced[resource] = reduced.hasOwnProperty(resource) ? (reduced[resource] + 1) : 1;
   return reduced;
 }
