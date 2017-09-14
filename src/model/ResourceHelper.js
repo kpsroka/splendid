@@ -22,13 +22,17 @@ export function ContainsResources(
 
   return !sortedContainer.map(
       resource => {
-        if (sortedContent.length === 0 || sortedContent[0] < resource) {
+        if (sortedContent.length === 0) {
+          return true;
+        } else if (sortedContent[0] < resource) {
           return false;
-        } else if (sortedContent[0] === resource) {
-          sortedContent.shift();
+        } else {
+          if (sortedContent[0] === resource) {
+            sortedContent.shift();
+          }
+          return true;
         }
-        return true;
-      }).includes(false);
+      }).includes(false) && sortedContent.length === 0;
 }
 
 function reduceResourcesFn(reduced:ResourceMap, resource:Resource):ResourceMap {
