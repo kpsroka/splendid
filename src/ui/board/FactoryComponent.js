@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Factory from '../react/Factory.js';
+import Factory from './Factory.js';
 import RESOURCE_COLORS from '../ResourceColorMap.js';
 import ChooseFactoryFromBoardAction from '../../actions/ChooseFactoryFromBoardAction.js';
 

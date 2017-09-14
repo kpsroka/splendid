@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react';
-import RESOURCE_COLORS from '../../ResourceColorMap.js';
+import RESOURCE_COLORS from '../ResourceColorMap.js';
 import './ResourceStack.css';
 
 class ResourceStackCircle extends React.Component {

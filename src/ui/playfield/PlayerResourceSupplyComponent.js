@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import PlayerResourceSupply from '../react/playfield/PlayerResourceSupply.js';
+import PlayerResourceSupply from './PlayerResourceSupply.js';
 
 function mapStateToProps(state, ownProps) {
   if (state.gameState) {

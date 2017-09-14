@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import FactoryBoard from '../react/board/FactoryBoard.js';
+import FactoryBoard from './FactoryBoard.js';
 
 function mapStateToProps(state) {
   if (!state.gameState) {

@@ -1,5 +1,5 @@
 import React from 'react';
-import FactoryComponent from '../../components/FactoryComponent.js';
+import FactoryComponent from './FactoryComponent.js';
 import './FactoryBoard.css';
 
 export default function FactoryBoard(props) {

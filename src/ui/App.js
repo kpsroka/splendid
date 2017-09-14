@@ -1,6 +1,6 @@
 import React from 'react';
-import UiComponent from './components/UiComponent.js';
-import UiMessageComponent from './components/UiMessageComponent.js';
+import UiComponent from './UiComponent.js';
+import UiMessageComponent from './UiMessageComponent.js';
 import './App.css';
 
 export default function App() {

@@ -1,5 +1,5 @@
 import React from 'react';
-import ResourceBox from './ResourceBox';
+import ResourceBox from '../playfield/ResourceBox';
 import './Factory.css';
 
 class Factory extends React.Component {

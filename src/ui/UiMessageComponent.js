@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import DismissMessageAction from '../../actions/DismissMessageAction.js';
-import UiMessage from '../react/UiMessage.js';
+import DismissMessageAction from '../actions/DismissMessageAction.js';
+import UiMessage from './UiMessage.js';
 
 function mapStateToProps(state) {
   return {

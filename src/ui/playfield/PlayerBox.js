@@ -1,6 +1,6 @@
 import React from 'react';
-import RESOURCE_COLORS from '../../ResourceColorMap.js';
-import PlayerResourceSupplyComponent from '../../components/PlayerResourceSupplyComponent.js';
+import RESOURCE_COLORS from '../ResourceColorMap.js';
+import PlayerResourceSupplyComponent from './PlayerResourceSupplyComponent.js';
 
 import './PlayerBox.css';
 

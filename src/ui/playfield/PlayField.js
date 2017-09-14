@@ -1,7 +1,7 @@
 import React from 'react';
-import FactoryBoardComponent from '../../components/FactoryBoardComponent.js';
-import PlayerBoxComponent from '../../components/PlayerBoxComponent.js';
-import ResourcePanelComponent from '../../components/ResourcePanelComponent';
+import FactoryBoardComponent from '../board/FactoryBoardComponent.js';
+import PlayerBoxComponent from './PlayerBoxComponent.js';
+import ResourcePanelComponent from '../board/ResourcePanelComponent';
 import './PlayField.css';
 
 export default function PlayField() {

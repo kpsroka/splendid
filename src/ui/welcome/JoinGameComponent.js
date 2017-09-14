@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import JoinGameAction from '../../actions/JoinGameAction.js';
-import JoinGameForm from '../react/welcome/JoinGameForm.js';
+import JoinGameForm from './JoinGameForm.js';
 
 function mapStateToProps() { return {}; }
 

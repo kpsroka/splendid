@@ -1,6 +1,6 @@
 import React from 'react';
-import NewGameComponent from '../../components/NewGameComponent.js';
-import JoinGameComponent from '../../components/JoinGameComponent.js';
+import NewGameComponent from './NewGameComponent.js';
+import JoinGameComponent from './JoinGameComponent.js';
 import './WelcomeScreen.css';
 
 class WelcomeScreen extends React.PureComponent {

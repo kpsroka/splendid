@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import SubmitButton from '../react/SubmitButton.js';
-import GrabSelectedResourcesAction from '../../actions/GrabSelectedResourcesAction.js';
+import SubmitButton from './SubmitButton.js';
+import GrabSelectedResourcesAction from '../actions/GrabSelectedResourcesAction.js';
 
 function mapStateToProps(state) {
   return {

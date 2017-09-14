@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
-import PlayerBox from '../react/playfield/PlayerBox.js';
-
+import PlayerBox from './PlayerBox.js';
 
 function mapStateToProps(state, ownProps) {
   if (state.players.length <= ownProps.playerIndex) {

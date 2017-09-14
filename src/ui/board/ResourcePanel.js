@@ -1,7 +1,7 @@
 import React from 'react';
 import ResourceStack from './ResourceStack.js';
 import SubmitButton from '../SubmitButton.js';
-import RESOURCE_COLORS from '../../ResourceColorMap.js';
+import RESOURCE_COLORS from '../ResourceColorMap.js';
 import './ResourcePanel.css';
 
 const ResourcePanel = (props) => (

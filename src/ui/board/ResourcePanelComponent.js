@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import ResourcePanel from '../react/board/ResourcePanel.js';
+import ResourcePanel from './ResourcePanel.js';
 import ChooseResourceFromStackAction from '../../actions/ChooseResourceFromStackAction.js';
 import TakeSelectionAction from '../../actions/TakeSelectionAction.js';
 import { ContainsResources, ReduceResources } from '../../model/ResourceHelper.js';

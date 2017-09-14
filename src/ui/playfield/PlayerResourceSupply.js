@@ -1,6 +1,6 @@
 import React from 'react';
 import './PlayerResourceSupply.css';
-import RESOURCE_COLORS from '../../ResourceColorMap.js';
+import RESOURCE_COLORS from '../ResourceColorMap.js';
 
 export default function PlayerResourceSupply(props) {
   return (
