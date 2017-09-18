@@ -4,9 +4,9 @@ import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
 import {createLogger} from 'redux-logger';
-import App from './ui/App';
-import AppReducer from './model/reducers/AppReducer';
-import DefaultState from './model/DefaultState';
+import AppComponent from './ui/AppComponent.js';
+import AppReducer from './model/reducers/AppReducer.js';
+import DefaultState from './model/DefaultState.js';
 import './index.css';
 
 const loggerMiddleware = createLogger();
@@ -17,7 +17,7 @@ const store = createStore(
 
 ReactDOM.render(
     <Provider store={store}>
-      <App />
+      <AppComponent />
     </Provider>,
     document.getElementById('root')
 );

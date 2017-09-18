@@ -7,6 +7,7 @@ export const ActionTypes = {
   ChooseResourceFromStack: 'CHOOSE_STACK_RESOURCE',
   GrabSelectedResources: 'GRAB_SELECTED_RESOURCES',
   DismissMessage: 'DISMISS_MESSAGE',
+  LoadState: 'LOAD_STATE',
   SetGameConfig: '_SET_GAME_CONFIG',
   SetGameState: '_SET_GAME_STATE',
   SetUiMessage: '_SET_UI_MESSAGE',
