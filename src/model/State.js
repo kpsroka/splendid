@@ -22,7 +22,7 @@ export type Player = {
 
 export type NoSelection = {|
   type: 'NO_SELECTION',
-|}
+|};
 
 export type FactorySelection = {|
   type: 'FACTORY_SELECTION',
@@ -33,7 +33,7 @@ export type FactorySelection = {|
 export type ResourceSelection = {|
   type: 'RESOURCE_SELECTION',
   selection: Array<Resource>
-|}
+|};
 
 export type Selection = NoSelection | FactorySelection | ResourceSelection;
 
@@ -57,17 +57,20 @@ export type GameState = {
 export type UiMessage = {
   text: string,
   severity: 'INFO' | 'ERROR'
-}
+};
+
+export type UiMode = 'INIT' | 'WELCOME' | 'PLAY';
 
 export type UiState = {
   asyncInProgress: boolean,
   message: ?UiMessage,
+  mode: UiMode,
 };
 
 export type GameRef = {
   gameId: string,
   playerToken: string
-}
+};
 
 export type State = {
   gameRef: ?GameRef,
