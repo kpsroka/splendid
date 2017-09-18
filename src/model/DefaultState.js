@@ -9,7 +9,8 @@ function createDefaultState():State {
     gameRef: null,
     ui: {
       asyncInProgress: false,
-      message: null
+      message: null,
+      mode: 'INIT'
     }
   };
 }

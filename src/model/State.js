@@ -59,7 +59,7 @@ export type UiMessage = {
   severity: 'INFO' | 'ERROR'
 };
 
-export type UiMode = 'INIT' | 'WELCOME' | 'PLAY';
+export type UiMode = 'INIT' | 'WELCOME' | 'CREATE' | 'JOIN' | 'PLAY';
 
 export type UiState = {
   asyncInProgress: boolean,
