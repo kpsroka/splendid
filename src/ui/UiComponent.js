@@ -3,6 +3,7 @@ import Ui from './Ui.js';
 
 function mapStateToProps(state) {
   return {
+    mode: state.ui.mode,
     showField: state.players.length > 0
   }
 }

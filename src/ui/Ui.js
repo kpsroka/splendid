@@ -1,11 +1,11 @@
 import React from 'react';
 import PlayField from './playfield/PlayField.js';
-import WelcomeScreen from './welcome/WelcomeScreen.js';
+import WelcomeScreenComponent from './welcome/WelcomeScreenComponent.js';
 
-export default function Ui({ showField }) {
-  if (showField) {
+export default function Ui({ mode, showField }) {
+  if (mode === 'PLAY' || showField) {
     return <PlayField />
   } else {
-    return <WelcomeScreen />
+    return <WelcomeScreenComponent />
   }
 }

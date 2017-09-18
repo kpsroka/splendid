@@ -13,6 +13,9 @@ export default function UiStateReducer(ui, action) {
     case ActionTypes.DismissMessage: {
       return { ...ui, message: null };
     }
+    case ActionTypes.SetUiMode: {
+      return { ...ui, mode: action.mode }
+    }
     default:
       return ui;
   }
