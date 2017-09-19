@@ -1,7 +1,12 @@
+// @flow
+
 import { connect } from 'react-redux';
 import PlayerResourceSupply from './PlayerResourceSupply.js';
 
-function mapStateToProps(state, ownProps) {
+import type { PlayerResourceSupplyProps, PlayerResourceSupplyOwnProps } from './PlayerResourceSupply.js';
+import type { State } from '../../model/State.js';
+
+function mapStateToProps(state:State, ownProps:PlayerResourceSupplyOwnProps):PlayerResourceSupplyProps {
   if (state.gameState) {
     let playerHand = state.gameState.playerState[ownProps.playerIndex].hand;
 

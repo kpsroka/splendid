@@ -1,7 +1,12 @@
+// @flow
+
 import { connect } from 'react-redux';
 import PlayerBox from './PlayerBox.js';
 
-function mapStateToProps(state, ownProps) {
+import type { PlayerBoxProps, PlayerBoxOwnProps } from './PlayerBox.js';
+import type { State } from '../../model/State.js';
+
+function mapStateToProps(state:State, ownProps:PlayerBoxOwnProps):PlayerBoxProps {
   if (state.players.length <= ownProps.playerIndex) {
     return { disabled: true };
   } else {

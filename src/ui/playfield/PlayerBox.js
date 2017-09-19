@@ -1,10 +1,24 @@
+// @flow
+
 import React from 'react';
 import RESOURCE_COLORS from '../ResourceColorMap.js';
 import PlayerResourceSupplyComponent from './PlayerResourceSupplyComponent.js';
 
 import './PlayerBox.css';
 
-function PlayerBox(props) {
+export type PlayerBoxProps = {|
+  disabled: boolean,
+  name?: string,
+  score?: number,
+|};
+
+export type PlayerBoxOwnProps = {|
+  playerIndex: number,
+|};
+
+type PlayerBoxCombinedProps = PlayerBoxProps & PlayerBoxOwnProps;
+
+export default function PlayerBox(props:PlayerBoxCombinedProps) {
   if (props.disabled) {
     return null;
   }
@@ -36,5 +50,3 @@ function renderResourceSupplies(playerIndex) {
 
   return resourceSupplies;
 }
-
-export default PlayerBox;

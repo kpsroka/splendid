@@ -1,8 +1,17 @@
-import React, {PropTypes} from 'react';
+// @flow
+
+import React from 'react';
 import RESOURCE_COLORS from '../ResourceColorMap.js';
 import './ResourceBox.css';
 
-class ResourceBox extends React.Component {
+import type { Resource } from '../../model/State.js';
+
+type ResourceBoxProps = {|
+  bg_color: Resource,
+  count: number,
+|};
+
+export default class ResourceBox extends React.Component<ResourceBoxProps> {
   render() {
     return (
         <div
@@ -15,10 +24,3 @@ class ResourceBox extends React.Component {
     );
   }
 }
-
-ResourceBox.PropTypes = {
-  bg_color: PropTypes.number.isRequired,
-  count: PropTypes.number
-};
-
-export default ResourceBox;
