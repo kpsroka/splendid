@@ -7,7 +7,7 @@ import './ResourceBox.css';
 import type { Resource } from '../../model/State.js';
 
 type ResourceBoxProps = {|
-  bg_color: Resource,
+  resource: Resource,
   count: number,
 |};
 
@@ -17,7 +17,7 @@ export default class ResourceBox extends React.Component<ResourceBoxProps> {
         <div
             className="ResourceBox-container"
             style={{
-              backgroundColor: RESOURCE_COLORS[this.props.bg_color],
+              backgroundColor: RESOURCE_COLORS[this.props.resource],
             }}>
           {this.props.count}
         </div>

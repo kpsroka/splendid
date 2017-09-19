@@ -7,7 +7,7 @@ class Factory extends React.Component {
     let resourceBoxes = [];
     Object.keys(colorCosts).forEach((color) => {
         resourceBoxes.push(
-          <ResourceBox key={color} bg_color={color} count={colorCosts[color]}/>
+          <ResourceBox key={color} resource={color} count={colorCosts[color]}/>
       );
     });
     return resourceBoxes;
