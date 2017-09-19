@@ -1,11 +1,15 @@
+// @flow
+
 import { connect } from 'react-redux';
 import FactoryBoard from './FactoryBoard.js';
 
-function mapStateToProps(state) {
+import type { FactoryBoardProps } from './FactoryBoard.js';
+import type { State } from '../../model/State.js';
+
+function mapStateToProps(state:State):FactoryBoardProps {
   if (!state.gameState) {
     return {
-      factoriesByRow: [],
-      selection: null
+      factoriesByRow: []
     };
   } else {
     let boardState = state.gameState.board;

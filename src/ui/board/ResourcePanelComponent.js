@@ -1,11 +1,16 @@
+// @flow
+
 import { connect } from 'react-redux';
 import ResourcePanel from './ResourcePanel.js';
 import ChooseResourceFromStackAction from '../../actions/ChooseResourceFromStackAction.js';
 import { ReduceResources } from '../../model/ResourceHelper.js';
 
-function mapStateToProps(state) {
+import type { State, Resource } from '../../model/State.js';
+import type { ResourcePanelProps, ResourcePanelDispatch } from './ResourcePanel.js';
+
+function mapStateToProps(state:State):ResourcePanelProps {
   if (!state.gameState) {
-    return { resources: {}, selection: {}, canTakeResources: false }
+    return { resources: {}, selection: {} }
   }
 
   let board = state.gameState.board;
@@ -20,9 +25,9 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch):ResourcePanelDispatch {
   return {
-    onStackClick: (resourceType) => dispatch(ChooseResourceFromStackAction(resourceType)),
+    onStackClick: (resourceType:Resource) => dispatch(ChooseResourceFromStackAction(resourceType)),
   }
 }
 

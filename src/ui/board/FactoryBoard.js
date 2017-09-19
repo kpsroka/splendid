@@ -1,8 +1,16 @@
+// @flow
+
 import React from 'react';
 import FactoryComponent from './FactoryComponent.js';
 import './FactoryBoard.css';
 
-export default function FactoryBoard(props) {
+import type { ResourceFactory } from '../../model/State.js';
+
+export type FactoryBoardProps = {|
+  factoriesByRow: Array<Array<ResourceFactory>>,
+|};
+
+export default function FactoryBoard(props:FactoryBoardProps) {
   return (
       <div className="FactoryBoard-container">
         <div className="FactoryBoard-text">Splendid!</div>

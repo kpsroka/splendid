@@ -1,13 +1,36 @@
+// @flow
+
 import React from 'react';
 import ResourceBox from './ResourceBox.js';
 import './Factory.css';
 
-class Factory extends React.Component {
-  renderResourceBoxes(colorCosts) {
+import type { Resource, ResourceMap } from '../../model/State.js';
+
+export type FactoryProps = {|
+  bgColor: Resource,
+  costColors: ResourceMap,
+  points: number,
+  selected: boolean,
+|};
+
+export type FactoryOwnProps = {|
+  rowIndex: number,
+  itemIndex: number,
+|};
+
+export type FactoryDispatch = {|
+  onFactoryClick: () => any;
+|};
+
+type FactoryCombinedProps = FactoryProps & FactoryOwnProps & FactoryDispatch;
+
+export default class Factory extends React.Component<FactoryCombinedProps> {
+  renderResourceBoxes(colorCosts:ResourceMap) {
     let resourceBoxes = [];
     Object.keys(colorCosts).forEach((color) => {
-        resourceBoxes.push(
-          <ResourceBox key={color} resource={color} count={colorCosts[color]}/>
+      let resourceNumber:Resource = Number.parseInt(color);
+      resourceBoxes.push(
+          <ResourceBox key={color} resource={resourceNumber} count={colorCosts[resourceNumber]} />
       );
     });
     return resourceBoxes;
@@ -29,5 +52,3 @@ class Factory extends React.Component {
     )
   }
 }
-
-export default Factory;

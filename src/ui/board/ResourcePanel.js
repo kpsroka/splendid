@@ -1,24 +1,39 @@
+// @flow
+
 import React from 'react';
 import ResourceStack from './ResourceStack.js';
 import SubmitButtonComponent from './SubmitButtonComponent.js';
 import RESOURCE_COLORS from '../ResourceColorMap.js';
 import './ResourcePanel.css';
 
-const ResourcePanel = (props) => (
-    <div className="ResourcePanel-container">
-      {RESOURCE_COLORS.map((cssColor, colorIndex) =>
-          <ResourceStack
-              key={colorIndex}
-              bgColor={colorIndex}
-              stackSize={props.resources[colorIndex] || 0}
-              highlight={props.selection[colorIndex] || 0}
-              onClickCallback={() => props.onStackClick(colorIndex)}
-          />
-      )}
-      <div className="ResourcePanel-buttonContainer">
-        <SubmitButtonComponent />
-      </div>
-    </div>
-);
+import type { Resource, ResourceMap } from '../../model/State.js';
 
-export default ResourcePanel;
+export type ResourcePanelProps = {|
+  resources: ResourceMap,
+  selection: ResourceMap,
+|};
+
+export type ResourcePanelDispatch = {|
+  onStackClick: (Resource) => any,
+|};
+
+type ResourcePanelCombinedProps = ResourcePanelProps & ResourcePanelDispatch;
+
+export default function ResourcePanel(props:ResourcePanelCombinedProps) {
+  return (
+      <div className="ResourcePanel-container">
+        {RESOURCE_COLORS.map((cssColor, colorIndex) =>
+            <ResourceStack
+                key={colorIndex}
+                bgColor={colorIndex}
+                stackSize={props.resources[colorIndex] || 0}
+                highlight={props.selection[colorIndex] || 0}
+                onClickCallback={() => props.onStackClick(colorIndex)}
+            />
+        )}
+        <div className="ResourcePanel-buttonContainer">
+          <SubmitButtonComponent />
+        </div>
+      </div>
+  );
+}

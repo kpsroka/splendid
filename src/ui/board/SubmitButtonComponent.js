@@ -1,9 +1,14 @@
+// @flow
+
 import { connect } from 'react-redux';
 import SubmitButton from './SubmitButton.js';
 import TakeSelectionAction from '../../actions/TakeSelectionAction.js';
 import { ContainsResources, ReduceResources } from '../../model/ResourceHelper.js';
 
-function mapStateToProps(state) {
+import type { State } from '../../model/State.js';
+import type { SubmitButtonProps, SubmitButtonDispatch } from './SubmitButton.js';
+
+function mapStateToProps(state:State):SubmitButtonProps {
   return {
     text: "Take",
     active: canTakeResources(state) || canTakeFactory(state),
@@ -11,7 +16,7 @@ function mapStateToProps(state) {
   }
 }
 
-function canTakeResources(state) {
+function canTakeResources(state:State):boolean {
   if (!state.gameState) {
     return false;
   }
@@ -26,7 +31,7 @@ function canTakeResources(state) {
       (board.selection.selection.length === 2 && Object.getOwnPropertyNames(selection).length === 1));
 }
 
-function canTakeFactory(state) {
+function canTakeFactory(state:State):boolean {
   if (!state.gameState) {
     return false;
   }
@@ -47,7 +52,7 @@ function canTakeFactory(state) {
 }
 
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch):SubmitButtonDispatch {
   return {
     onClick: () => dispatch(TakeSelectionAction())
   }
