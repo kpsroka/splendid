@@ -4,7 +4,7 @@ import './WelcomeScreen.css';
 class JoinGameForm extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.state = {playerName: "", gameRefId: ""};
+    this.state = {playerName: "", gameRefId: props.initialGameId};
   }
 
   render() {
@@ -26,6 +26,7 @@ class JoinGameForm extends React.PureComponent {
               <input type="text"
                      name="gameRefId"
                      className="WelcomeScreen-textInput"
+                     defaultValue={this.props.initialGameId}
                      onInput={(inputEvent) => {
                        this.setState({gameRefId: inputEvent.target.value})
                      }}>
