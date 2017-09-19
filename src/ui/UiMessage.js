@@ -1,7 +1,21 @@
+// @flow
+
 import React from 'react';
 import './UiMessage.css';
 
-export default function UiMessage(props) {
+import type { UiMessage as StateUiMessage } from '../model/State.js';
+
+export type UiMessageProps = {|
+  message: ?StateUiMessage,
+|};
+
+export type UiMessageDispatch = {|
+  onDismissMessage: () => any,
+|};
+
+type UiMessageCombinedProps = UiMessageProps & UiMessageDispatch;
+
+export default function UiMessage(props:UiMessageCombinedProps) {
   let messageClassName = 'UiMessage-hidden';
   if (props.message) {
     if (props.message.severity === 'ERROR') {
