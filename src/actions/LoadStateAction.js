@@ -1,6 +1,7 @@
-import GetGameData from './GetGameDataAction.js';
+import AwaitGameReady from './GetGameDataAction.js';
 import SetUiMode from './SetUiModeAction.js';
 
+// TODO: Remove duplicate definition (see PollGameStateAction.js).
 const SESSION_STORAGE_KEY = 'gameref';
 
 export default function LoadStateAction() {
@@ -16,8 +17,8 @@ export default function LoadStateAction() {
     } else if (sessionGameRef === undefined && hashGameId !== '') {
       dispatch(SetUiMode('JOIN'));
     } else if (sessionGameRef !== undefined
-        && (hashGameId === '' || hashGameId === sessionGameRef.id)) {
-      dispatch(GetGameData(sessionGameRef));
+        && (hashGameId === '' || hashGameId === sessionGameRef.gameId)) {
+      dispatch(AwaitGameReady(sessionGameRef));
     } else {
       sessionStorage.removeItem(SESSION_STORAGE_KEY);
       dispatch(SetUiMode('JOIN'));

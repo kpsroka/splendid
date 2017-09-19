@@ -5,6 +5,9 @@ import FetchGameState from './async/FetchGameState.js';
 
 const POLL_GAME_STATE_INTERVAL_MILLIS = 1500;
 
+// TODO: Remove duplicate definition (see LoadStateAction.js).
+const SESSION_STORAGE_KEY = 'gameref';
+
 export default function PollGameState(gameRef, lastRound=-1) {
   return (dispatch) => {
     CheckResponse(FetchGameState(gameRef, lastRound), false)
@@ -17,6 +20,8 @@ export default function PollGameState(gameRef, lastRound=-1) {
                 },
                 POLL_GAME_STATE_INTERVAL_MILLIS);
           } else {
+            sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(gameRef));
+
             dispatch(SetGameState(gameState));
             if (gameState.gameStatus === 'UNDERWAY') {
               setTimeout(

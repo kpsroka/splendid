@@ -9,6 +9,8 @@ export default function AwaitGameReady(gameRef) {
   return (dispatch) => {
     dispatch(SetUiMessage(`Waiting for game ${gameRef.gameId} to be ready`));
 
+    location.hash = `#${gameRef.gameId}`;
+
     let gameUnderway = false;
     let intervalId = setInterval(() => {
       CheckResponse(FetchGameStatus(gameRef.gameId))
