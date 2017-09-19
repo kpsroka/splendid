@@ -1,8 +1,27 @@
+// @flow
+
 import React from 'react';
 import './WelcomeScreen.css';
 
-class JoinGameForm extends React.PureComponent {
-  constructor(props) {
+export type JoinGameProps = {|
+  initialGameId: string,
+|};
+
+export type JoinGameDispatch = {|
+  joinGame: (string, string) => any;
+  onAbort: () => any,
+|};
+
+type JoinGameCombinedProps = JoinGameProps & JoinGameDispatch;
+
+type JoinGameState = {
+  playerName: string,
+  gameRefId: string,
+};
+
+export default class JoinGameForm extends
+    React.PureComponent<JoinGameCombinedProps, JoinGameState> {
+  constructor(props:JoinGameCombinedProps) {
     super(props);
     this.state = {playerName: "", gameRefId: props.initialGameId};
   }
@@ -47,5 +66,3 @@ class JoinGameForm extends React.PureComponent {
     );
   }
 }
-
-export default JoinGameForm;

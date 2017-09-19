@@ -1,18 +1,22 @@
+// @flow
+
 import { connect } from 'react-redux';
-import JoinGameAction from '../../actions/JoinGameAction.js';
+import JoinGame from '../../actions/JoinGameAction.js';
+import SetUiMode from '../../actions/SetUiModeAction.js';
 import JoinGameForm from './JoinGameForm.js';
 
-function mapStateToProps() {
+import type { JoinGameProps, JoinGameDispatch } from './JoinGameForm.js';
+
+function mapStateToProps():JoinGameProps {
   return {
     initialGameId: location.hash.slice(1)
   };
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch):JoinGameDispatch {
   return {
-    joinGame: (playerName, gameRefId) => {
-      dispatch(JoinGameAction(playerName, gameRefId));
-    },
+    joinGame: (playerName:string, gameRefId:string) => dispatch(JoinGame(playerName, gameRefId)),
+    onAbort: () => dispatch(SetUiMode('WELCOME')),
   }
 }
 

@@ -1,9 +1,23 @@
+// @flow
+
 import React from 'react';
 import NewGameComponent from './NewGameComponent.js';
 import JoinGameComponent from './JoinGameComponent.js';
 import './WelcomeScreen.css';
 
-class WelcomeScreen extends React.PureComponent {
+import type { UiMode } from '../../model/State.js';
+
+export type WelcomeScreenProps = {|
+  mode: UiMode
+|};
+
+export type WelcomeScreenDispatch = {|
+  setUiMode: (UiMode) => any,
+|};
+
+type WelcomeScreenCombinedProps = WelcomeScreenProps & WelcomeScreenDispatch;
+
+class WelcomeScreen extends React.PureComponent<WelcomeScreenCombinedProps> {
   render() {
     return (
         <div className="WelcomeScreen-container">
@@ -17,11 +31,9 @@ class WelcomeScreen extends React.PureComponent {
 
   renderControls() {
     if (this.props.mode === 'CREATE') {
-      // TODO: Set onAbort in component.
-      return <NewGameComponent onAbort={() => this.props.setUiMode('WELCOME')}/>
+      return <NewGameComponent />
     } else if (this.props.mode === 'JOIN') {
-      // TODO: Set onAbort in component.
-      return <JoinGameComponent onAbort={() => this.props.setUiMode('WELCOME')}/>
+      return <JoinGameComponent />
     } else {
       return (
           <div className="WelcomeScreen-buttonContainer">

@@ -1,16 +1,21 @@
+// @flow
+
 import { connect } from 'react-redux';
 import WelcomeScreen from './WelcomeScreen.js';
 import SetUiMode from '../../actions/SetUiModeAction.js';
 
-function mapStateToProps(state) {
+import type { WelcomeScreenProps, WelcomeScreenDispatch } from './WelcomeScreen.js';
+import type { State, UiMode } from '../../model/State.js';
+
+function mapStateToProps(state:State):WelcomeScreenProps {
   return {
     mode: state.ui.mode
   };
 }
 
-function mapPropsToDispatch(dispatch) {
+function mapPropsToDispatch(dispatch):WelcomeScreenDispatch {
   return {
-    setUiMode: (mode) => dispatch(SetUiMode(mode)),
+    setUiMode: (mode:UiMode) => dispatch(SetUiMode(mode)),
   }
 }
 

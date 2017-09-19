@@ -1,8 +1,22 @@
+// @flow
+
 import React from 'react';
 import './WelcomeScreen.css';
 
-class NewGameForm extends React.PureComponent {
-  constructor(props) {
+export type NewGameDispatch = {|
+  createNewGame: (string, number) => any,
+  onAbort: () => any,
+|};
+
+type NewGameCombinedProps = NewGameDispatch;
+
+type NewGameState = {|
+  playerName: string,
+  numberOfPlayers: number,
+|};
+
+class NewGameForm extends React.PureComponent<NewGameCombinedProps, NewGameState> {
+  constructor(props:NewGameCombinedProps) {
     super(props);
     this.state = {playerName: "", numberOfPlayers: 2};
   }
