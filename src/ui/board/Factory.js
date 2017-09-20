@@ -28,7 +28,7 @@ export default class Factory extends React.Component<FactoryCombinedProps> {
   renderResourceBoxes(colorCosts:ResourceMap) {
     let resourceBoxes = [];
     Object.keys(colorCosts).forEach((color) => {
-      let resourceNumber:Resource = Number.parseInt(color);
+      let resourceNumber:Resource = Number.parseInt(color, 10);
       resourceBoxes.push(
           <ResourceBox key={color} resource={resourceNumber} count={colorCosts[resourceNumber]} />
       );
