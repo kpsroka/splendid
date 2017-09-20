@@ -10,7 +10,7 @@ type ResourceStackCircleProps = {|
   topShift?: string,
   // TODO: borderColor shouldn't be optional.
   borderColor?: string,
-  bgColor: Resource,
+  resource: Resource,
   text?: string,
   extraStyles?: string,
   onItemClick: () => any,
@@ -18,7 +18,7 @@ type ResourceStackCircleProps = {|
 
 type ResourceStackProps = {|
   stackSize: number,
-  bgColor: Resource,
+  resource: Resource,
   highlight: number,
   onClickCallback: () => any,
 |};
@@ -31,7 +31,7 @@ class ResourceStackCircle extends React.Component<ResourceStackCircleProps> {
             style={{
               top: this.props.topShift ? this.props.topShift : 0,
               borderColor: this.props.borderColor,
-              backgroundColor: RESOURCE_COLORS[this.props.bgColor],
+              backgroundColor: RESOURCE_COLORS[this.props.resource],
             }}
             onClick={() => this.props.onItemClick()}>
           <div className="ResourceStack-circleText">
@@ -47,7 +47,7 @@ class ResourceStack extends React.Component<ResourceStackProps> {
     return (
         <ResourceStackCircle
             key={0}
-            bgColor={this.props.bgColor}
+            resource={this.props.resource}
             extraStyles={[
                 "ResourceStack-circle-base",
                 (this.props.stackSize === 0 ? "ResourceStack-circle-head" : "ResourceStack-circle-rest")]
@@ -65,8 +65,8 @@ class ResourceStack extends React.Component<ResourceStackProps> {
       circles.push(
           <ResourceStackCircle
               key={count + 1}
+              resource={this.props.resource}
               topShift={topShift}
-              bgColor={this.props.bgColor}
               text={`${count + 1}`}
               extraStyles={[
                 highlighted ? "ResourceStack-circle-highlighted" : "",
