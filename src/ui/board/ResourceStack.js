@@ -2,6 +2,7 @@
 
 import React from 'react';
 import RESOURCE_COLORS from '../ResourceColorMap.js';
+import RESOURCE_ICONS from '../ResourceIconMap.js';
 import './ResourceStack.css';
 
 import type { Resource } from '../../model/State.js';
@@ -10,6 +11,7 @@ type ResourceStackCircleProps = {|
   topShift?: string,
   // TODO: borderColor shouldn't be optional.
   borderColor?: string,
+  backgroundImage?: string,
   resource: Resource,
   text?: string,
   extraStyles?: string,
@@ -32,6 +34,7 @@ class ResourceStackCircle extends React.Component<ResourceStackCircleProps> {
               top: this.props.topShift ? this.props.topShift : 0,
               borderColor: this.props.borderColor,
               backgroundColor: RESOURCE_COLORS[this.props.resource],
+              backgroundImage: this.props.backgroundImage ? `url('${this.props.backgroundImage}')` : 'none',
             }}
             onClick={() => this.props.onItemClick()}>
           <div className="ResourceStack-circleText">
@@ -52,6 +55,7 @@ class ResourceStack extends React.Component<ResourceStackProps> {
                 "ResourceStack-circle-base",
                 (this.props.stackSize === 0 ? "ResourceStack-circle-head" : "ResourceStack-circle-rest")]
                 .join(" ")}
+            backgroundImage={RESOURCE_ICONS[this.props.resource]}
             onItemClick={() => this.props.onClickCallback()}/>
     );
   }
