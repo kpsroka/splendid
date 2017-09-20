@@ -8,20 +8,30 @@
   padding: 0.5vw;
   box-sizing: border-box;
   background-color: white;
+  background-size: 5vh 5vh;
+  background-repeat: no-repeat;
+  background-position: 0.5vh 0.5vh;
   border: 2px solid;
+  border-radius: 4px;
   margin: 0 1px;
 }
 
 .Factory-overlay {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: white;
-  z-index: 1;
 }
 
 .Factory-costContainer {
+  top: 0.5vh;
+  right: 0.5vh;
+
+  z-index: 2;
+}
+
+.Factory-pointsContainer {
+  bottom: 0.5vh;
+  left: 1vh;
+
+  font-size: 5vh;
+
   z-index: 2;
 }

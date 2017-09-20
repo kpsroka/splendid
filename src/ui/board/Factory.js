@@ -2,12 +2,14 @@
 
 import React from 'react';
 import ResourceBox from './ResourceBox.js';
+import RESOURCE_COLORS from '../ResourceColorMap.js';
+import RESOURCE_ICONS from '../ResourceIconMap.js';
 import './Factory.css';
 
 import type { Resource, ResourceMap } from '../../model/State.js';
 
 export type FactoryProps = {|
-  bgColor: Resource,
+  resource: Resource,
   costColors: ResourceMap,
   points: number,
   selected: boolean,
@@ -41,12 +43,17 @@ export default class Factory extends React.Component<FactoryCombinedProps> {
         <div
             className="Factory-container"
             style={{
-              borderColor: (this.props.selected ? "black" : "#bbb"),
-              backgroundColor: this.props.bgColor,
+              borderColor: (this.props.selected ? 'rgba(0, 0, 0, 0.75)' : 'rgba(0, 0, 0, 0.25)'),
+              boxShadow: (this.props.selected ? 'rgba(0, 0, 0, 0.5) 1px 1px 1px 1px' : 'none'),
+              backgroundColor: RESOURCE_COLORS[this.props.resource],
+              backgroundImage: `url('${RESOURCE_ICONS[this.props.resource]}')`
             }}
             onClick={() => this.props.onFactoryClick()}>
-          <div className="Factory-costContainer">
+          <div className="Factory-overlay Factory-costContainer">
             {this.renderResourceBoxes(this.props.costColors)}
+          </div>
+          <div className="Factory-overlay Factory-pointsContainer">
+            {this.props.points}
           </div>
         </div>
     )
