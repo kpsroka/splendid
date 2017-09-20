@@ -1,15 +1,38 @@
 .PlayerResourceSupply-container {
+  border-radius: 3px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+
   display: flex;
-  width: 6vw;
+  flex-direction: column;
+  justify-content: space-between;
   padding: 1vmin;
-  justify-content: space-around;
-  align-items: center
+  align-items: center;
+  color: black;
+
+  margin: 2px;
+}
+
+.PlayerResourceSupply-container > div {
+  margin: 0.35vmin;
+}
+
+.PlayerResourceSupply-factoryCount,
+.PlayerResourceSupply-resourceCount {
+  user-select: none;
+  width: 3vh;
+  height: 3vh;
+  font-size: 2vh;
+  background-color: white;
+  text-align: center;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .PlayerResourceSupply-factoryCount {
-
 }
 
 .PlayerResourceSupply-resourceCount {
-
+  border-radius: 3vh;
 }
