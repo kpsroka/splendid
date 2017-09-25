@@ -16,6 +16,14 @@
   justify-content: center;
 }
 
+.PlayerBox-vertical .PlayerBox-internalFrame {
+  flex-direction: column;
+}
+
+.PlayerBox-horizontal .PlayerBox-internalFrame {
+  flex-direction: row;
+}
+
 .PlayerBox-playerInfoFrame {
   position: absolute;
   bottom: -1.5vh;

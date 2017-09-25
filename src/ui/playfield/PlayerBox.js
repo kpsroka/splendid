@@ -14,6 +14,7 @@ export type PlayerBoxProps = {|
 
 export type PlayerBoxOwnProps = {|
   playerIndex: number,
+  orientation: 'VERTICAL' | 'HORIZONTAL'
 |};
 
 type PlayerBoxCombinedProps = PlayerBoxProps & PlayerBoxOwnProps;
@@ -23,8 +24,11 @@ export default function PlayerBox(props:PlayerBoxCombinedProps) {
     return null;
   }
 
+  let orientationClassName =
+      props.orientation === "VERTICAL" ? "PlayerBox-vertical" : "PlayerBox-horizontal";
+
   return (
-      <div className="PlayerBox-externalFrame">
+      <div className={`PlayerBox-externalFrame ${orientationClassName}`}>
         <div className="PlayerBox-playerInfoFrame">
           <div className="PlayerBox-playerInfo">
             <div className="PlayerBox-playerInfoContent">
@@ -35,17 +39,24 @@ export default function PlayerBox(props:PlayerBoxCombinedProps) {
           </div>
         </div>
         <div className="PlayerBox-internalFrame">
-          {renderResourceSupplies(props.playerIndex)}
+          {renderResourceSupplies(
+              props.playerIndex,
+              props.orientation === "VERTICAL" ? "HORIZONTAL" : "VERTICAL")}
         </div>
       </div>
   );
 }
 
-function renderResourceSupplies(playerIndex) {
+function renderResourceSupplies(playerIndex, orientation) {
   let resourceSupplies = [];
 
   for (let i = 0; i < RESOURCE_COLORS.length; i++) {
-    resourceSupplies.push(<PlayerResourceSupplyComponent key={i} playerIndex={playerIndex} resource={i} />);
+    resourceSupplies.push(
+        <PlayerResourceSupplyComponent
+            key={i}
+            playerIndex={playerIndex}
+            resource={i}
+            orientation={orientation} />);
   }
 
   return resourceSupplies;

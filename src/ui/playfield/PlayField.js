@@ -9,20 +9,20 @@ export default function PlayField() {
       <div className="PlayField-container">
         <div className="PlayField-fieldArea">
           <div className="PlayField-otherPlayersArea">
-            <PlayerBoxComponent playerIndex={2} />
-            <PlayerBoxComponent playerIndex={1} />
+            <PlayerBoxComponent playerIndex={2} orientation="VERTICAL" />
+            <PlayerBoxComponent playerIndex={1} orientation="VERTICAL" />
           </div>
           <div className="PlayField-playableArea">
             <FactoryBoardComponent />
             <ResourcePanelComponent />
           </div>
           <div className="PlayField-otherPlayersArea">
-            <PlayerBoxComponent playerIndex={3} />
-            <PlayerBoxComponent playerIndex={4} />
+            <PlayerBoxComponent playerIndex={3} orientation="VERTICAL" />
+            <PlayerBoxComponent playerIndex={4} orientation="VERTICAL" />
           </div>
         </div>
         <div className="PlayField-thisPlayerArea">
-          <PlayerBoxComponent playerIndex={0} />
+          <PlayerBoxComponent playerIndex={0} orientation="HORIZONTAL" />
         </div>
       </div>
   );

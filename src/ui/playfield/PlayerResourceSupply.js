@@ -14,14 +14,18 @@ export type PlayerResourceSupplyProps = {|
 
 export type PlayerResourceSupplyOwnProps = {|
   resource: Resource,
-  playerIndex: number
+  playerIndex: number,
+  orientation: 'VERTICAL' | 'HORIZONTAL',
 |}
 
 type PlayerResourceSupplyCombinedProps = PlayerResourceSupplyProps & PlayerResourceSupplyOwnProps;
 
 export default function PlayerResourceSupply(props:PlayerResourceSupplyCombinedProps) {
+  let orientationClassName =
+      props.orientation === "VERTICAL" ? "PlayerResourceSupply-vertical" : "PlayerResourceSupply-horizontal";
+
   return (
-      <div className="PlayerResourceSupply-container"
+      <div className={`PlayerResourceSupply-container ${orientationClassName}`}
            style={{
              backgroundColor: RESOURCE_COLORS[props.resource],
              color: RESOURCE_COLORS[props.resource],
