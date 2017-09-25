@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import PlayField from './playfield/PlayField.js';
+import PlayFieldComponent from './playfield/PlayFieldComponent.js';
 import WelcomeScreenComponent from './welcome/WelcomeScreenComponent.js';
 
 export type UiProps = {|
@@ -11,7 +11,7 @@ export type UiProps = {|
 
 export default function Ui(props:UiProps) {
   if (props.mode === 'PLAY' || props.showField) {
-    return <PlayField />
+    return <PlayFieldComponent />
   } else {
     return <WelcomeScreenComponent />
   }
