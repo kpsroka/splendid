@@ -1,21 +1,14 @@
 .PlayerBox-externalFrame {
-  height: 30vh;
-  width: 100%;
-
   position: relative;
   margin-bottom: 18px;
 }
 
 .PlayerBox-internalFrame {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  position: relative;
 
-  border: 1px solid ghostwhite;
-  border-radius: 6px;
-  padding: 12px;
+  border: 0.6vh solid ghostwhite;
+  border-radius: 1vh;
+  padding: 1.5vh 1.5vh 3vh;
   background-color: ghostwhite;
 
   display: flex;
@@ -25,8 +18,8 @@
 
 .PlayerBox-playerInfoFrame {
   position: absolute;
-  bottom: -12px;
-  height: 24px;
+  bottom: -1.5vh;
+  height: 3vh;
   left: 0;
   right: 0;
   display: flex;
@@ -40,10 +33,13 @@
 
 .PlayerBox-playerInfoContent {
   position: relative;
-  padding: 6px;
+  padding: 0.6vh;
   z-index: 3;
   background-color: deepskyblue;
 
-  border: 1px solid ghostwhite;
-  border-radius: 6px;
+  border: 0.3vh solid ghostwhite;
+  border-radius: 1vh;
+  box-shadow: darkgrey;
+
+  font-size: 3vh;
 }
