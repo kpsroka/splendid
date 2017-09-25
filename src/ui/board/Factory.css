@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+
   width: 14.8vw;
   height: 18vh;
   padding: 0.5vw;
@@ -14,6 +15,8 @@
   border: 2px solid;
   border-radius: 4px;
   margin: 0 1px;
+
+  user-select: none;
 }
 
 .Factory-overlay {
