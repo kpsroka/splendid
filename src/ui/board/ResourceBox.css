@@ -1,7 +1,6 @@
 .ResourceBox-container {
   border: 1px rgba(0, 0, 0, 0.5) solid;
   border-radius: 1px;
-  box-shadow: 2px 2px 2px 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,9 +8,50 @@
   width: 2.5vh;
   height: 2.5vh;
   font-size: 2vh;
-  color: black;
 }
 
 .ResourceBox-container + .ResourceBox-container {
   margin-top: 0.5vh;
 }
+
+.ResourceBox-innerShadow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+
+.ResourceBox-outerShadow,
+.ResourceBox-innerShadow {
+  transition: box-shadow 0.3s ease-out,
+              opacity 0.3s ease-out;
+  width: 100%;
+  height: 100%;
+}
+
+.ResourceBox-available {
+  color: whitesmoke;
+}
+
+.ResourceBox-unavailable {
+  color: white;
+}
+
+.ResourceBox-available .ResourceBox-outerShadow {
+  box-shadow: whitesmoke 0 0 0.5vh 0.5vh;
+}
+
+.ResourceBox-unavailable .ResourceBox-outerShadow {
+  box-shadow: whitesmoke 0 0 0 0;
+}
+
+.ResourceBox-available .ResourceBox-innerShadow {
+  opacity: 1.0;
+  box-shadow: inset black 0 0 0 0;
+}
+
+.ResourceBox-unavailable .ResourceBox-innerShadow {
+  opacity: 0.65;
+  box-shadow: inset black 0 0 1.5vh 0;
+}
+

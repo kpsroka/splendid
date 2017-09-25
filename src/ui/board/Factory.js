@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import ResourceBox from './ResourceBox.js';
+import ResourceBoxComponent from './ResourceBoxComponent.js';
 import RESOURCE_COLORS from '../ResourceColorMap.js';
 import RESOURCE_ICONS from '../ResourceIconMap.js';
 import './Factory.css';
@@ -32,7 +32,7 @@ export default class Factory extends React.Component<FactoryCombinedProps> {
     Object.keys(colorCosts).forEach((color) => {
       let resourceNumber:Resource = Number.parseInt(color, 10);
       resourceBoxes.push(
-          <ResourceBox key={color} resource={resourceNumber} count={colorCosts[resourceNumber]} />
+          <ResourceBoxComponent key={color} resource={resourceNumber} count={colorCosts[resourceNumber]} />
       );
     });
     return resourceBoxes;
