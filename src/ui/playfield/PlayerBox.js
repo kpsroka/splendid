@@ -22,9 +22,8 @@ import PlayerResourceSupplyComponent from './PlayerResourceSupplyComponent.js';
 import './PlayerBox.css';
 
 export type PlayerBoxProps = {|
-  disabled: boolean,
-  name?: string,
-  score?: number,
+  name: string,
+  score: number,
 |};
 
 export type PlayerBoxOwnProps = {|
@@ -35,10 +34,6 @@ export type PlayerBoxOwnProps = {|
 type PlayerBoxCombinedProps = PlayerBoxProps & PlayerBoxOwnProps;
 
 export default function PlayerBox(props:PlayerBoxCombinedProps) {
-  if (props.disabled) {
-    return null;
-  }
-
   let orientationClassName =
       props.orientation === "VERTICAL" ? "PlayerBox-vertical" : "PlayerBox-horizontal";
 

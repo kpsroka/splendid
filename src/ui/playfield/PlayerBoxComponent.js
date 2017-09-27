@@ -22,15 +22,10 @@ import type { PlayerBoxProps, PlayerBoxOwnProps } from './PlayerBox.js';
 import type { State, GameState } from '../../model/State.js';
 
 function mapStateToProps(state:State, ownProps:PlayerBoxOwnProps):PlayerBoxProps {
-  if (state.players.length <= ownProps.playerIndex) {
-    return { disabled: true };
-  } else {
-    return {
-      disabled: false,
-      name: state.players[ownProps.playerIndex].name,
-      score: getScore(state.gameState, ownProps.playerIndex),
-    };
-  }
+  return {
+    name: state.players[ownProps.playerIndex].name,
+    score: getScore(state.gameState, ownProps.playerIndex),
+  };
 }
 
 function getScore(gameState:?GameState, playerIndex:number):number {
