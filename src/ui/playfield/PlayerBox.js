@@ -40,6 +40,7 @@ export default function PlayerBox(props:PlayerBoxCombinedProps) {
 
   return (
       <div className={`PlayerBox-externalFrame ${orientationClassName}`}>
+        {props.currentPlayer ? renderCurrentPlayerLeftElement("▶") : "" }
         <div className="PlayerBox-playerInfoFrame">
           <div className="PlayerBox-playerInfo">
             <div className="PlayerBox-playerInfoContent">
@@ -54,6 +55,7 @@ export default function PlayerBox(props:PlayerBoxCombinedProps) {
               props.playerIndex,
               props.orientation === "VERTICAL" ? "HORIZONTAL" : "VERTICAL")}
         </div>
+        {props.currentPlayer ? renderCurrentPlayerLeftElement("◀") : "" }
       </div>
   );
 }
@@ -72,3 +74,8 @@ function renderResourceSupplies(playerIndex, orientation) {
 
   return resourceSupplies;
 }
+
+function renderCurrentPlayerLeftElement(content:string) {
+  return <div className="PlayerBox-currentPlayerMark">{content}</div>
+}
+

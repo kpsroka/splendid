@@ -16,6 +16,9 @@
 .PlayerBox-externalFrame {
   position: relative;
   margin-bottom: 1.5vh;
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
 }
 
 .PlayerBox-internalFrame {
@@ -62,4 +65,11 @@
   border-radius: 1vh;
   font-size: 2.8vh;
   box-shadow: rgba(0,0,0,0.4) 0 -0.5vh 0.5vh 0;
+}
+
+.PlayerBox-currentPlayerMark {
+  display: flex;
+  align-items: center;
+  padding: 0 0.5vw;
+  user-select: none;
 }
