@@ -14,8 +14,10 @@
  */
 
 .ResourcePanel-container {
-  width: 40vw;
   height: 14vh;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 2vh 1vw;
 
   display: flex;
   flex-direction: row;
@@ -27,4 +29,5 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-left: 2vw;
 }
