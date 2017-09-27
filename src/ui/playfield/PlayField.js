@@ -32,7 +32,7 @@ export default function PlayField(props:PlayFieldProps) {
         <div className="PlayField-fieldArea">
           <div className="PlayField-otherPlayersArea">
             {props.left.map(playerIndex =>
-                <PlayerBoxComponent playerIndex={playerIndex} orientation="VERTICAL" />
+                <PlayerBoxComponent key={playerIndex} playerIndex={playerIndex} orientation="VERTICAL" />
             )}
           </div>
           <div className="PlayField-playableArea">
@@ -44,7 +44,7 @@ export default function PlayField(props:PlayFieldProps) {
           </div>
           <div className="PlayField-otherPlayersArea">
             {props.right.map(playerIndex =>
-                <PlayerBoxComponent playerIndex={playerIndex} orientation="VERTICAL" />
+                <PlayerBoxComponent key={playerIndex} playerIndex={playerIndex} orientation="VERTICAL" />
             )}
           </div>
         </div>
