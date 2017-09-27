@@ -24,6 +24,7 @@ import './PlayerBox.css';
 export type PlayerBoxProps = {|
   name: string,
   score: number,
+  currentPlayer: boolean
 |};
 
 export type PlayerBoxOwnProps = {|

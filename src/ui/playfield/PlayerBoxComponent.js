@@ -22,19 +22,21 @@ import type { PlayerBoxProps, PlayerBoxOwnProps } from './PlayerBox.js';
 import type { State, GameState } from '../../model/State.js';
 
 function mapStateToProps(state:State, ownProps:PlayerBoxOwnProps):PlayerBoxProps {
-  return {
-    name: state.players[ownProps.playerIndex].name,
-    score: getScore(state.gameState, ownProps.playerIndex),
-  };
+  const gameState:?GameState = state.gameState;  // To make sure that flow refinements work
+  if (gameState) {
+    return {
+      name: state.players[ownProps.playerIndex].name,
+      score: getScore(gameState, ownProps.playerIndex),
+      currentPlayer: gameState.currentPlayerIndex === ownProps.playerIndex,
+    };
+  } else {
+    throw new Error("Game state not present");
+  }
 }
 
-function getScore(gameState:?GameState, playerIndex:number):number {
-  if (gameState) {
-    let playerHand = gameState.playerState[playerIndex].hand;
-    return playerHand.factories.reduce((sum, next) => (sum + next.points), 0);
-  } else {
-    return 0;
-  }
+function getScore(gameState:GameState, playerIndex:number):number {
+  let playerHand = gameState.playerState[playerIndex].hand;
+  return playerHand.factories.reduce((sum, next) => (sum + next.points), 0);
 }
 
 const PlayerBoxComponent = connect(mapStateToProps)(PlayerBox);
