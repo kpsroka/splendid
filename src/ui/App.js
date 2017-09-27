@@ -15,7 +15,7 @@
 
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 import UiComponent from './UiComponent.js';
 import UiMessageComponent from './UiMessageComponent.js';
 import './App.css';
