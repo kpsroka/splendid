@@ -13,8 +13,9 @@
  * limitations under the License.
  */
 
-import SetUiMessage from './SetUiMessageAction.js';
 import SetGameState from './SetGameStateAction.js';
+import SetUiMessage from './SetUiMessageAction.js';
+import SetUiMode from './SetUiModeAction.js';
 import CheckResponse from './async/CheckResponse.js';
 import FetchGameState from './async/FetchGameState.js';
 
@@ -39,6 +40,7 @@ export default function PollGameState(gameRef, lastRound=-1) {
 
             dispatch(SetGameState(gameState));
             if (gameState.gameStatus === 'UNDERWAY') {
+              dispatch(SetUiMode('PLAY'));
               setTimeout(
                   () => {
                     dispatch(PollGameState(gameRef, gameState.round));
