@@ -24,7 +24,6 @@ import type { State } from '../model/State.js';
 function mapStateToProps(state:State):UiProps {
   return {
     mode: state.ui.mode,
-    showField: state.players.length > 0
   }
 }
 
