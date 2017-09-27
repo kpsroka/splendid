@@ -15,7 +15,7 @@
 
 .PlayerBox-externalFrame {
   position: relative;
-  margin-bottom: 18px;
+  margin-bottom: 1.5vh;
 }
 
 .PlayerBox-internalFrame {
@@ -41,8 +41,8 @@
 
 .PlayerBox-playerInfoFrame {
   position: absolute;
-  bottom: -1.5vh;
-  height: 3vh;
+  bottom: -2vh;
+  height: 4vh;
   left: 0;
   right: 0;
   display: flex;
@@ -59,10 +59,7 @@
   padding: 0.6vh;
   z-index: 3;
   background-color: deepskyblue;
-
-  border: 0.3vh solid ghostwhite;
   border-radius: 1vh;
-  box-shadow: darkgrey;
-
-  font-size: 3vh;
+  font-size: 2.8vh;
+  box-shadow: rgba(0,0,0,0.4) 0 -0.5vh 0.5vh 0;
 }
