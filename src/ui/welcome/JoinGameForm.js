@@ -68,8 +68,10 @@ export default class JoinGameForm extends
             </div>
           </div>
           <div className="WelcomeScreen-buttonContainer">
-            <button className="WelcomeScreen-button"
-                    onClick={() => this.props.joinGame(this.state.playerName, this.state.gameRefId)}>
+            <button
+                disabled={this.state.playerName === "" || this.state.gameRefId === ""}
+                className="WelcomeScreen-button"
+                onClick={() => this.props.joinGame(this.state.playerName, this.state.gameRefId)}>
               Join game
             </button>
             <button className="WelcomeScreen-button"

@@ -63,8 +63,10 @@ class NewGameForm extends React.PureComponent<NewGameCombinedProps, NewGameState
             </div>
           </div>
           <div className="WelcomeScreen-buttonContainer">
-            <button className="WelcomeScreen-button"
-                    onClick={() => this.props.createNewGame(this.state.playerName, this.state.numberOfPlayers)}>
+            <button
+                disabled={this.state.playerName === ""}
+                className="WelcomeScreen-button"
+                onClick={() => this.props.createNewGame(this.state.playerName, this.state.numberOfPlayers)}>
               Start
             </button>
             <button className="WelcomeScreen-button"
