@@ -14,8 +14,6 @@
  */
 
 .ResourceBox-container {
-  border: 1px rgba(0, 0, 0, 0.5) solid;
-  border-radius: 1px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -26,7 +24,7 @@
 }
 
 .ResourceBox-container + .ResourceBox-container {
-  margin-top: 0.5vh;
+  margin-top: 0.75vh;
 }
 
 .ResourceBox-innerShadow {

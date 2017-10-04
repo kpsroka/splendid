@@ -59,7 +59,7 @@ export default class Factory extends React.Component<FactoryCombinedProps> {
             className="Factory-container"
             style={{
               borderColor: (this.props.selected ? 'rgba(0, 0, 0, 0.75)' : 'rgba(0, 0, 0, 0.25)'),
-              boxShadow: (this.props.selected ? 'rgba(0, 0, 0, 0.5) 1px 1px 1px 1px' : 'none'),
+              boxShadow: (this.props.selected ? 'rgba(0, 0, 0, 0.5) 0.3vh 0.3vh 0.3vh 0.3vh' : 'none'),
               backgroundColor: RESOURCE_COLORS[this.props.resource],
               backgroundImage: `url('${RESOURCE_ICONS[this.props.resource]}')`
             }}

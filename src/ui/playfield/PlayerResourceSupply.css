@@ -14,16 +14,16 @@
  */
 
 .PlayerResourceSupply-container {
-  border-radius: 3px;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+  border-radius: 1vh;
+  box-shadow: 0.35vh 0.35vh 0.35vh rgba(0, 0, 0, 0.5);
 
   display: flex;
   justify-content: space-between;
-  padding: 1vmin;
+  padding: 1vh;
   align-items: center;
   color: black;
 
-  margin: 2px;
+  margin: 0.5vh;
 }
 
 .PlayerResourceSupply-vertical {
