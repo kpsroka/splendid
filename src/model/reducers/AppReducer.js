@@ -13,12 +13,17 @@
  * limitations under the License.
  */
 
+// @flow
+
 import GameRefReducer from './GameRefReducer.js';
 import GameStateReducer from './GameStateReducer.js';
 import PlayersReducer from './PlayersReducer.js';
 import UiStateReducer from './UiStateReducer.js';
 
-function AppReducer(state, action) {
+import type { State } from '../State.js';
+import type { Action } from '../../actions/Actions.js';
+
+function AppReducer(state:State, action:Action):State {
   return {
     ...state,
     gameRef: GameRefReducer(state.gameRef, action),

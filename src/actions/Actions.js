@@ -15,9 +15,9 @@
 
 // @flow
 
-import type { Resource } from '../model/State.js';
+import type { GameState, Resource, State, UiMode } from '../model/State.js';
 
-export const ActionTypes = {
+export const ActionTypes = Object.freeze({
   ChooseFactoryFromBoard: 'CHOOSE_FACTORY',
   ChooseResourceFromStack: 'CHOOSE_STACK_RESOURCE',
   GrabSelectedResources: 'GRAB_SELECTED_RESOURCES',
@@ -28,7 +28,7 @@ export const ActionTypes = {
   SetUiMessage: '_SET_UI_MESSAGE',
   SetUiMode: '_SET_UI_MODE',
   TakeResourcesFromStack: 'TAKE_RESOURCES',
-};
+});
 
 export type ChooseFactoryFromBoard = {
   type:'CHOOSE_FACTORY',
@@ -41,4 +41,36 @@ export type ChooseResourceFromStack = {
   resourceType:Resource
 }
 
-export type Action = ChooseFactoryFromBoard | ChooseResourceFromStack;
+export type DismissMessage = {
+  type: 'DISMISS_MESSAGE'
+}
+
+export type SetGameState = {
+  type: '_SET_GAME_STATE',
+  gameState: GameState,
+}
+
+export type SetUiMessage = {
+  type: '_SET_UI_MESSAGE',
+  text: string,
+  severity: string
+}
+
+export type SetUiMode = {
+  type: '_SET_UI_MODE',
+  mode: UiMode
+}
+
+export type Action =
+    ChooseFactoryFromBoard |
+    ChooseResourceFromStack |
+    DismissMessage |
+    SetGameState |
+    SetUiMessage |
+    SetUiMode;
+
+export type GetState = () => State;
+// Circular type dependency :/
+// eslint-disable-next-line
+export type ThunkAction = (dispatch: Dispatch, getState?: GetState) => any;
+export type Dispatch = (action: Action | ThunkAction | Array<Action>) => any;

@@ -13,9 +13,13 @@
  * limitations under the License.
  */
 
-import { ActionTypes } from '../../actions/Actions.js';
+// @flow
 
-export default function GameRefReducer(gameRef, action) {
+import { ActionTypes } from '../../actions/Actions.js';
+import type { GameRef } from '../State.js';
+import type { Action } from '../../actions/Actions.js';
+
+export default function GameRefReducer(gameRef:?GameRef, action:Action):?GameRef {
   if (action.type === ActionTypes.SetGameConfig) {
     if (gameRef === null) {
       return action.gameRef;

@@ -13,16 +13,23 @@
  * limitations under the License.
  */
 
+// @flow
+
 import BoardReducer from './BoardReducer.js';
 import { ActionTypes } from '../../actions/Actions.js';
+import type { GameState } from '../State';
+import type { Action } from '../../actions/Actions';
 
-export default function GameStateReducer(gameState, action) {
+export default function GameStateReducer(gameState:?GameState, action:Action):?GameState {
   switch (action.type) {
     case ActionTypes.SetGameState: {
       return action.gameState;
     }
     case ActionTypes.ChooseResourceFromStack:
     case ActionTypes.ChooseFactoryFromBoard: {
+      if (!gameState) {
+        throw new Error('Game state not set.');
+      }
       if (gameState.currentPlayerIndex === 0) {
         return {...gameState, board: BoardReducer(gameState.board, action)};
       } else {

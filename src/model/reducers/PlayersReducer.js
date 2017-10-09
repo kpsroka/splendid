@@ -13,9 +13,14 @@
  * limitations under the License.
  */
 
+// @flow
+
 import { ActionTypes } from '../../actions/Actions.js';
 
-export default function PlayersReducer(players, action) {
+import type { Player } from '../State.js';
+import type { Action } from '../../actions/Actions.js';
+
+export default function PlayersReducer(players:Array<Player>, action:Action):Array<Player> {
   switch (action.type) {
     case ActionTypes.SetGameConfig: {
       return action.players.map((player) => ({ ...player, hand: [] }));
