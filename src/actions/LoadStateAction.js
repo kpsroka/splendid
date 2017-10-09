@@ -13,19 +13,23 @@
  * limitations under the License.
  */
 
+// @flow
+
 import AwaitGameReady from './GetGameDataAction.js';
 import SetUiMode from './SetUiModeAction.js';
+
+import type { Dispatch, ThunkAction } from './Actions.js';
 
 // TODO: Remove duplicate definition (see PollGameStateAction.js).
 const SESSION_STORAGE_KEY = 'gameref';
 
-export default function LoadStateAction() {
-  return (dispatch) => {
+export default function LoadStateAction():ThunkAction {
+  return (dispatch:Dispatch) => {
     let hashGameId = location.hash.slice(1);
 
     let sessionGameRefStr = sessionStorage.getItem(SESSION_STORAGE_KEY);
     let sessionGameRef =
-        sessionGameRefStr === null ? undefined : JSON.parse(sessionGameRefStr);
+        sessionGameRefStr === null || sessionGameRefStr === undefined ? undefined : JSON.parse(sessionGameRefStr);
 
     if (sessionGameRef === undefined && hashGameId === '') {
       dispatch(SetUiMode('WELCOME'));

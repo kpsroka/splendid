@@ -13,15 +13,20 @@
  * limitations under the License.
  */
 
+// @flow
+
 import SetUiMessage from './SetUiMessageAction.js';
 import GetGameData from './GetGameDataAction.js';
 import CheckResponse from './async/CheckResponse.js';
 import FetchGameStatus from './async/FetchGameStatus.js';
 
+import type { Dispatch, ThunkAction } from './Actions.js';
+import type { GameRef } from '../model/State.js';
+
 const STATUS_POLL_INTERVAL_MILLIS = 2500;
 
-export default function AwaitGameReady(gameRef) {
-  return (dispatch) => {
+export default function AwaitGameReady(gameRef:GameRef):ThunkAction {
+  return (dispatch:Dispatch) => {
     dispatch(SetUiMessage(`Waiting for game ${gameRef.gameId} to be ready`));
 
     location.hash = `#${gameRef.gameId}`;

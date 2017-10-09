@@ -13,14 +13,19 @@
  * limitations under the License.
  */
 
+// @flow
+
 import PollGameState from './PollGameStateAction.js';
 import SetUiMessage from './SetUiMessageAction.js';
 import SetGameConfig from './SetGameConfigAction.js';
 import CheckResponse from './async/CheckResponse.js';
 import FetchGameConfig from './async/FetchGameConfig.js';
 
-export default function GetGameData(gameRef) {
-  return (dispatch) => {
+import type { Dispatch, ThunkAction } from './Actions.js';
+import type { GameRef } from '../model/State.js';
+
+export default function GetGameData(gameRef:GameRef):ThunkAction {
+  return (dispatch:Dispatch) => {
     dispatch(SetUiMessage(`Joining game ${gameRef.gameId}`));
 
     CheckResponse(FetchGameConfig(gameRef))

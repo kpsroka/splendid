@@ -13,19 +13,24 @@
  * limitations under the License.
  */
 
+// @flow
+
 import SetGameState from './SetGameStateAction.js';
 import SetUiMessage from './SetUiMessageAction.js';
 import SetUiMode from './SetUiModeAction.js';
 import CheckResponse from './async/CheckResponse.js';
 import FetchGameState from './async/FetchGameState.js';
 
+import type { Dispatch, ThunkAction } from './Actions.js';
+import type { GameRef } from '../model/State.js';
+
 const POLL_GAME_STATE_INTERVAL_MILLIS = 1500;
 
 // TODO: Remove duplicate definition (see LoadStateAction.js).
 const SESSION_STORAGE_KEY = 'gameref';
 
-export default function PollGameState(gameRef, lastRound=-1) {
-  return (dispatch) => {
+export default function PollGameState(gameRef:GameRef, lastRound:number=-1):ThunkAction {
+  return (dispatch:Dispatch) => {
     CheckResponse(FetchGameState(gameRef, lastRound), false)
     .then(
         gameState => {

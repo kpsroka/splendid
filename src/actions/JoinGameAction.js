@@ -13,13 +13,17 @@
  * limitations under the License.
  */
 
+// @flow
+
 import AwaitGameReady from './AwaitGameReadyAction.js';
 import SetUiMessage from './SetUiMessageAction.js';
 import CheckResponse from './async/CheckResponse.js';
 import JoinGameRequest from './async/JoinGame.js';
 
-export default function JoinGame(playerName, gameRefId) {
-  return (dispatch) => {
+import type { Dispatch, ThunkAction } from './Actions.js';
+
+export default function JoinGame(playerName:string, gameRefId:string):ThunkAction {
+  return (dispatch:Dispatch) => {
     dispatch(SetUiMessage('Joining game ' + gameRefId));
 
     CheckResponse(JoinGameRequest(playerName, gameRefId))

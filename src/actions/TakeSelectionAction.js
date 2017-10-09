@@ -13,14 +13,22 @@
  * limitations under the License.
  */
 
+// @flow
+
 import SetGameState from './SetGameStateAction.js';
 import SetUiMessage from './SetUiMessageAction.js';
 import { TakeResources, TakeFactory } from './async/ExecutePlayerAction.js';
 import CheckResponse from './async/CheckResponse.js';
 
-export default function TakeSelectionAction() {
-  return (dispatch, getState) => {
+import type { Dispatch, GetState, ThunkAction } from './Actions.js';
+
+export default function TakeSelectionAction():ThunkAction {
+  return (dispatch:Dispatch, getState:GetState) => {
     let state = getState();
+
+    if (!state.gameState) {
+      throw new Error("Game state not present");
+    }
 
     let selection = state.gameState.board.selection;
     if (selection.type === 'RESOURCE_SELECTION') {

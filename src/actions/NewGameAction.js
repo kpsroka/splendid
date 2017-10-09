@@ -13,13 +13,17 @@
  * limitations under the License.
  */
 
+// @flow
+
 import AwaitGameReady from "./AwaitGameReadyAction.js";
 import SetUiMessage from "./SetUiMessageAction.js";
 import CheckResponse from "./async/CheckResponse.js";
 import CreateGame from "./async/CreateGame.js";
 
-export default function NewGame(playerName, playerCount) {
-  return (dispatch) => {
+import type { Dispatch, ThunkAction } from './Actions.js';
+
+export default function NewGame(playerName:string, playerCount:number):ThunkAction {
+  return (dispatch:Dispatch) => {
     dispatch(SetUiMessage('Starting new game'));
 
     CheckResponse(CreateGame(playerName, playerCount))
