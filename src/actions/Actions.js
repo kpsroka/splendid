@@ -72,5 +72,5 @@ export type Action =
 export type GetState = () => State;
 // Circular type dependency :/
 // eslint-disable-next-line
-export type ThunkAction = (dispatch: Dispatch, getState?: GetState) => any;
+export type ThunkAction = (dispatch: Dispatch, getState: GetState) => any;
 export type Dispatch = (action: Action | ThunkAction | Array<Action>) => any;
