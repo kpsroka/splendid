@@ -15,7 +15,10 @@
 
 import { ActionTypes } from '../../actions/Actions.js';
 
-export default function UiStateReducer(ui, action) {
+import type { UiState } from '../State.js';
+import type { Action } from '../../actions/Actions.js';
+
+export default function UiStateReducer(ui:UiState, action:Action):UiState {
   switch (action.type) {
     case ActionTypes.SetUiMessage: {
       let newMessage = {
