@@ -26,25 +26,19 @@ export default function AwaitGameReady(gameRef) {
 
     location.hash = `#${gameRef.gameId}`;
 
-    let gameUnderway = false;
-    let intervalId = setInterval(() => {
-      CheckResponse(FetchGameStatus(gameRef.gameId))
-      .then(
-          gameStatus => {
-            if (gameUnderway) {
-              // Prevent late response from coming in.
-              return;
-            }
-
-            if (gameStatus.gameStatus === "UNDERWAY") {
-              gameUnderway = true;
-              clearInterval(intervalId);
-
-              dispatch(GetGameData(gameRef));
-            }
+    CheckResponse(FetchGameStatus(gameRef.gameId))
+    .then(
+        gameStatus => {
+          if (gameStatus.gameStatus === "UNDERWAY") {
+            dispatch(GetGameData(gameRef));
+          } else {
+            setTimeout(
+                () => {
+                  dispatch(AwaitGameReady(gameRef));
+                },
+                STATUS_POLL_INTERVAL_MILLIS);
           }
-      );
-    },
-    STATUS_POLL_INTERVAL_MILLIS)
+        }
+    );
   };
 }
