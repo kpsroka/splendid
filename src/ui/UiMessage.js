@@ -40,13 +40,14 @@ export default function UiMessage(props:UiMessageCombinedProps) {
     }
   }
 
-  let text = props.message ? props.message.text : '';
+  const text = props.message ? props.message.text : '';
 
   return (
       <div className="UiMessage-container">
         <div className={`UiMessage-message ${messageClassName}`}>
           <div className="UiMessage-text">{text}</div>
-          <div className="UiMessage-dismiss"
+          <div testId="dismiss"
+              className="UiMessage-dismiss"
               onClick={() => props.onDismissMessage()}>×</div>
         </div>
       </div>

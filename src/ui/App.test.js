@@ -14,10 +14,63 @@
  */
 
 import React from 'react';
-import ReactDOM from 'react-dom';
+import sinon from 'sinon';
+import { shallow } from 'enzyme';
 import App from './App';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
+describe('App', () => {
+  let setTimeoutSpy;
+
+  beforeAll(() => {
+    expect.extend({
+      toBeAFunction(received) {
+        if (typeof received === "function") {
+          return {
+            pass: true,
+            message: () => (`expected ${received} not to be a function.`)
+          };
+        } else {
+          return {
+            pass: false,
+            message: () => (`expected ${received} to be a function.`)
+          };
+        }
+      }
+    });
+  });
+
+  beforeEach(() => {
+    setTimeoutSpy = sinon.spy(window, 'setTimeout');
+  });
+
+  afterEach(() => {
+    window.setTimeout.restore();
+  });
+
+  it('launches initialize if isInitialized is false', () => {
+    const initializeSpy = sinon.spy();
+    shallow(<App isInitialized={false} initialize={initializeSpy} />);
+    setTimeoutSpy.getCalls().forEach(
+        (call) => {
+          let callArg = call.args[0];
+          expect(callArg).toBeAFunction();
+          callArg.apply(this, call.args.slice(2));
+        }
+    );
+    expect(initializeSpy.calledOnce).toBe(true);
+  });
+
+  it('does not launch initialize if isInitialized is true', () => {
+    const initializeSpy = sinon.spy();
+    shallow(<App isInitialized={true} initialize={initializeSpy} />);
+    setTimeoutSpy.getCalls().forEach(
+        (call) => {
+          let callArg = call.args[0];
+          expect(callArg).toBeAFunction();
+          callArg.apply(this, call.args.slice(2));
+        }
+    );
+    expect(initializeSpy.called).toBe(false);
+  });
 });
+
