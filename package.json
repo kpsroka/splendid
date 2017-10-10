@@ -98,7 +98,12 @@
   "babel": {
     "presets": [
       "react-app"
-    ]
+    ],
+    "env": {
+      "production": {
+        "plugins": ["react-test-id"]
+      }
+    }
   },
   "eslintConfig": {
     "extends": "react-app"
