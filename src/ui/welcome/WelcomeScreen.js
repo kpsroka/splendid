@@ -52,11 +52,13 @@ class WelcomeScreen extends React.PureComponent<WelcomeScreenCombinedProps> {
     } else {
       return (
           <div className="WelcomeScreen-buttonContainer">
-            <button className="WelcomeScreen-button"
+            <button testId="create"
+                    className="WelcomeScreen-button"
                     onClick={() => this.props.setUiMode('CREATE')}>
               Start new game
             </button>
-            <button className="WelcomeScreen-button"
+            <button testId="join"
+                    className="WelcomeScreen-button"
                     onClick={() => this.props.setUiMode('JOIN')}>
               Join game
             </button>
