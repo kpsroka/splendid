@@ -30,7 +30,7 @@ type NewGameState = {|
   numberOfPlayers: number,
 |};
 
-class NewGameForm extends React.PureComponent<NewGameCombinedProps, NewGameState> {
+class NewGameForm extends React.Component<NewGameCombinedProps, NewGameState> {
   constructor(props:NewGameCombinedProps) {
     super(props);
     this.state = {playerName: "", numberOfPlayers: 2};
@@ -52,7 +52,8 @@ class NewGameForm extends React.PureComponent<NewGameCombinedProps, NewGameState
             </div>
             <div className="WelcomeScreen-inputRow">
               <div className="WelcomeScreen-inputRowLabel">Number of players</div>
-              <input type="range"
+              <input testId="playerCount"
+                     type="range"
                      min="2" max="5"
                      defaultValue={this.state.numberOfPlayers}
                      onInput={(inputEvent) => {
@@ -64,12 +65,14 @@ class NewGameForm extends React.PureComponent<NewGameCombinedProps, NewGameState
           </div>
           <div className="WelcomeScreen-buttonContainer">
             <button
+                testId="create"
                 disabled={this.state.playerName === ""}
                 className="WelcomeScreen-button"
                 onClick={() => this.props.createNewGame(this.state.playerName, this.state.numberOfPlayers)}>
               Start
             </button>
-            <button className="WelcomeScreen-button"
+            <button testId="abort"
+                    className="WelcomeScreen-button"
                     onClick={() => this.props.onAbort()}>
               Go back
             </button>
