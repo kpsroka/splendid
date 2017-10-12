@@ -37,15 +37,17 @@ type ResourcePanelCombinedProps = ResourcePanelProps & ResourcePanelDispatch;
 export default function ResourcePanel(props:ResourcePanelCombinedProps) {
   return (
       <div className="ResourcePanel-container">
-        {RESOURCE_COLORS.map((cssColor, resource) =>
-            <ResourceStack
-                key={resource}
-                resource={resource}
-                stackSize={props.resources[resource] || 0}
-                highlight={props.selection[resource] || 0}
-                onClickCallback={() => props.onStackClick(resource)}
-            />
-        )}
+        <div className="ResourcePanel-resourceStacks">
+          {RESOURCE_COLORS.map((cssColor, resource) =>
+              <ResourceStack
+                  key={resource}
+                  resource={resource}
+                  stackSize={props.resources[resource] || 0}
+                  highlight={props.selection[resource] || 0}
+                  onClickCallback={() => props.onStackClick(resource)}
+              />
+          )}
+        </div>
         <div className="ResourcePanel-buttonContainer">
           <SubmitButtonComponent />
         </div>
