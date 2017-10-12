@@ -29,7 +29,7 @@ export default function AwaitGameReady(gameRef:GameRef):ThunkAction {
   return (dispatch:Dispatch) => {
     dispatch(SetUiMessage(`Waiting for game ${gameRef.gameId} to be ready`));
 
-    location.hash = `#${gameRef.gameId}`;
+    window.location.hash = `#${gameRef.gameId}`;
 
     CheckResponse(FetchGameStatus(gameRef.gameId))
     .then(

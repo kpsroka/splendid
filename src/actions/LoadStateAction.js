@@ -25,7 +25,7 @@ const SESSION_STORAGE_KEY = 'gameref';
 
 export default function LoadStateAction():ThunkAction {
   return (dispatch:Dispatch) => {
-    let hashGameId = location.hash.slice(1);
+    let hashGameId = window.location.hash.slice(1);
 
     let sessionGameRefStr = sessionStorage.getItem(SESSION_STORAGE_KEY);
     let sessionGameRef =

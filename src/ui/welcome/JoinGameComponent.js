@@ -24,7 +24,7 @@ import type { JoinGameProps, JoinGameDispatch } from './JoinGameForm.js';
 
 function mapStateToProps():JoinGameProps {
   return {
-    initialGameId: location.hash.slice(1)
+    initialGameId: window.location.hash.slice(1)
   };
 }
 
