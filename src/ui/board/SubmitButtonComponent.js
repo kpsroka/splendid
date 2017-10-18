@@ -17,7 +17,7 @@
 
 import { connect } from 'react-redux';
 import SubmitButton from './SubmitButton.js';
-import TakeSelectionAction from '../../actions/TakeSelectionAction.js';
+import TakeSelectionAction from '../../actions/async/TakeSelectionAction.js';
 import { ContainsResources, ReduceResources } from '../../model/ResourceHelper.js';
 
 import type { State } from '../../model/State.js';

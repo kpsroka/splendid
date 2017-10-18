@@ -15,12 +15,12 @@
 
 // @flow
 
-import SetGameState from './SetGameStateAction.js';
-import SetUiMessage from './SetUiMessageAction.js';
-import { TakeResources, TakeFactory } from './fetch/ExecutePlayerAction.js';
-import CheckResponse from './fetch/CheckResponse.js';
+import SetGameState from '../SetGameStateAction.js';
+import SetUiMessage from '../SetUiMessageAction.js';
+import { TakeResources, TakeFactory } from '../fetch/ExecutePlayerAction.js';
+import CheckResponse from '../fetch/CheckResponse.js';
 
-import type { Dispatch, GetState, ThunkAction } from './Actions.js';
+import type { Dispatch, GetState, ThunkAction } from '../Actions.js';
 
 export default function TakeSelectionAction():ThunkAction {
   return (dispatch:Dispatch, getState:GetState) => {

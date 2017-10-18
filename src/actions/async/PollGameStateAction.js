@@ -15,14 +15,14 @@
 
 // @flow
 
-import SetGameState from './SetGameStateAction.js';
-import SetUiMessage from './SetUiMessageAction.js';
-import SetUiMode from './SetUiModeAction.js';
-import CheckResponse from './fetch/CheckResponse.js';
-import FetchGameState from './fetch/FetchGameState.js';
+import SetGameState from '../SetGameStateAction.js';
+import SetUiMessage from '../SetUiMessageAction.js';
+import SetUiMode from '../SetUiModeAction.js';
+import CheckResponse from '../fetch/CheckResponse.js';
+import FetchGameState from '../fetch/FetchGameState.js';
 
-import type { Dispatch, ThunkAction } from './Actions.js';
-import type { GameRef } from '../model/State.js';
+import type { Dispatch, ThunkAction } from '../Actions.js';
+import type { GameRef } from '../../model/State.js';
 
 const POLL_GAME_STATE_INTERVAL_MILLIS = 1500;
 

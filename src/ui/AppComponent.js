@@ -17,7 +17,7 @@
 
 import { connect } from 'react-redux';
 import App from './App.js';
-import LoadState from '../actions/LoadStateAction.js';
+import LoadState from '../actions/async/LoadStateAction.js';
 
 import type { AppProps, AppDispatch } from './App.js';
 import type { State } from '../model/State.js';

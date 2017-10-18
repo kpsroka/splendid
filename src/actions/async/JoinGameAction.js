@@ -15,22 +15,21 @@
 
 // @flow
 
-import AwaitGameReady from "./AwaitGameReadyAction.js";
-import SetUiMessage from "./SetUiMessageAction.js";
-import CheckResponse from "./fetch/CheckResponse.js";
-import CreateGame from "./fetch/CreateGame.js";
+import AwaitGameReady from './AwaitGameReadyAction.js';
+import SetUiMessage from '../SetUiMessageAction.js';
+import CheckResponse from '../fetch/CheckResponse.js';
+import JoinGameRequest from '../fetch/JoinGame.js';
 
-import type { Dispatch, ThunkAction } from './Actions.js';
+import type { Dispatch, ThunkAction } from '../Actions.js';
 
-export default function NewGame(playerName:string, playerCount:number):ThunkAction {
+export default function JoinGame(playerName:string, gameRefId:string):ThunkAction {
   return (dispatch:Dispatch) => {
-    dispatch(SetUiMessage('Starting new game'));
+    dispatch(SetUiMessage('Joining game ' + gameRefId));
 
-    CheckResponse(CreateGame(playerName, playerCount))
+    CheckResponse(JoinGameRequest(playerName, gameRefId))
     .then(
-        gameRef => {
-          dispatch(SetUiMessage(`Created new game (${gameRef.gameId})`));
-          dispatch(AwaitGameReady(gameRef));
+        gameConfig => {
+          dispatch(AwaitGameReady(gameConfig.ref))
         })
     .catch(
         error => {

@@ -16,7 +16,7 @@
 // @flow
 
 import { connect } from 'react-redux';
-import JoinGame from '../../actions/JoinGameAction.js';
+import JoinGame from '../../actions/async/JoinGameAction.js';
 import SetUiMode from '../../actions/SetUiModeAction.js';
 import JoinGameForm from './JoinGameForm.js';
 

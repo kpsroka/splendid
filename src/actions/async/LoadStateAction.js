@@ -16,9 +16,9 @@
 // @flow
 
 import AwaitGameReady from './GetGameDataAction.js';
-import SetUiMode from './SetUiModeAction.js';
+import SetUiMode from '../SetUiModeAction.js';
 
-import type { Dispatch, ThunkAction } from './Actions.js';
+import type { Dispatch, ThunkAction } from '../Actions.js';
 
 // TODO: Remove duplicate definition (see PollGameStateAction.js).
 const SESSION_STORAGE_KEY = 'gameref';

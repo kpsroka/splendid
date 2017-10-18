@@ -15,24 +15,22 @@
 
 // @flow
 
-import PollGameState from './PollGameStateAction.js';
-import SetUiMessage from './SetUiMessageAction.js';
-import SetGameConfig from './SetGameConfigAction.js';
-import CheckResponse from './fetch/CheckResponse.js';
-import FetchGameConfig from './fetch/FetchGameConfig.js';
+import AwaitGameReady from "./AwaitGameReadyAction.js";
+import SetUiMessage from "../SetUiMessageAction.js";
+import CheckResponse from "../fetch/CheckResponse.js";
+import CreateGame from "../fetch/CreateGame.js";
 
-import type { Dispatch, ThunkAction } from './Actions.js';
-import type { GameRef } from '../model/State.js';
+import type { Dispatch, ThunkAction } from '../Actions.js';
 
-export default function GetGameData(gameRef:GameRef):ThunkAction {
+export default function NewGame(playerName:string, playerCount:number):ThunkAction {
   return (dispatch:Dispatch) => {
-    dispatch(SetUiMessage(`Joining game ${gameRef.gameId}`));
+    dispatch(SetUiMessage('Starting new game'));
 
-    CheckResponse(FetchGameConfig(gameRef))
+    CheckResponse(CreateGame(playerName, playerCount))
     .then(
-        gameConfig => {
-          dispatch(SetGameConfig(gameConfig));
-          dispatch(PollGameState(gameRef));
+        gameRef => {
+          dispatch(SetUiMessage(`Created new game (${gameRef.gameId})`));
+          dispatch(AwaitGameReady(gameRef));
         })
     .catch(
         error => {
