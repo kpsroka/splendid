@@ -17,8 +17,8 @@
 
 import SetUiMessage from './SetUiMessageAction.js';
 import GetGameData from './GetGameDataAction.js';
-import CheckResponse from './async/CheckResponse.js';
-import FetchGameStatus from './async/FetchGameStatus.js';
+import CheckResponse from './fetch/CheckResponse.js';
+import FetchGameStatus from './fetch/FetchGameStatus.js';
 
 import type { Dispatch, ThunkAction } from './Actions.js';
 import type { GameRef } from '../model/State.js';

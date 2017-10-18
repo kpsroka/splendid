@@ -18,8 +18,8 @@
 import PollGameState from './PollGameStateAction.js';
 import SetUiMessage from './SetUiMessageAction.js';
 import SetGameConfig from './SetGameConfigAction.js';
-import CheckResponse from './async/CheckResponse.js';
-import FetchGameConfig from './async/FetchGameConfig.js';
+import CheckResponse from './fetch/CheckResponse.js';
+import FetchGameConfig from './fetch/FetchGameConfig.js';
 
 import type { Dispatch, ThunkAction } from './Actions.js';
 import type { GameRef } from '../model/State.js';

@@ -17,8 +17,8 @@
 
 import AwaitGameReady from './AwaitGameReadyAction.js';
 import SetUiMessage from './SetUiMessageAction.js';
-import CheckResponse from './async/CheckResponse.js';
-import JoinGameRequest from './async/JoinGame.js';
+import CheckResponse from './fetch/CheckResponse.js';
+import JoinGameRequest from './fetch/JoinGame.js';
 
 import type { Dispatch, ThunkAction } from './Actions.js';
 

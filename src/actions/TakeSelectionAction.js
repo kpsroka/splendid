@@ -17,8 +17,8 @@
 
 import SetGameState from './SetGameStateAction.js';
 import SetUiMessage from './SetUiMessageAction.js';
-import { TakeResources, TakeFactory } from './async/ExecutePlayerAction.js';
-import CheckResponse from './async/CheckResponse.js';
+import { TakeResources, TakeFactory } from './fetch/ExecutePlayerAction.js';
+import CheckResponse from './fetch/CheckResponse.js';
 
 import type { Dispatch, GetState, ThunkAction } from './Actions.js';
 
