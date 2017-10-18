@@ -63,7 +63,7 @@ describe('App', () => {
   it('does not launch initialize if isInitialized is true', () => {
     const initializeSpy = sinon.spy();
     shallow(<App isInitialized={true} initialize={initializeSpy} />);
-    setTimeoutSpy.getCalls().forEach(
+    initializeSpy.getCalls().forEach(
         (call) => {
           let callArg = call.args[0];
           expect(callArg).toBeAFunction();
