@@ -40,22 +40,22 @@ export default function PlayerBox(props:PlayerBoxCombinedProps) {
 
   return (
       <div className={`PlayerBox-externalFrame ${orientationClassName}`}>
-        {props.currentPlayer ? renderCurrentPlayerLeftElement("▶") : "" }
+        {props.currentPlayer ? renderCurrentPlayerElement("▶") : "" }
         <div className="PlayerBox-playerInfoFrame">
           <div className="PlayerBox-playerInfo">
             <div className="PlayerBox-playerInfoContent">
-              <span className="PlayerBox-playerName">{props.name}</span>
+              <span testId="playerName" className="PlayerBox-playerName">{props.name}</span>
               <span className="PlayerBox-playerInfoSeparator">&nbsp;&middot;&nbsp;</span>
-              <span className="PlayerBox-playerScore">{props.score}</span>
+              <span testId="playerScore" className="PlayerBox-playerScore">{props.score}</span>
             </div>
           </div>
         </div>
-        <div className="PlayerBox-internalFrame">
+        <div testId="resources" className="PlayerBox-internalFrame">
           {renderResourceSupplies(
               props.playerIndex,
               props.orientation === "VERTICAL" ? "HORIZONTAL" : "VERTICAL")}
         </div>
-        {props.currentPlayer ? renderCurrentPlayerLeftElement("◀") : "" }
+        {props.currentPlayer ? renderCurrentPlayerElement("◀") : "" }
       </div>
   );
 }
@@ -75,7 +75,7 @@ function renderResourceSupplies(playerIndex, orientation) {
   return resourceSupplies;
 }
 
-function renderCurrentPlayerLeftElement(content:string) {
-  return <div className="PlayerBox-currentPlayerMark">{content}</div>
+function renderCurrentPlayerElement(content:string) {
+  return <div testId="currentPlayerMarker" className="PlayerBox-currentPlayerMark">{content}</div>
 }
 
