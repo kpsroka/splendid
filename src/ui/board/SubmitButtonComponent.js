@@ -32,7 +32,7 @@ function mapStateToProps(state:State):SubmitButtonProps {
 }
 
 function canTakeResources(state:State):boolean {
-  if (!state.gameState) {
+  if (!state.gameState || state.gameState.gameStatus !== 'UNDERWAY') {
     return false;
   }
 
@@ -47,7 +47,7 @@ function canTakeResources(state:State):boolean {
 }
 
 function canTakeFactory(state:State):boolean {
-  if (!state.gameState) {
+  if (!state.gameState || state.gameState.gameStatus !== 'UNDERWAY') {
     return false;
   }
 

@@ -62,11 +62,14 @@ export type PlayerState = {
   hand: PlayerHand,
 };
 
+export type GameStatus = 'UNKNOWN' | 'UNDERWAY' | 'PREPARING' | 'FINISHED';
+
 export type GameState = {
   board: Board,
   playerState: Array<PlayerState>,
   currentPlayerIndex: number,
-  round: number
+  round: number,
+  gameStatus: GameStatus
 };
 
 export type UiMessage = {
