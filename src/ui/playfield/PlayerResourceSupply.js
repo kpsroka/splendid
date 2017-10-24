@@ -49,7 +49,7 @@ export default function PlayerResourceSupply(props:PlayerResourceSupplyCombinedP
              style={{
                backgroundImage: `url('${RESOURCE_ICONS[props.resource]}')`
              }}
-        ></div>
+        />
         <div className="PlayerResourceSupply-factoryCount">{props.factoryCount}</div>
         <div className="PlayerResourceSupply-resourceCount">{props.resourceCount}</div>
       </div>
