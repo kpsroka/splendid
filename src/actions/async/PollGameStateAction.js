@@ -23,6 +23,7 @@ import FetchGameState from '../fetch/FetchGameState.js';
 
 import type { Dispatch, ThunkAction } from '../Actions.js';
 import type { GameRef } from '../../model/State.js';
+import FinishGameAction from './FinishGameAction';
 
 const POLL_GAME_STATE_INTERVAL_MILLIS = 1500;
 
@@ -52,7 +53,7 @@ export default function PollGameState(gameRef:GameRef, lastRound:number=-1):Thun
                   },
                   POLL_GAME_STATE_INTERVAL_MILLIS);
             } else if (gameState.gameStatus === 'FINISHED') {
-              dispatch(SetUiMessage('Game finished!'));
+              dispatch(FinishGameAction());
             }
           }
         }
