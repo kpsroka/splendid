@@ -23,8 +23,8 @@ import ChooseFactoryReducerFn from './case/ChooseFactoryReducer';
 
 export default function SelectionReducer(selection:Selection, action:Action, state:State):Selection {
   if (!state.gameState
-      || !state.gameState.currentPlayerIndex === 0
-      || !state.gameState.gameStatus === "UNDERWAY") {
+      || state.gameState.currentPlayerIndex !== 0
+      || state.gameState.gameStatus !== "UNDERWAY") {
     return selection;
   }
 
