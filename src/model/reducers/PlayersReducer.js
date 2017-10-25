@@ -15,10 +15,9 @@
 
 // @flow
 
-import { ActionTypes } from '../../actions/Actions.js';
-
-import type { Player } from '../State.js';
 import type { Action } from '../../actions/Actions.js';
+import { ActionTypes } from '../../actions/Actions.js';
+import type { Player } from '../State.js';
 
 export default function PlayersReducer(players:Array<Player>, action:Action):Array<Player> {
   switch (action.type) {

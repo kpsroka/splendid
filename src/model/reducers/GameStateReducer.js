@@ -17,10 +17,10 @@
 
 import BoardReducer from './BoardReducer.js';
 import { ActionTypes } from '../../actions/Actions.js';
-import type { GameState } from '../State';
+import type { GameState, State } from '../State.js';
 import type { Action } from '../../actions/Actions';
 
-export default function GameStateReducer(gameState:?GameState, action:Action):?GameState {
+export default function GameStateReducer(gameState:?GameState, action:Action, state:State):?GameState {
   switch (action.type) {
     case ActionTypes.SetGameState: {
       return action.gameState;
@@ -31,7 +31,7 @@ export default function GameStateReducer(gameState:?GameState, action:Action):?G
         throw new Error('Game state not set.');
       }
       if (gameState.currentPlayerIndex === 0) {
-        return {...gameState, board: BoardReducer(gameState.board, action)};
+        return {...gameState, board: BoardReducer(gameState.board, action, state)};
       } else {
         return gameState;
       }

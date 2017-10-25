@@ -13,10 +13,9 @@
  * limitations under the License.
  */
 
-import { ActionTypes } from '../../actions/Actions.js';
-
-import type { UiState } from '../State.js';
 import type { Action } from '../../actions/Actions.js';
+import { ActionTypes } from '../../actions/Actions.js';
+import type { UiState } from '../State.js';
 
 export default function UiStateReducer(ui:UiState, action:Action):UiState {
   switch (action.type) {
