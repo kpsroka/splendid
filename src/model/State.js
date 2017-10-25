@@ -32,7 +32,6 @@ export type PlayerHand = {
 
 export type Player = {
   name: string,
-  hand: PlayerHand,
 };
 
 export type NoSelection = {|
