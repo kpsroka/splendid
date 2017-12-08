@@ -1,3 +1,10 @@
 export default function JoinGame(playerName, gameRefId) {
-  return fetch(`/game/join?playerName=${playerName}&id=${gameRefId}`);
+  const params = new FormData();
+  params.set('playerName', playerName);
+  params.set('id', gameRefId);
+  const init = {
+    method: 'POST',
+    body: params,
+  };
+  return fetch('/game/join', init);
 }

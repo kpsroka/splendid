@@ -1,7 +1,18 @@
 export function TakeResources(gameRef, resources) {
-  return fetch(`/game/act?id=${gameRef.gameId}&action=TakeResources&playerToken=${gameRef.playerToken}&payload=${resources}`);
+  const params = new FormData();
+  params.set('id', gameRef.gameId);
+  params.set('playerToken', gameRef.playerToken);
+  params.set('action', 'TakeResources');
+  params.set('payload', resources);
+
+  return fetch('/game/act', { method: 'POST', body: params });
 }
 
 export function TakeFactory(gameRef, factoryRow, factoryIndex) {
-  return fetch(`/game/act?id=${gameRef.gameId}&action=TakeFactory&playerToken=${gameRef.playerToken}&payload=${factoryRow},${factoryIndex}`);
+  params.set('id', gameRef.gameId);
+  params.set('playerToken', gameRef.playerToken);
+  params.set('action', 'TakeFactory');
+  params.set('payload', `${factoryRow},${factoryIndex}`);
+
+  return fetch('/game/act', { method: 'POST', body: params });
 }
