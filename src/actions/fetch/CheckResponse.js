@@ -6,7 +6,6 @@ function isJsonResponse(response) {
 export default function CheckResponse(fetchPromise, rejectEmptyResponse=true) {
   return fetchPromise.then(
       response => {
-
         if (response.ok) {
           if (isJsonResponse(response)) {
             return response.json();
@@ -22,6 +21,10 @@ export default function CheckResponse(fetchPromise, rejectEmptyResponse=true) {
                 });
           }
         } else {
+          if (response.headers.has('X-Ui-Message')) {
+            throw new Error(response.headers.get('X-Ui-Message'));
+          }
+
           const responsePromise = isJsonResponse(response) ? response.json() : response.text();
 
           return responsePromise.then(errorResponse => {
