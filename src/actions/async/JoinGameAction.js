@@ -24,12 +24,16 @@ import type { Dispatch, ThunkAction } from '../Actions.js';
 
 export default function JoinGame(playerName:string, gameRefId:string):ThunkAction {
   return (dispatch:Dispatch) => {
-    dispatch(SetUiMessage('Joining game ' + gameRefId));
+    dispatch(SetUiMessage(`Joining game ${gameRefId}`));
 
     CheckResponse(JoinGameRequest(playerName, gameRefId))
     .then(
-        gameConfig => {
-          dispatch(AwaitGameReady(gameConfig.ref))
+        gameConfigOrRef => {
+          if (typeof gameConfigOrRef.gameId === 'string' && typeof gameConfigOrRef.playerToken === 'string') {
+            dispatch(AwaitGameReady(gameConfigOrRef));
+          } else {
+            dispatch(AwaitGameReady(gameConfigOrRef.ref));
+          }
         })
     .catch(
         error => {
