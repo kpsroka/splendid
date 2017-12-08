@@ -9,6 +9,7 @@ export function TakeResources(gameRef, resources) {
 }
 
 export function TakeFactory(gameRef, factoryRow, factoryIndex) {
+  const params = new FormData();
   params.set('id', gameRef.gameId);
   params.set('playerToken', gameRef.playerToken);
   params.set('action', 'TakeFactory');
