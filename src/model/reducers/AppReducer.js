@@ -26,8 +26,8 @@ import type { Action } from '../../actions/Actions.js';
 function AppReducer(state:State, action:Action):State {
   return {
     ...state,
-    gameRef: GameRefReducer(state.gameRef, action, state),
-    players: PlayersReducer(state.players, action, state),
+    gameRef: GameRefReducer(state.gameRef, action),
+    players: PlayersReducer(state.players, action),
     ui: UiStateReducer(state.ui, action, state),
     gameState: GameStateReducer(state.gameState, action, state),
   };
