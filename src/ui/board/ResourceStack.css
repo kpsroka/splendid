@@ -30,7 +30,7 @@
   justify-content: center;
 }
 
-.ResourceStack-circleOverlay {
+.ResourceStack-circle-overlay {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -62,7 +62,7 @@
   position: absolute;
 }
 
-.ResourceStack-circleText {
+.ResourceStack-circle-text {
   user-select: none;
   font-size: 3.5vh;
 }

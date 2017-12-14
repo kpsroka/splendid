@@ -52,8 +52,8 @@ class ResourceStackCircle extends React.Component<ResourceStackCircleProps> {
               backgroundImage: this.props.backgroundImage ? `url('${this.props.backgroundImage}')` : 'none',
             }}
             onClick={() => this.props.onItemClick()}>
-          <div className="ResourceStack-circleOverlay"/>
-          <div className="ResourceStack-circleText">
+          <div className="ResourceStack-circle-overlay"/>
+          <div className="ResourceStack-circle-text">
             {this.props.text ? this.props.text : ""}
           </div>
         </div>
