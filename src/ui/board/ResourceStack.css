@@ -18,18 +18,26 @@
 }
 
 .ResourceStack-circle {
-  border-width: 0.3vh;
   border-radius: 50%;
-  border-color: rgba(0, 0, 0, 0.5);
-  border-style: solid;
   box-shadow: black 0.5vh 0.5vh 0.5vh 0;
   width: 7vh;
   height: 7vh;
   box-sizing: border-box;
 
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.ResourceStack-circleOverlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 50%;
+  background: radial-gradient(transparent 55%, black);
 }
 
 .ResourceStack-circle-base {
