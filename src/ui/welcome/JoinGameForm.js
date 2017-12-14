@@ -36,19 +36,45 @@ type JoinGameState = {
 
 export default class JoinGameForm extends
     React.PureComponent<JoinGameCombinedProps, JoinGameState> {
+  firstInput:?HTMLInputElement;
+
   constructor(props:JoinGameCombinedProps) {
     super(props);
     this.state = {playerName: "", gameRefId: props.initialGameId};
+    this.canJoin = this.canJoin.bind(this);
+    this.joinGame = this.joinGame.bind(this);
+  }
+
+  joinGame: () => void;
+  joinGame() {
+    this.props.joinGame(this.state.playerName, this.state.gameRefId);
+  }
+
+  canJoin: () => boolean;
+  canJoin() {
+    return this.state.playerName !== "" && this.state.gameRefId !== "";
+  }
+
+  componentDidMount() {
+    if (this.firstInput) {
+      this.firstInput.focus();
+    }
   }
 
   render() {
     return (
         <div className="WelcomeScreen-formContainer">
-          <div>
+          <div onKeyUp={({key}) => {
+            if (key === 'Enter' && this.canJoin()) {
+              this.joinGame();
+            }
+          }}
+          >
             <div className="WelcomeScreen-inputRow">
               <div className="WelcomeScreen-inputRowLabel">Player name</div>
               <input type="text"
                      name="playerName"
+                     ref={(input) => {this.firstInput = input;}}
                      className="WelcomeScreen-textInput"
                      onInput={(inputEvent) => {
                        this.setState({playerName: inputEvent.target.value})
@@ -70,9 +96,9 @@ export default class JoinGameForm extends
           <div className="WelcomeScreen-buttonContainer">
             <button
                 testId="join"
-                disabled={this.state.playerName === "" || this.state.gameRefId === ""}
+                disabled={!this.canJoin()}
                 className="WelcomeScreen-button"
-                onClick={() => this.props.joinGame(this.state.playerName, this.state.gameRefId)}>
+                onClick={() => this.joinGame()}>
               Join game
             </button>
             <button testId="abort"

@@ -35,7 +35,15 @@ type WelcomeScreenCombinedProps = WelcomeScreenProps & WelcomeScreenDispatch;
 class WelcomeScreen extends React.PureComponent<WelcomeScreenCombinedProps> {
   render() {
     return (
-        <div className="WelcomeScreen-container">
+        <div className="WelcomeScreen-container"
+             onKeyUp={({ key }) => {
+               console.log('siabadaba');
+               if (key === 'Escape' && this.props.mode !== 'WELCOME') {
+                 this.props.setUiMode('WELCOME');
+               }
+             }}
+             tabIndex={-1}
+        >
           <div className="WelcomeScreen-message">
             Welcome to Splendid!
           </div>

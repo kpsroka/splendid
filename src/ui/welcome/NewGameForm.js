@@ -15,7 +15,7 @@
 
 // @flow
 
-import React from 'react';
+import * as React from 'react';
 import './WelcomeScreen.css';
 
 export type NewGameDispatch = {|
@@ -31,19 +31,45 @@ type NewGameState = {|
 |};
 
 class NewGameForm extends React.Component<NewGameCombinedProps, NewGameState> {
+  firstInput:?HTMLInputElement;
+
   constructor(props:NewGameCombinedProps) {
     super(props);
     this.state = {playerName: "", numberOfPlayers: 2};
+    this.canCreate = this.canCreate.bind(this);
+    this.createGame = this.createGame.bind(this);
+  }
+
+  canCreate: () => boolean;
+  canCreate() {
+    return this.state.playerName !== "";
+  }
+
+  createGame: () => void;
+  createGame() {
+    this.props.createNewGame(this.state.playerName, this.state.numberOfPlayers);
+  }
+
+  componentDidMount() {
+    if (this.firstInput) {
+      this.firstInput.focus();
+    }
   }
 
   render() {
     return (
         <div className="WelcomeScreen-formContainer">
-          <div>
+          <div onKeyUp={({key}) => {
+            if (key === 'Enter' && this.canCreate()) {
+              this.createGame();
+            }
+          }}
+          >
             <div className="WelcomeScreen-inputRow">
               <div className="WelcomeScreen-inputRowLabel">Player name</div>
               <input type="text"
                      name="playerName"
+                     ref={(input) => {this.firstInput = input;}}
                      className="WelcomeScreen-textInput"
                      onInput={(inputEvent) => {
                        this.setState({playerName: inputEvent.target.value})
@@ -66,9 +92,9 @@ class NewGameForm extends React.Component<NewGameCombinedProps, NewGameState> {
           <div className="WelcomeScreen-buttonContainer">
             <button
                 testId="create"
-                disabled={this.state.playerName === ""}
+                disabled={!this.canCreate()}
                 className="WelcomeScreen-button"
-                onClick={() => this.props.createNewGame(this.state.playerName, this.state.numberOfPlayers)}>
+                onClick={() => this.createGame()}>
               Start
             </button>
             <button testId="abort"
