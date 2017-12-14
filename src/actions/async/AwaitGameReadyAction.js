@@ -17,11 +17,11 @@
 
 import SetUiMessage from '../SetUiMessageAction.js';
 import GetGameData from './GetGameDataAction.js';
-import CheckResponse from '../fetch/CheckResponse.js';
-import FetchGameStatus from '../fetch/FetchGameStatus.js';
 
 import type { Dispatch, ThunkAction } from '../Actions.js';
 import type { GameRef } from '../../model/State.js';
+import { GetFetchOpts } from '../fetch/FetchGameStatus';
+import Fetch from '../fetch/Fetch';
 
 const STATUS_POLL_INTERVAL_MILLIS = 2500;
 
@@ -31,8 +31,8 @@ export default function AwaitGameReady(gameRef:GameRef):ThunkAction {
 
     window.location.hash = `#${gameRef.gameId}`;
 
-    CheckResponse(FetchGameStatus(gameRef.gameId))
-    .then(
+    const { config, params } = GetFetchOpts(gameRef.gameId);
+    dispatch(Fetch(config, params)).then(
         gameStatus => {
           if (gameStatus.gameStatus === "UNDERWAY") {
             dispatch(GetGameData(gameRef));
@@ -43,7 +43,6 @@ export default function AwaitGameReady(gameRef:GameRef):ThunkAction {
                 },
                 STATUS_POLL_INTERVAL_MILLIS);
           }
-        }
-    );
+        }).catch();
   };
 }

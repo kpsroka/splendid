@@ -18,26 +18,20 @@
 import PollGameState from './PollGameStateAction.js';
 import SetUiMessage from '../SetUiMessageAction.js';
 import SetGameConfig from '../SetGameConfigAction.js';
-import CheckResponse from '../fetch/CheckResponse.js';
-import FetchGameConfig from '../fetch/FetchGameConfig.js';
 
 import type { Dispatch, ThunkAction } from '../Actions.js';
 import type { GameRef } from '../../model/State.js';
+import { GetFetchOpts } from '../fetch/FetchGameConfig';
+import Fetch from '../fetch/Fetch';
 
 export default function GetGameData(gameRef:GameRef):ThunkAction {
   return (dispatch:Dispatch) => {
     dispatch(SetUiMessage(`Joining game ${gameRef.gameId}`));
-
-    CheckResponse(FetchGameConfig(gameRef))
-    .then(
+    const { config, params } = GetFetchOpts(gameRef);
+    dispatch(Fetch(config, params)).then(
         gameConfig => {
           dispatch(SetGameConfig(gameConfig));
           dispatch(PollGameState(gameRef));
-        })
-    .catch(
-        error => {
-          dispatch(SetUiMessage(error.message, 'ERROR'));
-        }
-    );
+        }).catch();
   }
 }

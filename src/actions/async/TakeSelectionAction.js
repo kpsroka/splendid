@@ -17,45 +17,33 @@
 
 import SetGameState from '../SetGameStateAction.js';
 import SetUiMessage from '../SetUiMessageAction.js';
-import { TakeResources, TakeFactory } from '../fetch/ExecutePlayerAction.js';
-import CheckResponse from '../fetch/CheckResponse.js';
 
 import type { Dispatch, GetState, ThunkAction } from '../Actions.js';
+import { GetTakeFactoryFetchOps, GetTakeResourcesFetchOpts } from '../fetch/ExecutePlayerAction';
+import Fetch from '../fetch/Fetch';
 
 export default function TakeSelectionAction():ThunkAction {
   return (dispatch:Dispatch, getState:GetState) => {
     let state = getState();
 
-    if (!state.gameState) {
-      throw new Error("Game state not present");
+    if (!state.gameState || !state.gameRef) {
+      throw new Error('Game not present');
     }
 
     let selection = state.gameState.board.selection;
+
     if (selection.type === 'RESOURCE_SELECTION') {
-      runAction(
-          dispatch,
-          TakeResources(state.gameRef, selection.selection.join()));
+      const { config, params } = GetTakeResourcesFetchOpts(state.gameRef, selection.selection.join());
+      runAction(dispatch, dispatch(Fetch(config, params)));
     } else if (selection.type === 'FACTORY_SELECTION') {
-      runAction(
-          dispatch,
-          TakeFactory(state.gameRef, selection.row, selection.item)
-      );
+      const { config, params } = GetTakeFactoryFetchOps(state.gameRef, selection.row, selection.item);
+      runAction(dispatch, dispatch(Fetch(config, params)));
     } else {
-      dispatch(SetUiMessage("Wrong selection", 'ERROR'));
+      dispatch(SetUiMessage('Wrong selection', 'ERROR'));
     }
   }
 }
 
-function runAction(dispatch, actionPromise) {
-  CheckResponse(actionPromise)
-  .then(
-      gameState => {
-        dispatch(SetGameState(gameState));
-      }
-  )
-  .catch(
-      error => {
-        dispatch(SetUiMessage(error.message, 'ERROR'));
-      }
-  );
+function runAction(dispatch, fetchPromise) {
+  fetchPromise.then(gameState => (dispatch(SetGameState(gameState)))).catch();
 }

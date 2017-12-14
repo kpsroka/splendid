@@ -17,25 +17,20 @@
 
 import AwaitGameReady from "./AwaitGameReadyAction.js";
 import SetUiMessage from "../SetUiMessageAction.js";
-import CheckResponse from "../fetch/CheckResponse.js";
-import CreateGame from "../fetch/CreateGame.js";
 
 import type { Dispatch, ThunkAction } from '../Actions.js';
+import { GetFetchOpts } from '../fetch/CreateGame';
+import Fetch from '../fetch/Fetch';
 
 export default function NewGame(playerName:string, playerCount:number):ThunkAction {
   return (dispatch:Dispatch) => {
     dispatch(SetUiMessage('Starting new game'));
-
-    CheckResponse(CreateGame(playerName, playerCount))
+    const { config, params } = GetFetchOpts(playerName, playerCount);
+    dispatch(Fetch(config, params))
     .then(
         gameRef => {
           dispatch(SetUiMessage(`Created new game (${gameRef.gameId})`));
           dispatch(AwaitGameReady(gameRef));
-        })
-    .catch(
-        error => {
-          dispatch(SetUiMessage(error.message, 'ERROR'));
-        }
-    );
+        }).catch();
   }
 }

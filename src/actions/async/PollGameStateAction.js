@@ -16,14 +16,13 @@
 // @flow
 
 import SetGameState from '../SetGameStateAction.js';
-import SetUiMessage from '../SetUiMessageAction.js';
 import SetUiMode from '../SetUiModeAction.js';
-import CheckResponse from '../fetch/CheckResponse.js';
-import FetchGameState from '../fetch/FetchGameState.js';
 
 import type { Dispatch, ThunkAction } from '../Actions.js';
 import type { GameRef } from '../../model/State.js';
 import FinishGameAction from './FinishGameAction';
+import { GetFetchOpts } from '../fetch/FetchGameState';
+import Fetch from '../fetch/Fetch';
 
 const POLL_GAME_STATE_INTERVAL_MILLIS = 1500;
 
@@ -32,14 +31,12 @@ const SESSION_STORAGE_KEY = 'gameref';
 
 export default function PollGameState(gameRef:GameRef, lastRound:number=-1):ThunkAction {
   return (dispatch:Dispatch) => {
-    CheckResponse(FetchGameState(gameRef, lastRound), false)
-    .then(
+    const { config, params } = GetFetchOpts(gameRef, lastRound);
+    dispatch(Fetch(config, params)).then(
         gameState => {
           if (gameState === "") {
             setTimeout(
-                () => {
-                  dispatch(PollGameState(gameRef, lastRound));
-                },
+                () => { dispatch(PollGameState(gameRef, lastRound)); },
                 POLL_GAME_STATE_INTERVAL_MILLIS);
           } else {
             sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(gameRef));
@@ -56,11 +53,6 @@ export default function PollGameState(gameRef:GameRef, lastRound:number=-1):Thun
               dispatch(FinishGameAction());
             }
           }
-        }
-    ).catch(
-        error => {
-          dispatch(SetUiMessage(error.message, 'ERROR'));
-        }
-    );
+        }).catch();
   };
 }

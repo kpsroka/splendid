@@ -6,9 +6,10 @@ function isJsonResponse(response) {
 export default function CheckResponse(fetchPromise, rejectEmptyResponse=true) {
   return fetchPromise.then(
       response => {
+        const headerUiMessage = response.headers.has('X-Ui-Message') ? response.headers.get('X-Ui-Message') : '';
         if (response.ok) {
           if (isJsonResponse(response)) {
-            return response.json();
+            return response.json().then(json => Promise.resolve({ response: json, msg: headerUiMessage }));
           } else {
             return response.text().then(
                 textResponse => {
@@ -16,13 +17,13 @@ export default function CheckResponse(fetchPromise, rejectEmptyResponse=true) {
                     console.log(`Unexpected response: ${textResponse}`);
                     throw new Error(`Server failure`)
                   } else {
-                    return Promise.resolve(textResponse);
+                    return Promise.resolve({ response: textResponse, msg: headerUiMessage });
                   }
                 });
           }
         } else {
-          if (response.headers.has('X-Ui-Message')) {
-            throw new Error(response.headers.get('X-Ui-Message'));
+          if (headerUiMessage !== '') {
+            throw new Error(headerUiMessage);
           }
 
           const responsePromise = isJsonResponse(response) ? response.json() : response.text();

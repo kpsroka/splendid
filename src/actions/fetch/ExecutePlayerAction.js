@@ -1,19 +1,40 @@
-export function TakeResources(gameRef, resources) {
-  const params = new FormData();
-  params.set('id', gameRef.gameId);
-  params.set('playerToken', gameRef.playerToken);
-  params.set('action', 'TakeResources');
-  params.set('payload', resources);
+// @flow
 
-  return fetch('/game/act', { method: 'POST', body: params });
+import type { GameRef } from '../../model/State';
+import type { FetchConfig, FetchParams } from './FetchTypes';
+
+const FetchCfg = {
+  method: 'POST',
+  target: '/game/act',
+  rejectEmptyResponse: true
+};
+
+export function GetTakeResourcesFetchOpts(gameRef:GameRef, resources:string):{
+  config: FetchConfig,
+  params: FetchParams
+} {
+  return {
+    config: FetchCfg,
+    params: {
+      id: gameRef.gameId,
+      playerToken: gameRef.playerToken,
+      action: 'TakeResources',
+      payload: resources
+    }
+  };
 }
 
-export function TakeFactory(gameRef, factoryRow, factoryIndex) {
-  const params = new FormData();
-  params.set('id', gameRef.gameId);
-  params.set('playerToken', gameRef.playerToken);
-  params.set('action', 'TakeFactory');
-  params.set('payload', `${factoryRow},${factoryIndex}`);
-
-  return fetch('/game/act', { method: 'POST', body: params });
+export function GetTakeFactoryFetchOps(gameRef:GameRef, factoryRow:number, factoryIndex:number):{
+  config: FetchConfig,
+  params: FetchParams
+} {
+  return {
+    config: FetchCfg,
+    params: {
+      id: gameRef.gameId,
+      playerToken: gameRef.playerToken,
+      action: 'TakeFactory',
+      payload: `${factoryRow},${factoryIndex}`
+    }
+  };
 }

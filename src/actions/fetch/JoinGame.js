@@ -1,10 +1,22 @@
-export default function JoinGame(playerName, gameRefId) {
-  const params = new FormData();
-  params.set('playerName', playerName);
-  params.set('id', gameRefId);
-  const init = {
-    method: 'POST',
-    body: params,
+// @flow
+
+import type { FetchConfig, FetchParams } from './FetchTypes';
+
+const FetchCfg = {
+  method: 'POST',
+  target: '/game/join',
+  rejectEmptyResponse: true
+};
+
+export function GetFetchOpts(playerName:string, gameRefId:string):{
+  config: FetchConfig,
+  params: FetchParams
+} {
+  return {
+    config: FetchCfg,
+    params: {
+      id: gameRefId,
+      playerName
+    }
   };
-  return fetch('/game/join', init);
 }

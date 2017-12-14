@@ -17,28 +17,23 @@
 
 import AwaitGameReady from './AwaitGameReadyAction.js';
 import SetUiMessage from '../SetUiMessageAction.js';
-import CheckResponse from '../fetch/CheckResponse.js';
-import JoinGameRequest from '../fetch/JoinGame.js';
 
 import type { Dispatch, ThunkAction } from '../Actions.js';
+import { GetFetchOpts } from '../fetch/JoinGame';
+import Fetch from '../fetch/Fetch';
 
 export default function JoinGame(playerName:string, gameRefId:string):ThunkAction {
   return (dispatch:Dispatch) => {
     dispatch(SetUiMessage(`Joining game ${gameRefId}`));
 
-    CheckResponse(JoinGameRequest(playerName, gameRefId))
-    .then(
+    const { config, params } = GetFetchOpts(playerName, gameRefId);
+    dispatch(Fetch(config, params)).then(
         gameConfigOrRef => {
           if (typeof gameConfigOrRef.gameId === 'string' && typeof gameConfigOrRef.playerToken === 'string') {
             dispatch(AwaitGameReady(gameConfigOrRef));
           } else {
             dispatch(AwaitGameReady(gameConfigOrRef.ref));
           }
-        })
-    .catch(
-        error => {
-          dispatch(SetUiMessage(error.message, 'ERROR'));
-        }
-    );
+        }).catch(() => {});
   }
 }
