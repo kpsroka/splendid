@@ -24,8 +24,6 @@ import type { Resource } from '../../model/State.js';
 
 type ResourceStackCircleProps = {|
   topShift?: string,
-  // TODO: borderColor shouldn't be optional.
-  borderColor?: string,
   backgroundImage?: string,
   resource: Resource,
   text?: string,
@@ -47,7 +45,6 @@ class ResourceStackCircle extends React.Component<ResourceStackCircleProps> {
             className={"ResourceStack-circle" + (this.props.extraStyles ? " " + this.props.extraStyles : "")}
             style={{
               top: this.props.topShift ? this.props.topShift : 0,
-              borderColor: this.props.borderColor,
               backgroundColor: RESOURCE_COLORS[this.props.resource],
               backgroundImage: this.props.backgroundImage ? `url('${this.props.backgroundImage}')` : 'none',
             }}
