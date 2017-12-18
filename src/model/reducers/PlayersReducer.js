@@ -15,14 +15,14 @@
 
 // @flow
 
-import type { Action } from '../../actions/Actions.js';
-import { ActionTypes } from '../../actions/Actions.js';
-import type { Player } from '../State.js';
+import type { Player } from '../State';
+import type { Action } from '../../actions/Actions';
+import { ActionTypes } from '../../actions/Actions';
 
 export default function PlayersReducer(players:Array<Player>, action:Action):Array<Player> {
   switch (action.type) {
     case ActionTypes.SetGameConfig: {
-      return action.players.map((player) => ({ ...player, hand: [] }));
+      return action.players.map(player => ({ ...player, hand: [] }));
     }
     default: return players;
   }

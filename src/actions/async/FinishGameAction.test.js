@@ -20,27 +20,34 @@ import { ActionTypes } from '../Actions';
 
 describe('FinishGameAction', () => {
   it("dispatches SetUiMessage action with winner's name", () => {
-    const state = {...DefaultState,
-      players: [{ name: "FooPlayer"}, { name: "BarPlayer" }, { name: "BazPlayer"}],
+    const state = {
+      ...DefaultState,
+      players: [{ name: 'FooPlayer' }, { name: 'BarPlayer' }, { name: 'BazPlayer' }],
       gameState: {
         playerState: [
-          /* FooPlayer */ {hand: {factories: [
-              { color: 0, cost: [], points: 3, }
-          ]}},
-          /* BarPlayer */ {hand: {factories: [
-              { color: 1, cost: [], points: 3, },
-              { color: 1, cost: [], points: 4, }
-          ]}},
-          /* BazPlayer */ {hand: {factories: [
-              { color: 2, cost: [], points: 4, },
-              { color: 3, cost: [], points: 1, },
-              { color: 4, cost: [], points: 1, },
-          ]}}
+          /* FooPlayer */ { hand: { factories: [{ color: 0, cost: [], points: 3 }] } },
+          /* BarPlayer */ {
+            hand: {
+              factories: [
+                { color: 1, cost: [], points: 3 },
+                { color: 1, cost: [], points: 4 }
+              ]
+            }
+          },
+          /* BazPlayer */ {
+            hand: {
+              factories: [
+                { color: 2, cost: [], points: 4 },
+                { color: 3, cost: [], points: 1 },
+                { color: 4, cost: [], points: 1 }
+              ]
+            }
+          }
         ]
       }
     };
 
-    let dispatchSpy = sinon.spy();
+    const dispatchSpy = sinon.spy();
 
     FinishGameAction()(
         dispatchSpy,

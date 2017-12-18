@@ -15,13 +15,13 @@
 
 // @flow
 
-import type { Board, State } from '../State.js';
-import type { Action } from '../../actions/Actions.js';
-import { ActionTypes } from '../../actions/Actions.js';
-import SelectionReducer from './SelectionReducer.js';
+import type { Board, State } from '../State';
+import type { Action } from '../../actions/Actions';
+import { ActionTypes } from '../../actions/Actions';
+import SelectionReducer from './SelectionReducer';
 
 export default function BoardReducer(board:Board, action:Action, state:State):Board {
-  switch(action.type) {
+  switch (action.type) {
     case ActionTypes.ChooseResourceFromStack:
     case ActionTypes.ChooseFactoryFromBoard:
       return {

@@ -15,7 +15,7 @@
 
 // @flow
 
-import type { GameRef, GameState, Player, Resource, State, UiMode } from '../model/State.js';
+import type { GameRef, GameState, Player, Resource, State, UiMode } from '../model/State';
 
 export const ActionTypes = Object.freeze({
   ChooseFactoryFromBoard: 'CHOOSE_FACTORY',
@@ -27,7 +27,7 @@ export const ActionTypes = Object.freeze({
   SetGameState: '_SET_GAME_STATE',
   SetUiMessage: '_SET_UI_MESSAGE',
   SetUiMode: '_SET_UI_MODE',
-  TakeResourcesFromStack: 'TAKE_RESOURCES',
+  TakeResourcesFromStack: 'TAKE_RESOURCES'
 });
 
 export type ChooseFactoryFromBoard = {|

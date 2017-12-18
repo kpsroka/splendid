@@ -22,15 +22,16 @@ export default function FinishGameAction():ThunkAction {
   return (dispatch:Dispatch, getState:GetState) => {
     const state = getState();
     if (!state.gameState) {
-      throw new Error("Game state not present");
+      throw new Error('Game state not present');
     }
 
-    const playerState = state.gameState.playerState;
-    const winningPlayer = playerState.map((playerState, index) => ({
+    const { playersState } = state.gameState;
+    const winningPlayer = playersState.map((playerState, index) => ({
       playerName: state.players[index].name,
       score: playerState.hand.factories.reduce(
           (acc, nextFactory) => (acc + nextFactory.points),
-          /* initialValue */ 0)
+          /* initialValue */ 0
+      )
     })).sort((a, b) => (b.score - a.score))[0].playerName;
 
     dispatch(SetUiMessage(`Game finished, ${winningPlayer} wins!`));

@@ -15,13 +15,13 @@
 
 // @flow
 
-import GameRefReducer from './GameRefReducer.js';
-import GameStateReducer from './GameStateReducer.js';
-import PlayersReducer from './PlayersReducer.js';
-import UiStateReducer from './UiStateReducer.js';
+import GameRefReducer from './GameRefReducer';
+import GameStateReducer from './GameStateReducer';
+import PlayersReducer from './PlayersReducer';
+import UiStateReducer from './UiStateReducer';
 
-import type { State } from '../State.js';
-import type { Action } from '../../actions/Actions.js';
+import type { State } from '../State';
+import type { Action } from '../../actions/Actions';
 
 function AppReducer(state:State, action:Action):State {
   return {
@@ -29,7 +29,7 @@ function AppReducer(state:State, action:Action):State {
     gameRef: GameRefReducer(state.gameRef, action),
     players: PlayersReducer(state.players, action),
     ui: UiStateReducer(state.ui, action, state),
-    gameState: GameStateReducer(state.gameState, action, state),
+    gameState: GameStateReducer(state.gameState, action, state)
   };
 }
 

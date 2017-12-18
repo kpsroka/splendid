@@ -17,7 +17,7 @@ export function GetFetchOpts(gameRef:GameRef):{
     config: FetchCfg,
     params: {
       id: gameRef.gameId,
-      playerToken: gameRef.playerToken,
+      playerToken: gameRef.playerToken
     }
   };
 }

@@ -16,7 +16,7 @@ export function GetFetchOpts(playerName:string, playerCount:number):{
     config: FetchCfg,
     params: {
       playerName,
-      playerCount: playerCount.toString(10),
+      playerCount: playerCount.toString(10)
     }
   };
 }

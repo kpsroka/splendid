@@ -15,9 +15,9 @@
 
 // @flow
 
-import type { Action } from '../../actions/Actions.js';
-import { ActionTypes } from '../../actions/Actions.js';
-import type { GameRef } from '../State.js';
+import type { GameRef } from '../State';
+import type { Action } from '../../actions/Actions';
+import { ActionTypes } from '../../actions/Actions';
 
 export default function GameRefReducer(gameRef:?GameRef, action:Action):?GameRef {
   if (action.type === ActionTypes.SetGameConfig) {

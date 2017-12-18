@@ -15,12 +15,12 @@
 
 // @flow
 
-import { ActionTypes } from './Actions.js';
-import type { UiMode } from '../model/State.js';
+import { ActionTypes } from './Actions';
+import type { UiMode } from '../model/State';
 
 export default function SetUiMode(mode:UiMode) {
   return {
     type: ActionTypes.SetUiMode,
-    mode: mode,
+    mode
   };
 }

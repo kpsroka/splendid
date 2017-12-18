@@ -18,11 +18,11 @@ import { ContainsResources, ReduceResources } from './ResourceHelper';
 describe('ResourceHelper', () => {
   describe('ReduceResources', () => {
     it('returns empty object for non-array args', () => {
-      expect(ReduceResources({foo:"bar"})).toEqual({});
+      expect(ReduceResources({ foo: 'bar' })).toEqual({});
       expect(ReduceResources(undefined)).toEqual({});
       expect(ReduceResources(null)).toEqual({});
       expect(ReduceResources(3213)).toEqual({});
-      expect(ReduceResources("abc")).toEqual({});
+      expect(ReduceResources('abc')).toEqual({});
     });
 
     it('returns empty object for empty array', () => {
@@ -30,7 +30,7 @@ describe('ResourceHelper', () => {
     });
 
     it('returns aggregated resources', () => {
-      expect(ReduceResources([1,2,3,4,3,2,1,1,1,0])).toEqual({
+      expect(ReduceResources([1, 2, 3, 4, 3, 2, 1, 1, 1, 0])).toEqual({
         0: 1,
         1: 4,
         2: 2,

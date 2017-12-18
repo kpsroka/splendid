@@ -24,7 +24,7 @@ describe('Fetch', () => {
     fetchStub = sinon.stub(window, 'fetch');
     fetchStub.resolves({
       ok: true,
-      headers: new Headers( { 'content-type': 'application/json' }),
+      headers: new Headers({ 'content-type': 'application/json' }),
       json: () => (Promise.resolve({}))
     });
 
@@ -75,7 +75,7 @@ describe('Fetch', () => {
       fetchStub.resetBehavior();
       fetchStub.resolves({
         ok: true,
-        headers: new Headers( { 'content-type': 'application/json' }),
+        headers: new Headers({ 'content-type': 'application/json' }),
         json: () => (Promise.resolve(returnedJson))
       });
 
@@ -106,13 +106,14 @@ describe('Fetch', () => {
       fetchStub.resetBehavior();
       fetchStub.resolves({
         ok: false,
-        headers: new Headers({ 'x-ui-message': returnedMessage }),
+        headers: new Headers({ 'x-ui-message': returnedMessage })
       });
 
       const fetchCfg = { target: '/foo/bar/baz', method: 'GET', rejectEmptyResponse: true };
       try {
         await Fetch(fetchCfg, {})(dispatchSpy);
       } catch (expected) {
+        // All right
       }
 
       expect(dispatchSpy.calledOnce).toBe(true);

@@ -15,20 +15,20 @@
 
 // @flow
 
-import AwaitGameReady from './GetGameDataAction.js';
-import SetUiMode from '../SetUiModeAction.js';
+import AwaitGameReady from './GetGameDataAction';
+import SetUiMode from '../SetUiModeAction';
 
-import type { Dispatch, ThunkAction } from '../Actions.js';
+import type { Dispatch, ThunkAction } from '../Actions';
 
 // TODO: Remove duplicate definition (see PollGameStateAction.js).
 const SESSION_STORAGE_KEY = 'gameref';
 
 export default function LoadStateAction():ThunkAction {
   return (dispatch:Dispatch) => {
-    let hashGameId = window.location.hash.slice(1);
+    const hashGameId = window.location.hash.slice(1);
 
-    let sessionGameRefStr = sessionStorage.getItem(SESSION_STORAGE_KEY);
-    let sessionGameRef =
+    const sessionGameRefStr = sessionStorage.getItem(SESSION_STORAGE_KEY);
+    const sessionGameRef =
         sessionGameRefStr === null || sessionGameRefStr === undefined ? undefined : JSON.parse(sessionGameRefStr);
 
     if (sessionGameRef === undefined && hashGameId === '') {

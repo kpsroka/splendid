@@ -13,10 +13,8 @@
  * limitations under the License.
  */
 
-import { ActionTypes } from './Actions.js';
+import { ActionTypes } from './Actions';
 
 export default function DismissMessageAction() {
-  return {
-    type: ActionTypes.DismissMessage
-  }
+  return { type: ActionTypes.DismissMessage };
 }

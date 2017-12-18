@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 
-import { ActionTypes } from './Actions.js';
+import { ActionTypes } from './Actions';
 
-export default function SetUiMessage(text, severity='INFO') {
+export default function SetUiMessage(text, severity = 'INFO') {
   return {
     type: ActionTypes.SetUiMessage,
-    text: text,
-    severity: severity
+    text,
+    severity
   };
 }

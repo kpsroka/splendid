@@ -15,22 +15,21 @@
 
 // @flow
 
-import AwaitGameReady from "./AwaitGameReadyAction.js";
-import SetUiMessage from "../SetUiMessageAction.js";
-
-import type { Dispatch, ThunkAction } from '../Actions.js';
-import { GetFetchOpts } from '../fetch/CreateGame';
+import AwaitGameReady from './AwaitGameReadyAction';
+import SetUiMessage from '../SetUiMessageAction';
 import Fetch from '../fetch/Fetch';
+import { GetFetchOpts } from '../fetch/CreateGame';
+import type { Dispatch, ThunkAction } from '../Actions';
 
 export default function NewGame(playerName:string, playerCount:number):ThunkAction {
   return (dispatch:Dispatch) => {
     dispatch(SetUiMessage('Starting new game'));
     const { config, params } = GetFetchOpts(playerName, playerCount);
-    dispatch(Fetch(config, params))
-    .then(
-        gameRef => {
+    dispatch(Fetch(config, params)).then(
+        (gameRef) => {
           dispatch(SetUiMessage(`Created new game (${gameRef.gameId})`));
           dispatch(AwaitGameReady(gameRef));
-        }).catch();
-  }
+        }
+    ).catch();
+  };
 }

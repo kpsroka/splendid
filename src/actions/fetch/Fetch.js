@@ -27,11 +27,9 @@ function getRequestPath(target:string, method:RequestMethod, params:FetchParams)
     }
     case 'GET': {
       const paramParts = [];
-      for (const param in params) {
-        if (params.hasOwnProperty(param)) {
-          paramParts.push(`${param}=${encodeURIComponent(params[param])}`);
-        }
-      }
+      Object.keys(params).forEach(
+          (param) => { paramParts.push(`${param}=${encodeURIComponent(params[param])}`); }
+      );
       return `${target}?${paramParts.join('&')}`;
     }
     default: {
@@ -44,11 +42,9 @@ function getRequestInit(method:RequestMethod, params:FetchParams) {
   switch (method) {
     case 'POST': {
       const formData = new FormData();
-      for (const param in params) {
-        if (params.hasOwnProperty(param)) {
-          formData.append(param, params[param]);
-        }
-      }
+      Object.keys(params).forEach(
+          (param) => { formData.append(param, params[param]); }
+      );
       return { method: 'POST', body: formData };
     }
     case 'GET': {
@@ -65,18 +61,21 @@ export default function Fetch(fetchConfig:FetchConfig, params:FetchParams):Thunk
     const fetchPromise =
         window.fetch(
             getRequestPath(fetchConfig.target, fetchConfig.method, params),
-            getRequestInit(fetchConfig.method, params));
+            getRequestInit(fetchConfig.method, params)
+        );
 
-    return CheckResponse(fetchPromise, fetchConfig.rejectEmptyResponse)
-      .then(({ response, msg }) => {
-        if (msg) {
-          dispatch(SetUiMessageAction(msg))
+    return CheckResponse(fetchPromise, fetchConfig.rejectEmptyResponse).then(
+        ({ response, msg }) => {
+          if (msg) {
+            dispatch(SetUiMessageAction(msg));
+          }
+          return response;
         }
-        return response;
-      })
-      .catch(error => {
-        dispatch(SetUiMessageAction(error.message, 'ERROR'));
-        throw error;
-      });
-  }
+    ).catch(
+        (error) => {
+          dispatch(SetUiMessageAction(error.message, 'ERROR'));
+          throw error;
+        }
+    );
+  };
 }

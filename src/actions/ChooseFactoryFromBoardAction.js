@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 
-import { ActionTypes } from './Actions.js';
+import { ActionTypes } from './Actions';
 
 export default function ChooseFactoryFromBoard(row, item) {
   return {
     type: ActionTypes.ChooseFactoryFromBoard,
-    row: row,
-    item: item
+    row,
+    item
   };
 }

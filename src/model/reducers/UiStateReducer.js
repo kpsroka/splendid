@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 
-import type { Action } from '../../actions/Actions.js';
-import { ActionTypes } from '../../actions/Actions.js';
-import type { UiState } from '../State.js';
+import type { Action } from '../../actions/Actions';
+import { ActionTypes } from '../../actions/Actions';
+import type { UiState } from '../State';
 
 export default function UiStateReducer(ui:UiState, action:Action):UiState {
   switch (action.type) {
     case ActionTypes.SetUiMessage: {
-      let newMessage = {
+      const newMessage = {
         text: action.text,
         severity: action.severity
       };
@@ -31,7 +31,7 @@ export default function UiStateReducer(ui:UiState, action:Action):UiState {
       return { ...ui, message: null };
     }
     case ActionTypes.SetUiMode: {
-      return { ...ui, mode: action.mode }
+      return { ...ui, mode: action.mode };
     }
     default:
       return ui;

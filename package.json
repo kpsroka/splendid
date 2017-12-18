@@ -144,10 +144,12 @@
       "no-console": ["error", { "allow": ["warn", "error"] }],
       "object-curly-newline": ["error", { "multiline": true }],
       "max-len": ["error", 120],
+      "no-else-return": "off",
+      "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
       "function-paren-newline": ["error", "consistent"],
       "comma-dangle": ["error", { "functions": "ignore" }],
       "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-      "react/jsx-indent": [1, 2],
+      "react/jsx-indent": [1, 4],
       "react/jsx-indent-props": [1, 4],
       "jsx-a11y/href-no-hash": "off",
       "jsx-a11y/anchor-is-valid": ["warn", { "aspects": ["invalidHref"] }]

@@ -15,10 +15,10 @@
 
 // @flow
 
-import BoardReducer from './BoardReducer.js';
-import { ActionTypes } from '../../actions/Actions.js';
-import type { GameState, State } from '../State.js';
+import BoardReducer from './BoardReducer';
+import type { GameState, State } from '../State';
 import type { Action } from '../../actions/Actions';
+import { ActionTypes } from '../../actions/Actions';
 
 export default function GameStateReducer(gameState:?GameState, action:Action, state:State):?GameState {
   switch (action.type) {
@@ -31,7 +31,7 @@ export default function GameStateReducer(gameState:?GameState, action:Action, st
         throw new Error('Game state not set.');
       }
       if (gameState.currentPlayerIndex === 0) {
-        return {...gameState, board: BoardReducer(gameState.board, action, state)};
+        return { ...gameState, board: BoardReducer(gameState.board, action, state) };
       } else {
         return gameState;
       }

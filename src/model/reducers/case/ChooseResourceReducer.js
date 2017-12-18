@@ -15,50 +15,8 @@
 
 // @flow
 
-import type { ChooseResourceFromStack } from '../../../actions/Actions.js';
-import type { Resource, Selection } from '../../State.js';
-
-export default function ChooseResourceReducer(
-    selection:Selection,
-    action:ChooseResourceFromStack,
-    boardResources:Array<Resource>):Selection {
-  let resourceType = action.resourceType;
-
-  if (selection.type === 'FACTORY_SELECTION' || selection.type === 'NO_SELECTION') {
-    return {
-      type: 'RESOURCE_SELECTION',
-      selection: [resourceType]
-    }
-  } else {
-    let oldResourceCount = countResources(selection.selection, resourceType);
-    let newResourceCount = getResourceCountAfterClick(
-        countResources(boardResources, resourceType),
-        oldResourceCount,
-        selection.selection,
-        resourceType);
-
-    if (oldResourceCount === newResourceCount) {
-      return selection;
-    }
-
-    let newBoardSelection: Array<Resource> =
-        selection.selection.filter(x => x !== resourceType);
-    for (let i = 0; i < newResourceCount; i++) {
-      newBoardSelection.push(resourceType);
-    }
-
-    if (newBoardSelection.length === 0) {
-      return {
-        type: 'NO_SELECTION'
-      };
-    } else {
-      return {
-        type: 'RESOURCE_SELECTION',
-        selection: newBoardSelection
-      };
-    }
-  }
-}
+import type { Resource, Selection } from '../../State';
+import type { ChooseResourceFromStack } from '../../../actions/Actions';
 
 function countResources(resourceArray:Array<Resource>, resourceType:Resource):number {
   return resourceArray.filter(x => x === resourceType).length;
@@ -68,7 +26,8 @@ function getResourceCountAfterClick(
     availableResourcesOfType:number,
     selectedResourcesOfType:number,
     selection:Array<Resource>,
-    resourceType:Resource):number {
+    resourceType:Resource
+):number {
   if (availableResourcesOfType === 0) {
     return 0;
   } else if (selectedResourcesOfType === availableResourcesOfType) {
@@ -76,7 +35,7 @@ function getResourceCountAfterClick(
   } else if (selection.length === 0) {
     return 1;
   } else {
-    let selectedResourceTypes = new Set(selection);
+    const selectedResourceTypes = new Set(selection);
     if (selectedResourceTypes.size === 3) {
       return 0;
     } else if (selectedResourceTypes.size === 2) {
@@ -86,5 +45,47 @@ function getResourceCountAfterClick(
     }
   }
 
-  throw new Error("Should have exhausted all possibilities");
+  throw new Error('Should have exhausted all possibilities');
+}
+
+export default function ChooseResourceReducer(
+    selection:Selection,
+    action:ChooseResourceFromStack,
+    boardResources:Array<Resource>
+):Selection {
+  const { resourceType } = action;
+
+  if (selection.type === 'FACTORY_SELECTION' || selection.type === 'NO_SELECTION') {
+    return {
+      type: 'RESOURCE_SELECTION',
+      selection: [resourceType]
+    };
+  } else {
+    const oldResourceCount = countResources(selection.selection, resourceType);
+    const newResourceCount = getResourceCountAfterClick(
+        countResources(boardResources, resourceType),
+        oldResourceCount,
+        selection.selection,
+        resourceType
+    );
+
+    if (oldResourceCount === newResourceCount) {
+      return selection;
+    }
+
+    const newBoardSelection: Array<Resource> =
+        selection.selection.filter(x => x !== resourceType);
+    for (let i = 0; i < newResourceCount; i++) {
+      newBoardSelection.push(resourceType);
+    }
+
+    if (newBoardSelection.length === 0) {
+      return { type: 'NO_SELECTION' };
+    } else {
+      return {
+        type: 'RESOURCE_SELECTION',
+        selection: newBoardSelection
+      };
+    }
+  }
 }

@@ -15,24 +15,23 @@
 
 // @flow
 
-import type { ChooseFactoryFromBoard } from '../../../actions/Actions.js';
-import type { FactorySelection, Selection } from '../../State.js';
-
-export default function ChooseFactoryReducerFn(selection:Selection, action:ChooseFactoryFromBoard) {
-  if (selection.type === 'RESOURCE_SELECTION' || selection.type === 'NO_SELECTION') {
-    return createFactorySelection(action.row, action.item);
-  } else {
-    if (selection.row === action.row && selection.item === action.item) {
-      return { type: 'NO_SELECTION' };
-    } else {
-      return createFactorySelection(action.row, action.item);
-    }
-  }
-}
+import type { FactorySelection, Selection } from '../../State';
+import type { ChooseFactoryFromBoard } from '../../../actions/Actions';
 
 function createFactorySelection(row:number, item:number):FactorySelection {
   return {
     type: 'FACTORY_SELECTION',
-    row, item
+    row,
+    item
   };
+}
+
+export default function ChooseFactoryReducerFn(selection:Selection, action:ChooseFactoryFromBoard) {
+  if (selection.type === 'RESOURCE_SELECTION' || selection.type === 'NO_SELECTION') {
+    return createFactorySelection(action.row, action.item);
+  } else if (selection.row === action.row && selection.item === action.item) {
+    return { type: 'NO_SELECTION' };
+  } else {
+    return createFactorySelection(action.row, action.item);
+  }
 }

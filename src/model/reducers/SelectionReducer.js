@@ -15,16 +15,16 @@
 
 // @flow
 
-import type { Action } from '../../actions/Actions';
-import { ActionTypes } from '../../actions/Actions';
-import type { Selection, State } from '../State';
 import ChooseResourceReducer from './case/ChooseResourceReducer';
 import ChooseFactoryReducerFn from './case/ChooseFactoryReducer';
+import type { Selection, State } from '../State';
+import type { Action } from '../../actions/Actions';
+import { ActionTypes } from '../../actions/Actions';
 
 export default function SelectionReducer(selection:Selection, action:Action, state:State):Selection {
   if (!state.gameState
       || state.gameState.currentPlayerIndex !== 0
-      || state.gameState.gameStatus !== "UNDERWAY") {
+      || state.gameState.gameStatus !== 'UNDERWAY') {
     return selection;
   }
 

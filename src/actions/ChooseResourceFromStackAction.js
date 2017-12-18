@@ -13,11 +13,11 @@
  * limitations under the License.
  */
 
-import { ActionTypes } from './Actions.js';
+import { ActionTypes } from './Actions';
 
 export default function ChooseResourceFromStackAction(resourceType) {
   return {
     type: ActionTypes.ChooseResourceFromStack,
-    resourceType: resourceType
+    resourceType
   };
 }

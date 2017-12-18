@@ -15,12 +15,12 @@
 
 // @flow
 
-import AwaitGameReady from './AwaitGameReadyAction.js';
-import SetUiMessage from '../SetUiMessageAction.js';
+import AwaitGameReady from './AwaitGameReadyAction';
+import SetUiMessage from '../SetUiMessageAction';
 
-import type { Dispatch, ThunkAction } from '../Actions.js';
-import { GetFetchOpts } from '../fetch/JoinGame';
+import type { Dispatch, ThunkAction } from '../Actions';
 import Fetch from '../fetch/Fetch';
+import { GetFetchOpts } from '../fetch/JoinGame';
 
 export default function JoinGame(playerName:string, gameRefId:string):ThunkAction {
   return (dispatch:Dispatch) => {
@@ -28,12 +28,13 @@ export default function JoinGame(playerName:string, gameRefId:string):ThunkActio
 
     const { config, params } = GetFetchOpts(playerName, gameRefId);
     dispatch(Fetch(config, params)).then(
-        gameConfigOrRef => {
+        (gameConfigOrRef) => {
           if (typeof gameConfigOrRef.gameId === 'string' && typeof gameConfigOrRef.playerToken === 'string') {
             dispatch(AwaitGameReady(gameConfigOrRef));
           } else {
             dispatch(AwaitGameReady(gameConfigOrRef.ref));
           }
-        }).catch(() => {});
-  }
+        }
+    ).catch(() => {});
+  };
 }

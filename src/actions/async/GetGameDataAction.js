@@ -15,23 +15,24 @@
 
 // @flow
 
-import PollGameState from './PollGameStateAction.js';
-import SetUiMessage from '../SetUiMessageAction.js';
-import SetGameConfig from '../SetGameConfigAction.js';
+import PollGameState from './PollGameStateAction';
+import SetUiMessage from '../SetUiMessageAction';
+import SetGameConfig from '../SetGameConfigAction';
 
-import type { Dispatch, ThunkAction } from '../Actions.js';
-import type { GameRef } from '../../model/State.js';
-import { GetFetchOpts } from '../fetch/FetchGameConfig';
 import Fetch from '../fetch/Fetch';
+import { GetFetchOpts } from '../fetch/FetchGameConfig';
+import type { Dispatch, ThunkAction } from '../Actions';
+import type { GameRef } from '../../model/State';
 
 export default function GetGameData(gameRef:GameRef):ThunkAction {
   return (dispatch:Dispatch) => {
     dispatch(SetUiMessage(`Joining game ${gameRef.gameId}`));
     const { config, params } = GetFetchOpts(gameRef);
     dispatch(Fetch(config, params)).then(
-        gameConfig => {
+        (gameConfig) => {
           dispatch(SetGameConfig(gameConfig));
           dispatch(PollGameState(gameRef));
-        }).catch();
-  }
+        }
+    ).catch();
+  };
 }

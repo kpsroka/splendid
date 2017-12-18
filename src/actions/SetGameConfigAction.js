@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 
-import { ActionTypes } from './Actions.js';
+import { ActionTypes } from './Actions';
 
 export default function SetGameConfig(serverGameConfig) {
   return {
     type: ActionTypes.SetGameConfig,
     gameRef: serverGameConfig.ref,
-    players: serverGameConfig.players,
+    players: serverGameConfig.players
   };
 }

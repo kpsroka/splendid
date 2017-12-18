@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import ChooseResourceFromStackAction from '../../../actions/ChooseResourceFromStackAction.js';
 import ChooseResourceReducer from './ChooseResourceReducer';
+import ChooseResourceFromStackAction from '../../../actions/ChooseResourceFromStackAction';
 
 describe('ChooseResourceReducer', () => {
   it('allows selection of first resource', () => {
@@ -30,13 +30,14 @@ describe('ChooseResourceReducer', () => {
   it('allows second resource of one type to be selected', () => {
     const oldSelection = {
       type: 'RESOURCE_SELECTION',
-      selection: [1],
+      selection: [1]
     };
 
     const newSelection = ChooseResourceReducer(
         oldSelection,
         ChooseResourceFromStackAction(1),
-        [1, 1]);
+        [1, 1]
+    );
 
     expect(newSelection).toEqual({
       type: 'RESOURCE_SELECTION',
@@ -47,13 +48,14 @@ describe('ChooseResourceReducer', () => {
   it('allows selection of second and third resources of different types', () => {
     const oldSelection = {
       type: 'RESOURCE_SELECTION',
-      selection: [1],
+      selection: [1]
     };
 
     const newSelection = ChooseResourceReducer(
         oldSelection,
         ChooseResourceFromStackAction(2),
-        [1, 2, 3]);
+        [1, 2, 3]
+    );
 
     expect(newSelection).toEqual({
       type: 'RESOURCE_SELECTION',
@@ -63,7 +65,8 @@ describe('ChooseResourceReducer', () => {
     const newerSelection = ChooseResourceReducer(
         newSelection,
         ChooseResourceFromStackAction(3),
-        [1, 2, 3]);
+        [1, 2, 3]
+    );
 
     expect(newerSelection).toEqual({
       type: 'RESOURCE_SELECTION',
@@ -74,13 +77,14 @@ describe('ChooseResourceReducer', () => {
   it('removes single-type selection on third selection', () => {
     const oldSelection = {
       type: 'RESOURCE_SELECTION',
-      selection: [2, 2],
+      selection: [2, 2]
     };
 
     const newSelection = ChooseResourceReducer(
         oldSelection,
         ChooseResourceFromStackAction(2),
-        [2, 2, 2]);
+        [2, 2, 2]
+    );
 
     expect(newSelection).toEqual({ type: 'NO_SELECTION' });
   });
@@ -88,13 +92,14 @@ describe('ChooseResourceReducer', () => {
   it('removes second resource selection when three types are already selected', () => {
     const oldSelection = {
       type: 'RESOURCE_SELECTION',
-      selection: [1, 2, 3],
+      selection: [1, 2, 3]
     };
 
     const newSelection = ChooseResourceReducer(
         oldSelection,
         ChooseResourceFromStackAction(2),
-        [1, 2, 2, 3]);
+        [1, 2, 2, 3]
+    );
 
     expect(newSelection).toEqual({
       type: 'RESOURCE_SELECTION',
@@ -105,20 +110,21 @@ describe('ChooseResourceReducer', () => {
   it('disallows selection of fourth resource type', () => {
     const oldSelection = {
       type: 'RESOURCE_SELECTION',
-      selection: [1, 2, 3],
+      selection: [1, 2, 3]
     };
 
     const newState = ChooseResourceReducer(
         oldSelection,
         ChooseResourceFromStackAction(4),
-        [1, 2, 3, 4]);
+        [1, 2, 3, 4]
+    );
     expect(newState).toBe(oldSelection);
   });
 
   it('disallows selection of second resource type when two single-type resources are selected', () => {
-    let oldSelection = {
+    const oldSelection = {
       type: 'RESOURCE_SELECTION',
-      selection: [1, 1],
+      selection: [1, 1]
     };
 
     const newSelection =

@@ -15,22 +15,25 @@
 
 // @flow
 
-import SetGameState from '../SetGameStateAction.js';
-import SetUiMessage from '../SetUiMessageAction.js';
-
-import type { Dispatch, GetState, ThunkAction } from '../Actions.js';
-import { GetTakeFactoryFetchOps, GetTakeResourcesFetchOpts } from '../fetch/ExecutePlayerAction';
+import SetGameState from '../SetGameStateAction';
+import SetUiMessage from '../SetUiMessageAction';
+import type { Dispatch, GetState, ThunkAction } from '../Actions';
 import Fetch from '../fetch/Fetch';
+import { GetTakeFactoryFetchOps, GetTakeResourcesFetchOpts } from '../fetch/ExecutePlayerAction';
+
+function runAction(dispatch, fetchPromise) {
+  fetchPromise.then(gameState => (dispatch(SetGameState(gameState)))).catch();
+}
 
 export default function TakeSelectionAction():ThunkAction {
   return (dispatch:Dispatch, getState:GetState) => {
-    let state = getState();
+    const state = getState();
 
     if (!state.gameState || !state.gameRef) {
       throw new Error('Game not present');
     }
 
-    let selection = state.gameState.board.selection;
+    const { selection } = state.gameState.board;
 
     if (selection.type === 'RESOURCE_SELECTION') {
       const { config, params } = GetTakeResourcesFetchOpts(state.gameRef, selection.selection.join());
@@ -41,9 +44,5 @@ export default function TakeSelectionAction():ThunkAction {
     } else {
       dispatch(SetUiMessage('Wrong selection', 'ERROR'));
     }
-  }
-}
-
-function runAction(dispatch, fetchPromise) {
-  fetchPromise.then(gameState => (dispatch(SetGameState(gameState)))).catch();
+  };
 }

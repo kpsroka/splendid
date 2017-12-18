@@ -15,7 +15,13 @@
 
 // @flow
 
-import type { Resource, ResourceMap } from './State.js';
+import type { Resource, ResourceMap } from './State';
+
+function reduceResourcesFn(reduced:ResourceMap, resource:Resource):ResourceMap {
+  const next = { ...reduced };
+  next[resource] = Object.prototype.hasOwnProperty.call(reduced, resource) ? (reduced[resource] + 1) : 1;
+  return next;
+}
 
 export function ReduceResources(resources:Array<Resource>):ResourceMap {
   if (Array.isArray(resources)) {
@@ -30,13 +36,13 @@ export function ReduceResources(resources:Array<Resource>):ResourceMap {
  */
 export function ContainsResources(
     container:Array<Resource>,
-    content:Array<Resource>)
-    :boolean {
-  let sortedContainer = container.slice().sort();
-  let sortedContent = content.slice().sort();
+    content:Array<Resource>
+):boolean {
+  const sortedContainer = container.slice().sort();
+  const sortedContent = content.slice().sort();
 
   return !sortedContainer.map(
-      resource => {
+      (resource) => {
         if (sortedContent.length === 0) {
           return true;
         } else if (sortedContent[0] < resource) {
@@ -47,10 +53,6 @@ export function ContainsResources(
           }
           return true;
         }
-      }).includes(false) && sortedContent.length === 0;
-}
-
-function reduceResourcesFn(reduced:ResourceMap, resource:Resource):ResourceMap {
-  reduced[resource] = reduced.hasOwnProperty(resource) ? (reduced[resource] + 1) : 1;
-  return reduced;
+      }
+  ).includes(false) && sortedContent.length === 0;
 }

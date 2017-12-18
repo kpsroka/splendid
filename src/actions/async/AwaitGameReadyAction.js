@@ -15,11 +15,11 @@
 
 // @flow
 
-import SetUiMessage from '../SetUiMessageAction.js';
-import GetGameData from './GetGameDataAction.js';
+import SetUiMessage from '../SetUiMessageAction';
+import GetGameData from './GetGameDataAction';
 
-import type { Dispatch, ThunkAction } from '../Actions.js';
-import type { GameRef } from '../../model/State.js';
+import type { Dispatch, ThunkAction } from '../Actions';
+import type { GameRef } from '../../model/State';
 import { GetFetchOpts } from '../fetch/FetchGameStatus';
 import Fetch from '../fetch/Fetch';
 
@@ -33,16 +33,18 @@ export default function AwaitGameReady(gameRef:GameRef):ThunkAction {
 
     const { config, params } = GetFetchOpts(gameRef.gameId);
     dispatch(Fetch(config, params)).then(
-        gameStatus => {
-          if (gameStatus.gameStatus === "UNDERWAY") {
+        (gameStatus) => {
+          if (gameStatus.gameStatus === 'UNDERWAY') {
             dispatch(GetGameData(gameRef));
           } else {
             setTimeout(
                 () => {
                   dispatch(AwaitGameReady(gameRef));
                 },
-                STATUS_POLL_INTERVAL_MILLIS);
+                STATUS_POLL_INTERVAL_MILLIS
+            );
           }
-        }).catch();
+        }
+    ).catch();
   };
 }

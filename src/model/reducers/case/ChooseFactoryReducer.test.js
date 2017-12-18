@@ -13,42 +13,30 @@
  * limitations under the License.
  */
 
-import ChooseFactoryReducer from './ChooseFactoryReducer.js';
-import ChooseFactoryFromBoard from '../../../actions/ChooseFactoryFromBoardAction.js';
+import ChooseFactoryReducer from './ChooseFactoryReducer';
+import ChooseFactoryFromBoard from '../../../actions/ChooseFactoryFromBoardAction';
 
 describe('ChooseFactoryReducer', () => {
   it('changes selection if current selection is resource selection', () => {
-    const oldSelection = {
-      type: 'RESOURCE_SELECTION', selection: [0,1,2]
-    };
+    const oldSelection = { type: 'RESOURCE_SELECTION', selection: [0, 1, 2] };
 
-    const newSelection= ChooseFactoryReducer(oldSelection, ChooseFactoryFromBoard(0, 1));
-    expect(newSelection).toEqual({
-      type: 'FACTORY_SELECTION', row: 0, item: 1
-    });
+    const newSelection = ChooseFactoryReducer(oldSelection, ChooseFactoryFromBoard(0, 1));
+    expect(newSelection).toEqual({ type: 'FACTORY_SELECTION', row: 0, item: 1 });
   });
 
   it('changes selection if current selection is none', () => {
     const newSelection = ChooseFactoryReducer({ type: 'NO_SELECTION' }, ChooseFactoryFromBoard(2, 3));
-    expect(newSelection).toEqual({
-      type: 'FACTORY_SELECTION', row: 2, item: 3,
-    });
+    expect(newSelection).toEqual({ type: 'FACTORY_SELECTION', row: 2, item: 3 });
   });
 
   it('changes selection if action args differ from existing selection', () => {
-    const oldSelection = {
-      type: 'FACTORY_SELECTION', row: 1, item: 2
-    };
+    const oldSelection = { type: 'FACTORY_SELECTION', row: 1, item: 2 };
     const newSelection = ChooseFactoryReducer(oldSelection, ChooseFactoryFromBoard(2, 3));
-    expect(newSelection).toEqual({
-      type: 'FACTORY_SELECTION', row: 2, item: 3
-    });
+    expect(newSelection).toEqual({ type: 'FACTORY_SELECTION', row: 2, item: 3 });
   });
 
   it('removes selection if action args match existing selection', () => {
-    const oldSelection = {
-      type: 'FACTORY_SELECTION', row: 1, item: 2
-    };
+    const oldSelection = { type: 'FACTORY_SELECTION', row: 1, item: 2 };
 
     const newSelection = ChooseFactoryReducer(oldSelection, ChooseFactoryFromBoard(1, 2));
     expect(newSelection).toEqual({ type: 'NO_SELECTION' });
