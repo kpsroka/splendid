@@ -25,7 +25,7 @@ export default function FinishGameAction():ThunkAction {
       throw new Error('Game state not present');
     }
 
-    const { playersState } = state.gameState;
+    const { playerState: playersState } = state.gameState;
     const winningPlayer = playersState.map((playerState, index) => ({
       playerName: state.players[index].name,
       score: playerState.hand.factories.reduce(

@@ -59,7 +59,7 @@ export default class Factory extends React.Component<FactoryCombinedProps> {
             }}
             onClick={() => this.props.onFactoryClick()}>
             <div className="Factory-overlay Factory-costContainer">
-                {this.renderResourceBoxes(this.props.costColors)}
+                {Factory.renderResourceBoxes(this.props.costColors)}
             </div>
             <div className="Factory-overlay Factory-pointsContainer">
                 {this.props.points}
