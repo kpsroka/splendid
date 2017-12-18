@@ -15,7 +15,7 @@
 
 // @flow
 
-import type { GameState, Resource, State, UiMode } from '../model/State.js';
+import type { GameRef, GameState, Player, Resource, State, UiMode } from '../model/State.js';
 
 export const ActionTypes = Object.freeze({
   ChooseFactoryFromBoard: 'CHOOSE_FACTORY',
@@ -30,41 +30,48 @@ export const ActionTypes = Object.freeze({
   TakeResourcesFromStack: 'TAKE_RESOURCES',
 });
 
-export type ChooseFactoryFromBoard = {
-  type:'CHOOSE_FACTORY',
-  row:number,
-  item:number
-}
+export type ChooseFactoryFromBoard = {|
+  type: 'CHOOSE_FACTORY',
+  row: number,
+  item: number
+|};
 
-export type ChooseResourceFromStack = {
-  type:'CHOOSE_STACK_RESOURCE',
-  resourceType:Resource
-}
+export type ChooseResourceFromStack = {|
+  type: 'CHOOSE_STACK_RESOURCE',
+  resourceType: Resource
+|};
 
-export type DismissMessage = {
+export type DismissMessage = {|
   type: 'DISMISS_MESSAGE'
-}
+|};
 
-export type SetGameState = {
+export type SetGameConfig = {|
+  type: '_SET_GAME_CONFIG',
+  gameRef: GameRef,
+  players: Array<Player>
+|};
+
+export type SetGameState = {|
   type: '_SET_GAME_STATE',
   gameState: GameState,
-}
+|};
 
-export type SetUiMessage = {
+export type SetUiMessage = {|
   type: '_SET_UI_MESSAGE',
   text: string,
   severity: string
-}
+|};
 
-export type SetUiMode = {
+export type SetUiMode = {|
   type: '_SET_UI_MODE',
   mode: UiMode
-}
+|};
 
 export type Action =
     ChooseFactoryFromBoard |
     ChooseResourceFromStack |
     DismissMessage |
+    SetGameConfig |
     SetGameState |
     SetUiMessage |
     SetUiMode;
