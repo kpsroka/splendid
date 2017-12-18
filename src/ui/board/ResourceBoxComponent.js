@@ -16,24 +16,21 @@
 // @flow
 
 import { connect } from 'react-redux';
-import ResourceBox from './ResourceBox.js';
-
-import type { ResourceBoxOwnProps, ResourceBoxProps } from './ResourceBox.js';
-import type { State } from '../../model/State.js';
+import ResourceBox from './ResourceBox';
+import type { ResourceBoxOwnProps, ResourceBoxProps } from './ResourceBox';
+import type { State } from '../../model/State';
 
 function mapStateToProps(state:State, ownProps:ResourceBoxOwnProps):ResourceBoxProps {
   if (!state.gameState) {
-    throw Error("No board state present.");
+    throw Error('No board state present.');
   }
 
-  let playerHand = state.gameState.playerState[0].hand;
-  let resourceAvailable =
+  const playerHand = state.gameState.playerState[0].hand;
+  const resourceAvailable =
       playerHand.factories.reduce((acc, next) => ((next.color === ownProps.resource) ? acc + 1 : acc), 0)
       + playerHand.resources.filter(resource => resource === ownProps.resource).length;
 
-  return {
-    available: resourceAvailable >= ownProps.count
-  }
+  return { available: resourceAvailable >= ownProps.count };
 }
 
 const ResourceBoxComponent = connect(mapStateToProps)(ResourceBox);

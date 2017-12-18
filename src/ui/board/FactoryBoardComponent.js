@@ -16,21 +16,16 @@
 // @flow
 
 import { connect } from 'react-redux';
-import FactoryBoard from './FactoryBoard.js';
-
-import type { FactoryBoardProps } from './FactoryBoard.js';
-import type { State } from '../../model/State.js';
+import FactoryBoard from './FactoryBoard';
+import type { FactoryBoardProps } from './FactoryBoard';
+import type { State } from '../../model/State';
 
 function mapStateToProps(state:State):FactoryBoardProps {
   if (!state.gameState) {
-    return {
-      factoriesByRow: []
-    };
+    return { factoriesByRow: [] };
   } else {
-    let boardState = state.gameState.board;
-    return {
-      factoriesByRow: boardState.factoriesByRow,
-    };
+    const boardState = state.gameState.board;
+    return { factoriesByRow: boardState.factoriesByRow };
   }
 }
 

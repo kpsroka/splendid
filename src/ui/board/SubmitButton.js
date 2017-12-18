@@ -31,8 +31,8 @@ type SubmitButtonCombinedProps = SubmitButtonProps & SubmitButtonDispatch;
 
 export default function SubmitButton(props:SubmitButtonCombinedProps) {
   return (
-    <button className={props.styleName} disabled={!props.active} onClick={() => props.onClick()}>
-      {props.text}
-    </button>
+      <button className={props.styleName} disabled={!props.active} onClick={() => props.onClick()}>
+          {props.text}
+      </button>
   );
 }

@@ -16,10 +16,10 @@
 // @flow
 
 import React from 'react';
-import FactoryComponent from './FactoryComponent.js';
+import FactoryComponent from './FactoryComponent';
 import './FactoryBoard.css';
 
-import type { ResourceFactory } from '../../model/State.js';
+import type { ResourceFactory } from '../../model/State';
 
 export type FactoryBoardProps = {|
   factoriesByRow: Array<Array<ResourceFactory>>,
@@ -28,17 +28,20 @@ export type FactoryBoardProps = {|
 export default function FactoryBoard(props:FactoryBoardProps) {
   return (
       <div className="FactoryBoard-container">
-        <div className="FactoryBoard-text">Splendid!</div>
-        {props.factoriesByRow.map((row, rowIndex) => (
-            <div className="FactoryBoard-row" key={rowIndex}>
-              {row.map((item, itemIndex) => (
-                  <FactoryComponent
-                      key={itemIndex}
-                      rowIndex={rowIndex}
-                      itemIndex={itemIndex} />
-              ))}
-            </div>
-        ))}
+          <div className="FactoryBoard-text">Splendid!</div>
+          {props.factoriesByRow.map((row, rowIndex) => (
+              // eslint-disable-next-line react/no-array-index-key
+              <div className="FactoryBoard-row" key={rowIndex}>
+                  {row.map((item, itemIndex) => (
+                      <FactoryComponent
+                          // eslint-disable-next-line react/no-array-index-key
+                          key={itemIndex}
+                          rowIndex={rowIndex}
+                          itemIndex={itemIndex}
+                      />
+                  ))}
+              </div>
+          ))}
       </div>
   );
 }

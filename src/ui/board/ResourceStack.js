@@ -16,11 +16,10 @@
 // @flow
 
 import React from 'react';
-import RESOURCE_COLORS from '../ResourceColorMap.js';
-import RESOURCE_ICONS from '../ResourceIconMap.js';
+import RESOURCE_COLORS from '../ResourceColorMap';
+import RESOURCE_ICONS from '../ResourceIconMap';
 import './ResourceStack.css';
-
-import type { Resource } from '../../model/State.js';
+import type { Resource } from '../../model/State';
 
 type ResourceStackCircleProps = {|
   topShift?: string,
@@ -35,73 +34,69 @@ type ResourceStackProps = {|
   stackSize: number,
   resource: Resource,
   highlight: number,
-  onClickCallback: () => any,
+  onClickCallback: () => any
 |};
 
-class ResourceStackCircle extends React.Component<ResourceStackCircleProps> {
-  render() {
-    return (
-        <div
-            className={"ResourceStack-circle" + (this.props.extraStyles ? " " + this.props.extraStyles : "")}
-            style={{
-              top: this.props.topShift ? this.props.topShift : 0,
-              backgroundColor: RESOURCE_COLORS[this.props.resource],
-              backgroundImage: this.props.backgroundImage ? `url('${this.props.backgroundImage}')` : 'none',
-            }}
-            onClick={() => this.props.onItemClick()}>
-          <div className="ResourceStack-circle-overlay"/>
+function ResourceStackCircle(props:ResourceStackCircleProps) {
+  const extraStyles = props.extraStyles ? ` ${props.extraStyles}` : '';
+  return (
+      <div
+          className={`ResourceStack-circle${extraStyles}`}
+          style={{
+            top: props.topShift ? props.topShift : 0,
+            backgroundColor: RESOURCE_COLORS[props.resource],
+            backgroundImage: props.backgroundImage ? `url('${props.backgroundImage}')` : 'none'
+          }}
+          onClick={() => props.onItemClick()}>
+          <div className="ResourceStack-circle-overlay" />
           <div className="ResourceStack-circle-text">
-            {this.props.text ? this.props.text : ""}
+              {props.text ? props.text : ''}
           </div>
-        </div>
-    );
-  }
+      </div>
+  );
 }
 
-class ResourceStack extends React.Component<ResourceStackProps> {
-  renderBaseCircle() {
-    return (
+function renderBaseCircle(props:ResourceStackProps) {
+  return (
+      <ResourceStackCircle
+          key={0}
+          resource={props.resource}
+          extraStyles={[
+              'ResourceStack-circle-base',
+              (props.stackSize === 0 ? 'ResourceStack-circle-head' : 'ResourceStack-circle-rest')]
+              .join(' ')}
+          backgroundImage={RESOURCE_ICONS[props.resource]}
+          onItemClick={() => props.onClickCallback()} />
+  );
+}
+
+function renderStackCircles(props:ResourceStackProps) {
+  const circles = [];
+  for (let count = 0; count < props.stackSize; count++) {
+    const highlighted = (count + props.highlight) >= props.stackSize;
+    const topShift = `${count * 1.2}${highlighted ? 0.7 : 0}vh`;
+
+    circles.push(
         <ResourceStackCircle
-            key={0}
-            resource={this.props.resource}
+            key={count + 1}
+            resource={props.resource}
+            topShift={topShift}
+            text={`${count + 1}`}
             extraStyles={[
-                "ResourceStack-circle-base",
-                (this.props.stackSize === 0 ? "ResourceStack-circle-head" : "ResourceStack-circle-rest")]
-                .join(" ")}
-            backgroundImage={RESOURCE_ICONS[this.props.resource]}
-            onItemClick={() => this.props.onClickCallback()}/>
+              highlighted ? 'ResourceStack-circle-highlighted' : '',
+              (count === props.stackSize - 1 ? 'ResourceStack-circle-head' : 'ResourceStack-circle-rest')]
+            .join(' ')}
+            onItemClick={() => props.onClickCallback()} />
     );
   }
-
-  renderStackCircles() {
-    let circles = [];
-    for (let count = 0; count < this.props.stackSize; count++) {
-      let highlighted = (count + this.props.highlight) >= this.props.stackSize;
-      let topShift = ((count * 1.2) + (highlighted ? 0.7 : 0)) + "vh";
-
-      circles.push(
-          <ResourceStackCircle
-              key={count + 1}
-              resource={this.props.resource}
-              topShift={topShift}
-              text={`${count + 1}`}
-              extraStyles={[
-                highlighted ? "ResourceStack-circle-highlighted" : "",
-                (count === this.props.stackSize - 1 ? "ResourceStack-circle-head" : "ResourceStack-circle-rest")]
-                .join(" ")}
-              onItemClick={() => this.props.onClickCallback()} />);
-    }
-    return circles;
-  }
-
-  render() {
-    return (
-        <div className="ResourceStack-container">
-          {this.renderBaseCircle()}
-          {this.renderStackCircles()}
-        </div>
-    );
-  }
+  return circles;
 }
 
-export default ResourceStack;
+export default function ResourceStack(props:ResourceStackProps) {
+  return (
+      <div className="ResourceStack-container">
+          {renderBaseCircle(props)}
+          {renderStackCircles(props)}
+      </div>
+  );
+}

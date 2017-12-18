@@ -16,12 +16,11 @@
 // @flow
 
 import React from 'react';
-import ResourceBoxComponent from './ResourceBoxComponent.js';
-import RESOURCE_COLORS from '../ResourceColorMap.js';
-import RESOURCE_ICONS from '../ResourceIconMap.js';
+import ResourceBoxComponent from './ResourceBoxComponent';
+import RESOURCE_COLORS from '../ResourceColorMap';
+import RESOURCE_ICONS from '../ResourceIconMap';
 import './Factory.css';
-
-import type { Resource, ResourceMap } from '../../model/State.js';
+import type { Resource, ResourceMap } from '../../model/State';
 
 export type FactoryProps = {|
   resource: Resource,
@@ -30,22 +29,17 @@ export type FactoryProps = {|
   selected: boolean,
 |};
 
-export type FactoryOwnProps = {|
-  rowIndex: number,
-  itemIndex: number,
-|};
-
 export type FactoryDispatch = {|
   onFactoryClick: () => any;
 |};
 
-type FactoryCombinedProps = FactoryProps & FactoryOwnProps & FactoryDispatch;
+type FactoryCombinedProps = FactoryProps & FactoryDispatch;
 
 export default class Factory extends React.Component<FactoryCombinedProps> {
-  renderResourceBoxes(colorCosts:ResourceMap) {
-    let resourceBoxes = [];
+  static renderResourceBoxes(colorCosts:ResourceMap) {
+    const resourceBoxes = [];
     Object.keys(colorCosts).forEach((color) => {
-      let resourceNumber:Resource = Number.parseInt(color, 10);
+      const resourceNumber:Resource = Number.parseInt(color, 10);
       resourceBoxes.push(
           <ResourceBoxComponent key={color} resource={resourceNumber} count={colorCosts[resourceNumber]} />
       );
@@ -64,13 +58,13 @@ export default class Factory extends React.Component<FactoryCombinedProps> {
               backgroundImage: `url('${RESOURCE_ICONS[this.props.resource]}')`
             }}
             onClick={() => this.props.onFactoryClick()}>
-          <div className="Factory-overlay Factory-costContainer">
-            {this.renderResourceBoxes(this.props.costColors)}
-          </div>
-          <div className="Factory-overlay Factory-pointsContainer">
-            {this.props.points}
-          </div>
+            <div className="Factory-overlay Factory-costContainer">
+                {this.renderResourceBoxes(this.props.costColors)}
+            </div>
+            <div className="Factory-overlay Factory-pointsContainer">
+                {this.props.points}
+            </div>
         </div>
-    )
+    );
   }
 }

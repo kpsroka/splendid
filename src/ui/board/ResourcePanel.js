@@ -16,12 +16,11 @@
 // @flow
 
 import React from 'react';
-import ResourceStack from './ResourceStack.js';
-import SubmitButtonComponent from './SubmitButtonComponent.js';
-import RESOURCE_COLORS from '../ResourceColorMap.js';
 import './ResourcePanel.css';
-
-import type { Resource, ResourceMap } from '../../model/State.js';
+import ResourceStack from './ResourceStack';
+import SubmitButtonComponent from './SubmitButtonComponent';
+import RESOURCE_COLORS from '../ResourceColorMap';
+import type { Resource, ResourceMap } from '../../model/State';
 
 export type ResourcePanelProps = {|
   resources: ResourceMap,
@@ -29,6 +28,7 @@ export type ResourcePanelProps = {|
 |};
 
 export type ResourcePanelDispatch = {|
+  // eslint-disable-next-line react/no-unused-prop-types
   onStackClick: (Resource) => any,
 |};
 
@@ -37,20 +37,21 @@ type ResourcePanelCombinedProps = ResourcePanelProps & ResourcePanelDispatch;
 export default function ResourcePanel(props:ResourcePanelCombinedProps) {
   return (
       <div className="ResourcePanel-container">
-        <div className="ResourcePanel-resourceStacks">
-          {RESOURCE_COLORS.map((cssColor, resource) =>
-              <ResourceStack
-                  key={resource}
-                  resource={resource}
-                  stackSize={props.resources[resource] || 0}
-                  highlight={props.selection[resource] || 0}
-                  onClickCallback={() => props.onStackClick(resource)}
-              />
-          )}
-        </div>
-        <div className="ResourcePanel-buttonContainer">
-          <SubmitButtonComponent />
-        </div>
+          <div className="ResourcePanel-resourceStacks">
+              {RESOURCE_COLORS.map((cssColor, resource) => (
+                  <ResourceStack
+                      // eslint-disable-next-line react/no-array-index-key
+                      key={resource}
+                      resource={resource}
+                      stackSize={props.resources[resource] || 0}
+                      highlight={props.selection[resource] || 0}
+                      onClickCallback={() => props.onStackClick(resource)}
+                  />
+              ))}
+          </div>
+          <div className="ResourcePanel-buttonContainer">
+              <SubmitButtonComponent />
+          </div>
       </div>
   );
 }

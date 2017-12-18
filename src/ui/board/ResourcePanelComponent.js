@@ -16,34 +16,27 @@
 // @flow
 
 import { connect } from 'react-redux';
-import ResourcePanel from './ResourcePanel.js';
-import ChooseResourceFromStackAction from '../../actions/ChooseResourceFromStackAction.js';
-import { ReduceResources } from '../../model/ResourceHelper.js';
+import ResourcePanel from './ResourcePanel';
+import ChooseResourceFromStackAction from '../../actions/ChooseResourceFromStackAction';
+import { ReduceResources } from '../../model/ResourceHelper';
 
-import type { State, Resource } from '../../model/State.js';
-import type { ResourcePanelProps, ResourcePanelDispatch } from './ResourcePanel.js';
+import type { State, Resource } from '../../model/State';
+import type { ResourcePanelProps, ResourcePanelDispatch } from './ResourcePanel';
 
 function mapStateToProps(state:State):ResourcePanelProps {
   if (!state.gameState) {
-    return { resources: {}, selection: {} }
+    return { resources: {}, selection: {} };
   }
 
-  let board = state.gameState.board;
-  let resources = ReduceResources(board.resources);
-  let selection = board.selection.type === 'RESOURCE_SELECTION'
-      ? ReduceResources(board.selection.selection)
-      : {};
+  const { board } = state.gameState;
+  const resources = ReduceResources(board.resources);
+  const selection = board.selection.type === 'RESOURCE_SELECTION' ? ReduceResources(board.selection.selection) : {};
 
-  return {
-    resources: resources,
-    selection: selection,
-  };
+  return { resources, selection };
 }
 
 function mapDispatchToProps(dispatch):ResourcePanelDispatch {
-  return {
-    onStackClick: (resourceType:Resource) => dispatch(ChooseResourceFromStackAction(resourceType)),
-  }
+  return { onStackClick: (resourceType:Resource) => dispatch(ChooseResourceFromStackAction(resourceType)) };
 }
 
 const ResourcePanelComponent = connect(mapStateToProps, mapDispatchToProps)(ResourcePanel);

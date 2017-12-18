@@ -16,34 +16,26 @@
 // @flow
 
 import { connect } from 'react-redux';
-import SubmitButton from './SubmitButton.js';
-import TakeSelectionAction from '../../actions/async/TakeSelectionAction.js';
-import { ContainsResources, ReduceResources } from '../../model/ResourceHelper.js';
+import SubmitButton from './SubmitButton';
+import TakeSelectionAction from '../../actions/async/TakeSelectionAction';
+import { ContainsResources, ReduceResources } from '../../model/ResourceHelper';
 
-import type { State } from '../../model/State.js';
-import type { SubmitButtonProps, SubmitButtonDispatch } from './SubmitButton.js';
-
-function mapStateToProps(state:State):SubmitButtonProps {
-  return {
-    text: "Take",
-    active: canTakeResources(state) || canTakeFactory(state),
-    styleName: "",
-  }
-}
+import type { State } from '../../model/State';
+import type { SubmitButtonProps, SubmitButtonDispatch } from './SubmitButton';
 
 function canTakeResources(state:State):boolean {
   if (!state.gameState || state.gameState.gameStatus !== 'UNDERWAY') {
     return false;
   }
 
-  let board = state.gameState.board;
-  let selection = board.selection.type === 'RESOURCE_SELECTION'
-      ? ReduceResources(board.selection.selection)
-      : {};
+  const { board } = state.gameState;
+  const selection = board.selection.type === 'RESOURCE_SELECTION'
+    ? ReduceResources(board.selection.selection)
+    : {};
 
   return board.selection.type === 'RESOURCE_SELECTION' &&
       (board.selection.selection.length === 3 ||
-      (board.selection.selection.length === 2 && Object.getOwnPropertyNames(selection).length === 1));
+          (board.selection.selection.length === 2 && Object.getOwnPropertyNames(selection).length === 1));
 }
 
 function canTakeFactory(state:State):boolean {
@@ -51,26 +43,30 @@ function canTakeFactory(state:State):boolean {
     return false;
   }
 
-  let board = state.gameState.board;
-  let selection = board.selection;
+  const { board } = state.gameState;
+  const { selection } = board;
 
   if (selection.type === 'FACTORY_SELECTION') {
-    let playerHand = state.gameState.playerState[0].hand;
-    let factory = board.factoriesByRow[selection.row][selection.item];
+    const playerHand = state.gameState.playerState[0].hand;
+    const factory = board.factoriesByRow[selection.row][selection.item];
 
-    let totalResources =
-        playerHand.resources.concat(playerHand.factories.map(f => f.color));
+    const totalResources = playerHand.resources.concat(playerHand.factories.map(f => f.color));
     return ContainsResources(totalResources, factory.cost);
   }
 
   return false;
 }
 
+function mapStateToProps(state:State):SubmitButtonProps {
+  return {
+    text: 'Take',
+    active: canTakeResources(state) || canTakeFactory(state),
+    styleName: ''
+  };
+}
 
 function mapDispatchToProps(dispatch):SubmitButtonDispatch {
-  return {
-    onClick: () => dispatch(TakeSelectionAction())
-  }
+  return { onClick: () => dispatch(TakeSelectionAction()) };
 }
 
 const SubmitButtonComponent = connect(mapStateToProps, mapDispatchToProps)(SubmitButton);

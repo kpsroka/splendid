@@ -16,40 +16,39 @@
 // @flow
 
 import { connect } from 'react-redux';
-import Factory from './Factory.js';
-import ChooseFactoryFromBoardAction from '../../actions/ChooseFactoryFromBoardAction.js';
-import { ReduceResources } from '../../model/ResourceHelper.js';
+import Factory from './Factory';
+import type { FactoryProps, FactoryDispatch } from './Factory';
+import ChooseFactoryFromBoardAction from '../../actions/ChooseFactoryFromBoardAction';
+import { ReduceResources } from '../../model/ResourceHelper';
+import type { State } from '../../model/State';
 
-import type { FactoryProps, FactoryOwnProps, FactoryDispatch } from './Factory.js';
-import type { State } from '../../model/State.js';
+export type FactoryOwnProps = {|
+  rowIndex: number,
+  itemIndex: number,
+|};
 
 function mapStateToProps(state:State, ownProps:FactoryOwnProps):FactoryProps {
   if (!state.gameState) {
-    throw Error("No board state present.");
+    throw Error('No board state present.');
   }
 
-  let boardState = state.gameState.board;
-  let resourceFactory = boardState.factoriesByRow[ownProps.rowIndex][ownProps.itemIndex];
-
-  let costColors = ReduceResources(resourceFactory.cost);
-
-  let selection = boardState.selection.type === 'FACTORY_SELECTION' ? boardState.selection : null;
+  const boardState = state.gameState.board;
+  const resourceFactory = boardState.factoriesByRow[ownProps.rowIndex][ownProps.itemIndex];
+  const costColors = ReduceResources(resourceFactory.cost);
+  const selection = boardState.selection.type === 'FACTORY_SELECTION' ? boardState.selection : null;
 
   return {
     resource: resourceFactory.color,
-    costColors: costColors,
+    costColors,
     points: resourceFactory.points,
     selected: selection !== null &&
         selection.row === ownProps.rowIndex &&
         selection.item === ownProps.itemIndex
-  }
+  };
 }
 
 function mapDispatchToProps(dispatch, ownProps:FactoryOwnProps):FactoryDispatch {
-  return {
-    onFactoryClick: () =>
-        dispatch(ChooseFactoryFromBoardAction(ownProps.rowIndex, ownProps.itemIndex))
-  }
+  return { onFactoryClick: () => { dispatch(ChooseFactoryFromBoardAction(ownProps.rowIndex, ownProps.itemIndex)); } };
 }
 
 const FactoryComponent = connect(mapStateToProps, mapDispatchToProps)(Factory);
