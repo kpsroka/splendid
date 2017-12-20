@@ -14,7 +14,7 @@
  */
 
 import sinon from 'sinon';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import React from 'react';
 import UiMessage from './UiMessage';
 
@@ -25,7 +25,7 @@ describe('UiMessage', () => {
   };
 
   test('renders ui message', () => {
-    const uiMessage = shallow(
+    const uiMessage = mount(
         <UiMessage
             message={messageProp}
             onDismissMessage={() => {
@@ -39,7 +39,7 @@ describe('UiMessage', () => {
 
   test('runs callback on dismiss click', () => {
     const dismissCallback = sinon.spy();
-    const uiMessage = shallow(
+    const uiMessage = mount(
         <UiMessage
             message={messageProp}
             onDismissMessage={dismissCallback}
