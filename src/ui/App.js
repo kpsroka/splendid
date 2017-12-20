@@ -16,8 +16,8 @@
 // @flow
 
 import React from 'react';
-import UiComponent from './UiComponent.js';
-import UiMessageComponent from './UiMessageComponent.js';
+import UiComponent from './UiComponent';
+import UiMessageComponent from './UiMessageComponent';
 import './App.css';
 
 export type AppProps = {|
@@ -34,15 +34,15 @@ export default class App extends React.Component<AppCombinedProps> {
   constructor(props:AppCombinedProps) {
     super(props);
     if (!props.isInitialized) {
-      window.setTimeout(() => { props.initialize(); })
+      window.setTimeout(() => { props.initialize(); });
     }
   }
 
   render() {
     return (
         <div className="App-appContainer">
-          <UiMessageComponent />
-          <UiComponent />
+            <UiMessageComponent />
+            <UiComponent />
         </div>
     );
   }

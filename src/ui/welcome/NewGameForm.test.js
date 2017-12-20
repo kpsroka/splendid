@@ -16,10 +16,10 @@
 import { shallow } from 'enzyme';
 import React from 'react';
 import sinon from 'sinon';
-import NewGameForm from './NewGameForm.js';
+import NewGameForm from './NewGameForm';
 
 describe('NewGameForm', () => {
-  let explodingCallback = () => { throw new Error("Should not have been called.")};
+  const explodingCallback = () => { throw new Error('Should not have been called.'); };
 
   it('calls abort callback on button click', () => {
     const onAbortSpy = sinon.spy();
@@ -39,9 +39,9 @@ describe('NewGameForm', () => {
     );
 
     expect(newGameForm.find('[testId="create"]').is('[disabled=true]')).toBe(true);
-    newGameForm.find('input[name="playerName"]').simulate('input', {target: {value: 'foo'}});
+    newGameForm.find('input[name="playerName"]').simulate('input', { target: { value: 'foo' } });
     expect(newGameForm.find('[testId="create"]').is('[disabled=false]')).toBe(true);
-    newGameForm.find('input[name="playerName"]').simulate('input', {target: {value: ''}});
+    newGameForm.find('input[name="playerName"]').simulate('input', { target: { value: '' } });
     expect(newGameForm.find('[testId="create"]').is('[disabled=true]')).toBe(true);
   });
 
@@ -54,8 +54,8 @@ describe('NewGameForm', () => {
     const playerName = 'Scooby Doo';
     const playerCount = 3;
 
-    newGameForm.find('input[name="playerName"]').simulate('input', {target: {value: playerName}});
-    newGameForm.find('input[testId="playerCount"]').simulate('input', {target: {value: playerCount}});
+    newGameForm.find('input[name="playerName"]').simulate('input', { target: { value: playerName } });
+    newGameForm.find('input[testId="playerCount"]').simulate('input', { target: { value: playerCount } });
 
     expect(createNewGameSpy.called).toBe(false);
 

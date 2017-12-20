@@ -148,6 +148,8 @@
       "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
       "function-paren-newline": ["error", "consistent"],
       "comma-dangle": ["error", { "functions": "ignore" }],
+      "react/sort-comp": [0],
+      "react/jsx-boolean-value": ["always"],
       "react/jsx-closing-bracket-location": 0,
       "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
       "react/jsx-indent": [1, 4],

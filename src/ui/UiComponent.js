@@ -16,15 +16,12 @@
 // @flow
 
 import { connect } from 'react-redux';
-import Ui from './Ui.js';
-
-import type { UiProps } from './Ui.js';
-import type { State } from '../model/State.js';
+import Ui from './Ui';
+import type { UiProps } from './Ui';
+import type { State } from '../model/State';
 
 function mapStateToProps(state:State):UiProps {
-  return {
-    mode: state.ui.mode,
-  }
+  return { mode: state.ui.mode };
 }
 
 const UiComponent = connect(mapStateToProps)(Ui);

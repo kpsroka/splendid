@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-const PUBLIC_URL = process.env.PUBLIC_URL;
+const { PUBLIC_URL } = process.env;
 
 const RESOURCE_ICONS = [
   /* 0 */ `${PUBLIC_URL}/resource_fire_64.png`,

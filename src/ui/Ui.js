@@ -16,8 +16,8 @@
 // @flow
 
 import React from 'react';
-import PlayFieldComponent from './playfield/PlayFieldComponent.js';
-import WelcomeScreenComponent from './welcome/WelcomeScreenComponent.js';
+import PlayFieldComponent from './playfield/PlayFieldComponent';
+import WelcomeScreenComponent from './welcome/WelcomeScreenComponent';
 
 export type UiProps = {|
   mode: string,
@@ -25,8 +25,8 @@ export type UiProps = {|
 
 export default function Ui(props:UiProps) {
   if (props.mode === 'PLAY') {
-    return <PlayFieldComponent />
+    return <PlayFieldComponent />;
   } else {
-    return <WelcomeScreenComponent />
+    return <WelcomeScreenComponent />;
   }
 }

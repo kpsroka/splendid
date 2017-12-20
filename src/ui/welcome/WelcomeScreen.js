@@ -15,12 +15,11 @@
 
 // @flow
 
-import React from 'react';
-import NewGameComponent from './NewGameComponent.js';
-import JoinGameComponent from './JoinGameComponent.js';
+import * as React from 'react';
+import NewGameComponent from './NewGameComponent';
+import JoinGameComponent from './JoinGameComponent';
 import './WelcomeScreen.css';
-
-import type { UiMode } from '../../model/State.js';
+import type { UiMode } from '../../model/State';
 
 export type WelcomeScreenProps = {|
   mode: UiMode
@@ -35,41 +34,42 @@ type WelcomeScreenCombinedProps = WelcomeScreenProps & WelcomeScreenDispatch;
 class WelcomeScreen extends React.PureComponent<WelcomeScreenCombinedProps> {
   render() {
     return (
-        <div className="WelcomeScreen-container"
-             onKeyUp={({ key }) => {
-               console.log('siabadaba');
-               if (key === 'Escape' && this.props.mode !== 'WELCOME') {
-                 this.props.setUiMode('WELCOME');
-               }
-             }}
-             tabIndex={-1}
-        >
-          <div className="WelcomeScreen-message">
-            Welcome to Splendid!
-          </div>
-          {this.renderControls()}
+        <div
+            className="WelcomeScreen-container"
+            onKeyUp={({ key }) => {
+              if (key === 'Escape' && this.props.mode !== 'WELCOME') {
+                this.props.setUiMode('WELCOME');
+              }
+            }}
+            tabIndex={-1}>
+            <div className="WelcomeScreen-message">
+                Welcome to Splendid!
+            </div>
+            {this.renderControls()}
         </div>
     );
   }
 
   renderControls() {
     if (this.props.mode === 'CREATE') {
-      return <NewGameComponent />
+      return <NewGameComponent />;
     } else if (this.props.mode === 'JOIN') {
-      return <JoinGameComponent />
+      return <JoinGameComponent />;
     } else {
       return (
           <div className="WelcomeScreen-buttonContainer">
-            <button testId="create"
-                    className="WelcomeScreen-button"
-                    onClick={() => this.props.setUiMode('CREATE')}>
-              Start new game
-            </button>
-            <button testId="join"
-                    className="WelcomeScreen-button"
-                    onClick={() => this.props.setUiMode('JOIN')}>
-              Join game
-            </button>
+              <button
+                  testId="create"
+                  className="WelcomeScreen-button"
+                  onClick={() => this.props.setUiMode('CREATE')}>
+                  Start new game
+              </button>
+              <button
+                  testId="join"
+                  className="WelcomeScreen-button"
+                  onClick={() => this.props.setUiMode('JOIN')}>
+                  Join game
+              </button>
           </div>
       );
     }

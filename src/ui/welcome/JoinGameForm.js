@@ -15,7 +15,7 @@
 
 // @flow
 
-import React from 'react';
+import * as React from 'react';
 import './WelcomeScreen.css';
 
 export type JoinGameProps = {|
@@ -34,25 +34,24 @@ type JoinGameState = {
   gameRefId: string,
 };
 
-export default class JoinGameForm extends
-    React.PureComponent<JoinGameCombinedProps, JoinGameState> {
-  firstInput:?HTMLInputElement;
-
+export default class JoinGameForm extends React.PureComponent<JoinGameCombinedProps, JoinGameState> {
   constructor(props:JoinGameCombinedProps) {
     super(props);
-    this.state = {playerName: "", gameRefId: props.initialGameId};
+    this.state = { playerName: '', gameRefId: props.initialGameId };
     this.canJoin = this.canJoin.bind(this);
     this.joinGame = this.joinGame.bind(this);
+  }
+
+  firstInput:?HTMLInputElement;
+
+  canJoin: () => boolean;
+  canJoin() {
+    return this.state.playerName !== '' && this.state.gameRefId !== '';
   }
 
   joinGame: () => void;
   joinGame() {
     this.props.joinGame(this.state.playerName, this.state.gameRefId);
-  }
-
-  canJoin: () => boolean;
-  canJoin() {
-    return this.state.playerName !== "" && this.state.gameRefId !== "";
   }
 
   componentDidMount() {
@@ -64,49 +63,51 @@ export default class JoinGameForm extends
   render() {
     return (
         <div className="WelcomeScreen-formContainer">
-          <div onKeyUp={({key}) => {
-            if (key === 'Enter' && this.canJoin()) {
-              this.joinGame();
-            }
-          }}
-          >
-            <div className="WelcomeScreen-inputRow">
-              <div className="WelcomeScreen-inputRowLabel">Player name</div>
-              <input type="text"
-                     name="playerName"
-                     ref={(input) => {this.firstInput = input;}}
-                     className="WelcomeScreen-textInput"
-                     onInput={(inputEvent) => {
-                       this.setState({playerName: inputEvent.target.value})
-                     }}>
-              </input>
+            <div onKeyUp={({ key }) => {
+              if (key === 'Enter' && this.canJoin()) {
+                this.joinGame();
+              }
+            }}>
+                <div className="WelcomeScreen-inputRow">
+                    <div className="WelcomeScreen-inputRowLabel">Player name</div>
+                    <input
+                        type="text"
+                        name="playerName"
+                        ref={(input) => { this.firstInput = input; }}
+                        className="WelcomeScreen-textInput"
+                        onInput={(inputEvent) => {
+                          this.setState({ playerName: inputEvent.target.value });
+                        }}
+                    />
+                </div>
+                <div className="WelcomeScreen-inputRow">
+                    <div className="WelcomeScreen-inputRowLabel">Game ID</div>
+                    <input
+                        type="text"
+                        name="gameRefId"
+                        className="WelcomeScreen-textInput"
+                        defaultValue={this.props.initialGameId}
+                        onInput={(inputEvent) => {
+                          this.setState({ gameRefId: inputEvent.target.value });
+                        }}
+                    />
+                </div>
             </div>
-            <div className="WelcomeScreen-inputRow">
-              <div className="WelcomeScreen-inputRowLabel">Game ID</div>
-              <input type="text"
-                     name="gameRefId"
-                     className="WelcomeScreen-textInput"
-                     defaultValue={this.props.initialGameId}
-                     onInput={(inputEvent) => {
-                       this.setState({gameRefId: inputEvent.target.value})
-                     }}>
-              </input>
-            </div>
-          </div>
-          <div className="WelcomeScreen-buttonContainer">
-            <button
-                testId="join"
-                disabled={!this.canJoin()}
-                className="WelcomeScreen-button"
-                onClick={() => this.joinGame()}>
-              Join game
-            </button>
-            <button testId="abort"
+            <div className="WelcomeScreen-buttonContainer">
+                <button
+                    testId="join"
+                    disabled={!this.canJoin()}
+                    className="WelcomeScreen-button"
+                    onClick={() => this.joinGame()}>
+                    Join game
+                </button>
+                <button
+                    testId="abort"
                     className="WelcomeScreen-button"
                     onClick={() => this.props.onAbort()}>
-              Go back
-            </button>
-          </div>
+                    Go back
+                </button>
+            </div>
         </div>
     );
   }

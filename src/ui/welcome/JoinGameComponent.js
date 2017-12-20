@@ -16,23 +16,21 @@
 // @flow
 
 import { connect } from 'react-redux';
-import JoinGame from '../../actions/async/JoinGameAction.js';
-import SetUiMode from '../../actions/SetUiModeAction.js';
-import JoinGameForm from './JoinGameForm.js';
+import JoinGame from '../../actions/async/JoinGameAction';
+import SetUiMode from '../../actions/SetUiModeAction';
+import JoinGameForm from './JoinGameForm';
 
-import type { JoinGameProps, JoinGameDispatch } from './JoinGameForm.js';
+import type { JoinGameProps, JoinGameDispatch } from './JoinGameForm';
 
 function mapStateToProps():JoinGameProps {
-  return {
-    initialGameId: window.location.hash.slice(1)
-  };
+  return { initialGameId: window.location.hash.slice(1) };
 }
 
 function mapDispatchToProps(dispatch):JoinGameDispatch {
   return {
     joinGame: (playerName:string, gameRefId:string) => dispatch(JoinGame(playerName, gameRefId)),
-    onAbort: () => dispatch(SetUiMode('WELCOME')),
-  }
+    onAbort: () => dispatch(SetUiMode('WELCOME'))
+  };
 }
 
 const JoinGameComponent = connect(mapStateToProps, mapDispatchToProps)(JoinGameForm);

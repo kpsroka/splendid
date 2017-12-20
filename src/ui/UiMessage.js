@@ -17,8 +17,7 @@
 
 import React from 'react';
 import './UiMessage.css';
-
-import type { UiMessage as StateUiMessage } from '../model/State.js';
+import type { UiMessage as StateUiMessage } from '../model/State';
 
 export type UiMessageProps = {|
   message: ?StateUiMessage,
@@ -44,12 +43,15 @@ export default function UiMessage(props:UiMessageCombinedProps) {
 
   return (
       <div className="UiMessage-container">
-        <div className={`UiMessage-message ${messageClassName}`}>
-          <div className="UiMessage-text">{text}</div>
-          <div testId="dismiss"
-              className="UiMessage-dismiss"
-              onClick={() => props.onDismissMessage()}>×</div>
-        </div>
+          <div className={`UiMessage-message ${messageClassName}`}>
+              <div className="UiMessage-text">{text}</div>
+              <div
+                  testId="dismiss"
+                  className="UiMessage-dismiss"
+                  onClick={() => props.onDismissMessage()}>
+                  ×
+              </div>
+          </div>
       </div>
   );
 }

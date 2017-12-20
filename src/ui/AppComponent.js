@@ -16,22 +16,18 @@
 // @flow
 
 import { connect } from 'react-redux';
-import App from './App.js';
-import LoadState from '../actions/async/LoadStateAction.js';
+import App from './App';
+import LoadState from '../actions/async/LoadStateAction';
 
-import type { AppProps, AppDispatch } from './App.js';
-import type { State } from '../model/State.js';
+import type { AppProps, AppDispatch } from './App';
+import type { State } from '../model/State';
 
 function mapStateToProps(state:State):AppProps {
-  return {
-    isInitialized: state.ui.mode !== 'INIT'
-  };
+  return { isInitialized: state.ui.mode !== 'INIT' };
 }
 
 function mapPropsToDispatch(dispatch):AppDispatch {
-  return {
-    initialize: () => dispatch(LoadState()),
-  }
+  return { initialize: () => dispatch(LoadState()) };
 }
 
 const AppComponent = connect(mapStateToProps, mapPropsToDispatch)(App);

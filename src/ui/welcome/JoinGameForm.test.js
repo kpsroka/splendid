@@ -16,10 +16,10 @@
 import { shallow } from 'enzyme';
 import React from 'react';
 import sinon from 'sinon';
-import JoinGameForm from './JoinGameForm.js';
+import JoinGameForm from './JoinGameForm';
 
 describe('JoinGameForm', () => {
-  let explodingCallback = () => { throw new Error("Should not have been called.")};
+  const explodingCallback = () => { throw new Error('Should not have been called.'); };
 
   it('calls abort callback on button click', () => {
     const onAbortSpy = sinon.spy();
@@ -39,21 +39,21 @@ describe('JoinGameForm', () => {
 
     expect(joinGameForm.find('button[testId="join"]').is('[disabled=true]')).toBe(true);
 
-    joinGameForm.find('input[name="playerName"]').simulate('input', {target: {value: 'foo'}});
-    joinGameForm.find('input[name="gameRefId"]').simulate('input', {target: {value: ''}});
+    joinGameForm.find('input[name="playerName"]').simulate('input', { target: { value: 'foo' } });
+    joinGameForm.find('input[name="gameRefId"]').simulate('input', { target: { value: '' } });
     expect(joinGameForm.find('button[testId="join"]').is('[disabled=true]')).toBe(true);
 
-    joinGameForm.find('input[name="playerName"]').simulate('input', {target: {value: ''}});
-    joinGameForm.find('input[name="gameRefId"]').simulate('input', {target: {value: 'bar'}});
+    joinGameForm.find('input[name="playerName"]').simulate('input', { target: { value: '' } });
+    joinGameForm.find('input[name="gameRefId"]').simulate('input', { target: { value: 'bar' } });
     expect(joinGameForm.find('button[testId="join"]').is('[disabled=true]')).toBe(true);
 
-    joinGameForm.find('input[name="playerName"]').simulate('input', {target: {value: 'foo'}});
-    joinGameForm.find('input[name="gameRefId"]').simulate('input', {target: {value: 'bar'}});
+    joinGameForm.find('input[name="playerName"]').simulate('input', { target: { value: 'foo' } });
+    joinGameForm.find('input[name="gameRefId"]').simulate('input', { target: { value: 'bar' } });
     expect(joinGameForm.find('button[testId="join"]').is('[disabled=false]')).toBe(true);
   });
 
   it('populates input with initialGameId', () => {
-    const initialGameId="abracadabra";
+    const initialGameId = 'abracadabra';
     const joinGameForm = shallow(
         <JoinGameForm initialGameId={initialGameId} joinGame={explodingCallback} onAbort={explodingCallback} />
     );
@@ -64,15 +64,15 @@ describe('JoinGameForm', () => {
 
   it('passes proper arguments to createNewGame callback', () => {
     const joinGameSpy = sinon.spy();
-    const joinGameForm= shallow(
+    const joinGameForm = shallow(
         <JoinGameForm initialGameId="" joinGame={joinGameSpy} onAbort={explodingCallback} />
     );
 
     const playerName = 'Scooby Doo';
     const gameRefId = 'and the mysterious mystery';
 
-    joinGameForm.find('input[name="playerName"]').simulate('input', {target: {value: playerName}});
-    joinGameForm.find('input[name="gameRefId"]').simulate('input', {target: {value: gameRefId}});
+    joinGameForm.find('input[name="playerName"]').simulate('input', { target: { value: playerName } });
+    joinGameForm.find('input[name="gameRefId"]').simulate('input', { target: { value: gameRefId } });
 
     expect(joinGameSpy.called).toBe(false);
 

@@ -24,7 +24,7 @@ describe('App', () => {
   beforeAll(() => {
     expect.extend({
       toBeAFunction(received) {
-        if (typeof received === "function") {
+        if (typeof received === 'function') {
           return {
             pass: true,
             message: () => (`expected ${received} not to be a function.`)
@@ -52,7 +52,7 @@ describe('App', () => {
     shallow(<App isInitialized={false} initialize={initializeSpy} />);
     setTimeoutSpy.getCalls().forEach(
         (call) => {
-          let callArg = call.args[0];
+          const callArg = call.args[0];
           expect(callArg).toBeAFunction();
           callArg.apply(this, call.args.slice(2));
         }
@@ -65,7 +65,7 @@ describe('App', () => {
     shallow(<App isInitialized={true} initialize={initializeSpy} />);
     initializeSpy.getCalls().forEach(
         (call) => {
-          let callArg = call.args[0];
+          const callArg = call.args[0];
           expect(callArg).toBeAFunction();
           callArg.apply(this, call.args.slice(2));
         }

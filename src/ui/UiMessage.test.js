@@ -16,12 +16,12 @@
 import sinon from 'sinon';
 import { shallow } from 'enzyme';
 import React from 'react';
-import UiMessage from './UiMessage.js';
+import UiMessage from './UiMessage';
 
 describe('UiMessage', () => {
   const messageProp = {
-    text: "I am a banana.",
-    severity: "INFO"
+    text: 'I am a banana.',
+    severity: 'INFO'
   };
 
   test('renders ui message', () => {
@@ -29,7 +29,7 @@ describe('UiMessage', () => {
         <UiMessage
             message={messageProp}
             onDismissMessage={() => {
-              throw new Error("should not have been used")
+              throw new Error('should not have been used');
             }}
         />
     );

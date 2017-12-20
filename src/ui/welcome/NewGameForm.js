@@ -35,14 +35,14 @@ class NewGameForm extends React.Component<NewGameCombinedProps, NewGameState> {
 
   constructor(props:NewGameCombinedProps) {
     super(props);
-    this.state = {playerName: "", numberOfPlayers: 2};
+    this.state = { playerName: '', numberOfPlayers: 2 };
     this.canCreate = this.canCreate.bind(this);
     this.createGame = this.createGame.bind(this);
   }
 
   canCreate: () => boolean;
   canCreate() {
-    return this.state.playerName !== "";
+    return this.state.playerName !== '';
   }
 
   createGame: () => void;
@@ -59,50 +59,53 @@ class NewGameForm extends React.Component<NewGameCombinedProps, NewGameState> {
   render() {
     return (
         <div className="WelcomeScreen-formContainer">
-          <div onKeyUp={({key}) => {
-            if (key === 'Enter' && this.canCreate()) {
-              this.createGame();
-            }
-          }}
-          >
-            <div className="WelcomeScreen-inputRow">
-              <div className="WelcomeScreen-inputRowLabel">Player name</div>
-              <input type="text"
-                     name="playerName"
-                     ref={(input) => {this.firstInput = input;}}
-                     className="WelcomeScreen-textInput"
-                     onInput={(inputEvent) => {
-                       this.setState({playerName: inputEvent.target.value})
-                     }}>
-              </input>
+            <div onKeyUp={({ key }) => {
+              if (key === 'Enter' && this.canCreate()) {
+                this.createGame();
+              }
+            }}>
+                <div className="WelcomeScreen-inputRow">
+                    <div className="WelcomeScreen-inputRowLabel">Player name</div>
+                    <input
+                        type="text"
+                        name="playerName"
+                        ref={(input) => { this.firstInput = input; }}
+                        className="WelcomeScreen-textInput"
+                        onInput={(inputEvent) => {
+                          this.setState({ playerName: inputEvent.target.value });
+                        }}
+                    />
+                </div>
+                <div className="WelcomeScreen-inputRow">
+                    <div className="WelcomeScreen-inputRowLabel">Number of players</div>
+                    <input
+                        testId="playerCount"
+                        type="range"
+                        min="2"
+                        max="5"
+                        defaultValue={this.state.numberOfPlayers}
+                        onInput={(inputEvent) => {
+                          this.setState({ numberOfPlayers: inputEvent.target.value });
+                        }}
+                    />
+                    <div>{this.state.numberOfPlayers}</div>
+                </div>
             </div>
-            <div className="WelcomeScreen-inputRow">
-              <div className="WelcomeScreen-inputRowLabel">Number of players</div>
-              <input testId="playerCount"
-                     type="range"
-                     min="2" max="5"
-                     defaultValue={this.state.numberOfPlayers}
-                     onInput={(inputEvent) => {
-                       this.setState({numberOfPlayers: inputEvent.target.value})
-                     }}>
-              </input>
-              <div>{this.state.numberOfPlayers}</div>
-            </div>
-          </div>
-          <div className="WelcomeScreen-buttonContainer">
-            <button
-                testId="create"
-                disabled={!this.canCreate()}
-                className="WelcomeScreen-button"
-                onClick={() => this.createGame()}>
-              Start
-            </button>
-            <button testId="abort"
+            <div className="WelcomeScreen-buttonContainer">
+                <button
+                    testId="create"
+                    disabled={!this.canCreate()}
+                    className="WelcomeScreen-button"
+                    onClick={() => this.createGame()}>
+                    Start
+                </button>
+                <button
+                    testId="abort"
                     className="WelcomeScreen-button"
                     onClick={() => this.props.onAbort()}>
-              Go back
-            </button>
-          </div>
+                    Go back
+                </button>
+            </div>
         </div>
     );
   }

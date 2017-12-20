@@ -16,16 +16,16 @@
 import { shallow } from 'enzyme';
 import React from 'react';
 import sinon from 'sinon';
-import WelcomeScreen from './WelcomeScreen.js';
-import NewGameComponent from './NewGameComponent.js';
-import JoinGameComponent from './JoinGameComponent.js';
+import WelcomeScreen from './WelcomeScreen';
+import NewGameComponent from './NewGameComponent';
+import JoinGameComponent from './JoinGameComponent';
 
 describe('WelcomeScreen', () => {
-  const explodingCallback = () => { throw new Error('Should not be called.') };
+  const explodingCallback = () => { throw new Error('Should not be called.'); };
 
   it('displays "Splendid!" on welcome screen', () => {
     const welcomeScreen = shallow(
-        <WelcomeScreen mode='WELCOME' setUiMode={explodingCallback} />
+        <WelcomeScreen mode="WELCOME" setUiMode={explodingCallback} />
     );
     expect(welcomeScreen.text()).toContain('Splendid!');
   });
@@ -33,7 +33,7 @@ describe('WelcomeScreen', () => {
   it('changes mode to JOIN on button click', () => {
     const setUiModeSpy = sinon.spy();
     const welcomeScreen = shallow(
-        <WelcomeScreen mode='WELCOME' setUiMode={setUiModeSpy} />
+        <WelcomeScreen mode="WELCOME" setUiMode={setUiModeSpy} />
     );
 
     expect(setUiModeSpy.called).toBe(false);
@@ -45,7 +45,7 @@ describe('WelcomeScreen', () => {
   it('changes mode to CREATE on button click', () => {
     const setUiModeSpy = sinon.spy();
     const welcomeScreen = shallow(
-        <WelcomeScreen mode='WELCOME' setUiMode={setUiModeSpy} />
+        <WelcomeScreen mode="WELCOME" setUiMode={setUiModeSpy} />
     );
 
     expect(setUiModeSpy.called).toBe(false);
@@ -56,7 +56,7 @@ describe('WelcomeScreen', () => {
 
   it('displays NewGameComponent on CREATE uiMode', () => {
     const welcomeScreen = shallow(
-        <WelcomeScreen mode='CREATE' setUiMode={explodingCallback} />
+        <WelcomeScreen mode="CREATE" setUiMode={explodingCallback} />
     );
 
     expect(welcomeScreen.find(NewGameComponent).length).toBe(1);
@@ -64,7 +64,7 @@ describe('WelcomeScreen', () => {
 
   it('displays JoinGameComponent on JOIN uiMode', () => {
     const welcomeScreen = shallow(
-        <WelcomeScreen mode='JOIN' setUiMode={explodingCallback} />
+        <WelcomeScreen mode="JOIN" setUiMode={explodingCallback} />
     );
 
     expect(welcomeScreen.find(JoinGameComponent).length).toBe(1);
@@ -72,7 +72,7 @@ describe('WelcomeScreen', () => {
 
   it('doesn\'t display Join-/NewGameComponent on welcome screen', () => {
     const welcomeScreen = shallow(
-        <WelcomeScreen mode='WELCOME' setUiMode={explodingCallback} />
+        <WelcomeScreen mode="WELCOME" setUiMode={explodingCallback} />
     );
 
     expect(welcomeScreen.find(JoinGameComponent).length).toBe(0);
