@@ -16,27 +16,26 @@
 // @flow
 
 import { connect } from 'react-redux';
-import PlayerBox from './PlayerBox.js';
+import PlayerBox from './PlayerBox';
+import type { PlayerBoxProps, PlayerBoxOwnProps } from './PlayerBox';
+import type { State, GameState } from '../../model/State';
 
-import type { PlayerBoxProps, PlayerBoxOwnProps } from './PlayerBox.js';
-import type { State, GameState } from '../../model/State.js';
+function getScore(gameState:GameState, playerIndex:number):number {
+  const playerHand = gameState.playerState[playerIndex].hand;
+  return playerHand.factories.reduce((sum, next) => (sum + next.points), 0);
+}
 
 function mapStateToProps(state:State, ownProps:PlayerBoxOwnProps):PlayerBoxProps {
-  const gameState:?GameState = state.gameState;  // To make sure that flow refinements work
+  const { gameState } = state;
   if (gameState) {
     return {
       name: state.players[ownProps.playerIndex].name,
       score: getScore(gameState, ownProps.playerIndex),
-      currentPlayer: gameState.currentPlayerIndex === ownProps.playerIndex,
+      currentPlayer: gameState.currentPlayerIndex === ownProps.playerIndex
     };
   } else {
-    throw new Error("Game state not present");
+    throw new Error('Game state not present');
   }
-}
-
-function getScore(gameState:GameState, playerIndex:number):number {
-  let playerHand = gameState.playerState[playerIndex].hand;
-  return playerHand.factories.reduce((sum, next) => (sum + next.points), 0);
 }
 
 const PlayerBoxComponent = connect(mapStateToProps)(PlayerBox);

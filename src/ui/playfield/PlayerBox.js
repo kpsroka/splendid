@@ -16,8 +16,8 @@
 // @flow
 
 import React from 'react';
-import RESOURCE_COLORS from '../ResourceColorMap.js';
-import PlayerResourceSupplyComponent from './PlayerResourceSupplyComponent.js';
+import RESOURCE_COLORS from '../ResourceColorMap';
+import PlayerResourceSupplyComponent from './PlayerResourceSupplyComponent';
 
 import './PlayerBox.css';
 
@@ -34,34 +34,8 @@ export type PlayerBoxOwnProps = {|
 
 type PlayerBoxCombinedProps = PlayerBoxProps & PlayerBoxOwnProps;
 
-export default function PlayerBox(props:PlayerBoxCombinedProps) {
-  let orientationClassName =
-      props.orientation === "VERTICAL" ? "PlayerBox-vertical" : "PlayerBox-horizontal";
-
-  return (
-      <div className={`PlayerBox-externalFrame ${orientationClassName}`}>
-        {props.currentPlayer ? renderCurrentPlayerElement("▶") : "" }
-        <div className="PlayerBox-playerInfoFrame">
-          <div className="PlayerBox-playerInfo">
-            <div className="PlayerBox-playerInfoContent">
-              <span testId="playerName" className="PlayerBox-playerName">{props.name}</span>
-              <span className="PlayerBox-playerInfoSeparator">&nbsp;&middot;&nbsp;</span>
-              <span testId="playerScore" className="PlayerBox-playerScore">{props.score}</span>
-            </div>
-          </div>
-        </div>
-        <div testId="resources" className="PlayerBox-internalFrame">
-          {renderResourceSupplies(
-              props.playerIndex,
-              props.orientation === "VERTICAL" ? "HORIZONTAL" : "VERTICAL")}
-        </div>
-        {props.currentPlayer ? renderCurrentPlayerElement("◀") : "" }
-      </div>
-  );
-}
-
 function renderResourceSupplies(playerIndex, orientation) {
-  let resourceSupplies = [];
+  const resourceSupplies = [];
 
   for (let i = 0; i < RESOURCE_COLORS.length; i++) {
     resourceSupplies.push(
@@ -69,13 +43,37 @@ function renderResourceSupplies(playerIndex, orientation) {
             key={i}
             playerIndex={playerIndex}
             resource={i}
-            orientation={orientation} />);
+            orientation={orientation} />
+    );
   }
 
   return resourceSupplies;
 }
 
 function renderCurrentPlayerElement(content:string) {
-  return <div testId="currentPlayerMarker" className="PlayerBox-currentPlayerMark">{content}</div>
+  return <div testId="currentPlayerMarker" className="PlayerBox-currentPlayerMark">{content}</div>;
 }
 
+export default function PlayerBox(props:PlayerBoxCombinedProps) {
+  const orientationClassName =
+      props.orientation === 'VERTICAL' ? 'PlayerBox-vertical' : 'PlayerBox-horizontal';
+
+  return (
+      <div className={`PlayerBox-externalFrame ${orientationClassName}`}>
+          {props.currentPlayer ? renderCurrentPlayerElement('▶') : '' }
+          <div className="PlayerBox-playerInfoFrame">
+              <div className="PlayerBox-playerInfo">
+                  <div className="PlayerBox-playerInfoContent">
+                      <span testId="playerName" className="PlayerBox-playerName">{props.name}</span>
+                      <span className="PlayerBox-playerInfoSeparator">&nbsp;&middot;&nbsp;</span>
+                      <span testId="playerScore" className="PlayerBox-playerScore">{props.score}</span>
+                  </div>
+              </div>
+          </div>
+          <div testId="resources" className="PlayerBox-internalFrame">
+              {renderResourceSupplies(props.playerIndex, props.orientation === 'VERTICAL' ? 'HORIZONTAL' : 'VERTICAL')}
+          </div>
+          {props.currentPlayer ? renderCurrentPlayerElement('◀') : '' }
+      </div>
+  );
+}

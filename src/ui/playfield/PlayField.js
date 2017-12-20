@@ -16,8 +16,8 @@
 // @flow
 
 import React from 'react';
-import FactoryBoardComponent from '../board/FactoryBoardComponent.js';
-import PlayerBoxComponent from './PlayerBoxComponent.js';
+import FactoryBoardComponent from '../board/FactoryBoardComponent';
+import PlayerBoxComponent from './PlayerBoxComponent';
 import ResourcePanelComponent from '../board/ResourcePanelComponent';
 import './PlayField.css';
 
@@ -29,25 +29,25 @@ export type PlayFieldProps = {|
 export default function PlayField(props:PlayFieldProps) {
   return (
       <div className="PlayField-container">
-        <div className="PlayField-fieldArea">
-          <div className="PlayField-otherPlayersArea">
-            {props.left.map(playerIndex =>
-                <PlayerBoxComponent key={playerIndex} playerIndex={playerIndex} orientation="VERTICAL" />
-            )}
+          <div className="PlayField-fieldArea">
+              <div className="PlayField-otherPlayersArea">
+                  {props.left.map(playerIndex => (
+                      <PlayerBoxComponent key={playerIndex} playerIndex={playerIndex} orientation="VERTICAL" />
+                  ))}
+              </div>
+              <div className="PlayField-playableArea">
+                  <FactoryBoardComponent />
+                  <ResourcePanelComponent />
+                  <div className="PlayField-thisPlayerArea">
+                      <PlayerBoxComponent playerIndex={0} orientation="HORIZONTAL" />
+                  </div>
+              </div>
+              <div className="PlayField-otherPlayersArea">
+                  {props.right.map(playerIndex => (
+                      <PlayerBoxComponent key={playerIndex} playerIndex={playerIndex} orientation="VERTICAL" />
+                  ))}
+              </div>
           </div>
-          <div className="PlayField-playableArea">
-            <FactoryBoardComponent />
-            <ResourcePanelComponent />
-            <div className="PlayField-thisPlayerArea">
-              <PlayerBoxComponent playerIndex={0} orientation="HORIZONTAL" />
-            </div>
-          </div>
-          <div className="PlayField-otherPlayersArea">
-            {props.right.map(playerIndex =>
-                <PlayerBoxComponent key={playerIndex} playerIndex={playerIndex} orientation="VERTICAL" />
-            )}
-          </div>
-        </div>
       </div>
   );
 }

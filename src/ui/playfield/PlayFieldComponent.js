@@ -16,10 +16,9 @@
 // @flow
 
 import { connect } from 'react-redux';
-import PlayField from './PlayField.js';
-
-import type { PlayFieldProps } from './PlayField.js';
-import type { State } from '../../model/State.js';
+import PlayField from './PlayField';
+import type { PlayFieldProps } from './PlayField';
+import type { State } from '../../model/State';
 
 function mapStateToProps(state:State):PlayFieldProps {
   if (state.players.length === 2) {

@@ -15,17 +15,18 @@
 
 import { shallow } from 'enzyme';
 import React from 'react';
-import PlayerBox from './PlayerBox.js';
-import PlayerResourceSupplyComponent from './PlayerResourceSupplyComponent.js';
-import RESOURCE_COLORS from '../ResourceColorMap.js';
+import PlayerBox from './PlayerBox';
+import PlayerResourceSupplyComponent from './PlayerResourceSupplyComponent';
+import RESOURCE_COLORS from '../ResourceColorMap';
 
 describe('PlayerBox', () => {
   it('displays name and score', () => {
-    const playerName = "Aardvark";
+    const playerName = 'Aardvark';
     const playerScore = 12321;
     const playerBox = shallow(
         <PlayerBox
-            name={playerName} score={playerScore}
+            name={playerName}
+            score={playerScore}
             currentPlayer={false}
             playerIndex={0}
             orientation="VERTICAL"
@@ -40,8 +41,11 @@ describe('PlayerBox', () => {
     const playerIndex = 456;
     const playerBox = shallow(
         <PlayerBox
-            playerIndex={playerIndex} orientation="VERTICAL"
-            name={"whatever"} score={0} currentPlayer={false}
+            playerIndex={playerIndex}
+            orientation="VERTICAL"
+            name="whatever"
+            score={0}
+            currentPlayer={false}
         />
     );
 
@@ -55,7 +59,7 @@ describe('PlayerBox', () => {
       // display resources in order
       expect(node.is(`[resource=${index}]`)).toBe(true);
       // orientation should be different from PlayerBox's.
-      expect(node.is(`[orientation="HORIZONTAL"]`)).toBe(true);
+      expect(node.is('[orientation="HORIZONTAL"]')).toBe(true);
       // pass on the same player index
       expect(node.is(`[playerIndex=${playerIndex}]`)).toBe(true);
     });
@@ -65,7 +69,10 @@ describe('PlayerBox', () => {
     const currentPlayerBox = shallow(
         <PlayerBox
             currentPlayer={true}
-            playerIndex={3232} orientation="VERTICAL" name={"whatever"} score={0}
+            playerIndex={3232}
+            orientation="VERTICAL"
+            name="whatever"
+            score={0}
         />
     );
 
@@ -74,7 +81,10 @@ describe('PlayerBox', () => {
     const otherPlayerBox = shallow(
         <PlayerBox
             currentPlayer={false}
-            playerIndex={3232} orientation="VERTICAL" name={"whatever"} score={0}
+            playerIndex={3232}
+            orientation="VERTICAL"
+            name="whatever"
+            score={0}
         />
     );
 

@@ -17,10 +17,10 @@
 
 import React from 'react';
 import './PlayerResourceSupply.css';
-import RESOURCE_COLORS from '../ResourceColorMap.js';
-import RESOURCE_ICONS from '../ResourceIconMap.js';
+import RESOURCE_COLORS from '../ResourceColorMap';
+import RESOURCE_ICONS from '../ResourceIconMap';
 
-import type { Resource } from '../../model/State.js';
+import type { Resource } from '../../model/State';
 
 export type PlayerResourceSupplyProps = {|
   factoryCount: number,
@@ -36,22 +36,22 @@ export type PlayerResourceSupplyOwnProps = {|
 type PlayerResourceSupplyCombinedProps = PlayerResourceSupplyProps & PlayerResourceSupplyOwnProps;
 
 export default function PlayerResourceSupply(props:PlayerResourceSupplyCombinedProps) {
-  let orientationClassName =
-      props.orientation === "VERTICAL" ? "PlayerResourceSupply-vertical" : "PlayerResourceSupply-horizontal";
+  const orientationClassName =
+      props.orientation === 'VERTICAL' ? 'PlayerResourceSupply-vertical' : 'PlayerResourceSupply-horizontal';
 
   return (
-      <div className={`PlayerResourceSupply-container ${orientationClassName}`}
-           style={{
+      <div
+          className={`PlayerResourceSupply-container ${orientationClassName}`}
+          style={{
              backgroundColor: RESOURCE_COLORS[props.resource],
-             color: RESOURCE_COLORS[props.resource],
-           }}>
-        <div className="PlayerResourceSupply-resourceIcon"
-             style={{
-               backgroundImage: `url('${RESOURCE_ICONS[props.resource]}')`
-             }}
-        />
-        <div className="PlayerResourceSupply-factoryCount">{props.factoryCount}</div>
-        <div className="PlayerResourceSupply-resourceCount">{props.resourceCount}</div>
+             color: RESOURCE_COLORS[props.resource]
+          }}>
+          <div
+              className="PlayerResourceSupply-resourceIcon"
+              style={{ backgroundImage: `url('${RESOURCE_ICONS[props.resource]}')` }}
+          />
+          <div className="PlayerResourceSupply-factoryCount">{props.factoryCount}</div>
+          <div className="PlayerResourceSupply-resourceCount">{props.resourceCount}</div>
       </div>
   );
 }
