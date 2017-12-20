@@ -58,12 +58,10 @@ class NewGameForm extends React.Component<NewGameCombinedProps, NewGameState> {
 
   render() {
     return (
-        <div className="WelcomeScreen-formContainer">
-            <div onKeyUp={({ key }) => {
-              if (key === 'Enter' && this.canCreate()) {
-                this.createGame();
-              }
-            }}>
+        <div
+            className="WelcomeScreen-formContainer"
+            role="form">
+            <div>
                 <div className="WelcomeScreen-inputRow">
                     <div className="WelcomeScreen-inputRowLabel">Player name</div>
                     <input
@@ -71,6 +69,9 @@ class NewGameForm extends React.Component<NewGameCombinedProps, NewGameState> {
                         name="playerName"
                         ref={(input) => { this.firstInput = input; }}
                         className="WelcomeScreen-textInput"
+                        onKeyUp={({ key }) => {
+                          if (key === 'Enter' && this.canCreate()) { this.createGame(); }
+                        }}
                         onInput={(inputEvent) => {
                           this.setState({ playerName: inputEvent.target.value });
                         }}
@@ -84,6 +85,9 @@ class NewGameForm extends React.Component<NewGameCombinedProps, NewGameState> {
                         min="2"
                         max="5"
                         defaultValue={this.state.numberOfPlayers}
+                        onKeyUp={({ key }) => {
+                          if (key === 'Enter' && this.canCreate()) { this.createGame(); }
+                        }}
                         onInput={(inputEvent) => {
                           this.setState({ numberOfPlayers: inputEvent.target.value });
                         }}

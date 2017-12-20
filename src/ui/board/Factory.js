@@ -57,7 +57,12 @@ export default class Factory extends React.Component<FactoryCombinedProps> {
               backgroundColor: RESOURCE_COLORS[this.props.resource],
               backgroundImage: `url('${RESOURCE_ICONS[this.props.resource]}')`
             }}
-            onClick={() => this.props.onFactoryClick()}>
+            onKeyUp={({ key }) => {
+              if (key === 'Enter' || key === ' ') { this.props.onFactoryClick(); }
+            }}
+            onClick={() => this.props.onFactoryClick()}
+            role="button"
+            tabIndex={0}>
             <div className="Factory-overlay Factory-costContainer">
                 {Factory.renderResourceBoxes(this.props.costColors)}
             </div>

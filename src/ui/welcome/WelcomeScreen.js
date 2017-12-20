@@ -41,7 +41,8 @@ class WelcomeScreen extends React.PureComponent<WelcomeScreenCombinedProps> {
                 this.props.setUiMode('WELCOME');
               }
             }}
-            tabIndex={-1}>
+            tabIndex={-1}
+            role="presentation">
             <div className="WelcomeScreen-message">
                 Welcome to Splendid!
             </div>

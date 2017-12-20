@@ -44,11 +44,21 @@ export default function UiMessage(props:UiMessageCombinedProps) {
   return (
       <div className="UiMessage-container">
           <div className={`UiMessage-message ${messageClassName}`}>
-              <div className="UiMessage-text">{text}</div>
+              <div
+                  className="UiMessage-text"
+                  role="alert">
+                  {text}
+              </div>
               <div
                   testId="dismiss"
                   className="UiMessage-dismiss"
-                  onClick={() => props.onDismissMessage()}>
+                  onKeyUp={({ key }) => {
+                    if (key === 'Enter' || key === ' ') { props.onDismissMessage(); }
+                  }}
+                  onClick={() => props.onDismissMessage()}
+                  tabIndex={0}
+                  role="button"
+                  aria-label="Dismiss">
                   ×
               </div>
           </div>

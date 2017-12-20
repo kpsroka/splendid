@@ -15,24 +15,25 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createStore, applyMiddleware} from 'redux';
-import {Provider} from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
-import {createLogger} from 'redux-logger';
-import AppComponent from './ui/AppComponent.js';
-import AppReducer from './model/reducers/AppReducer.js';
-import DefaultState from './model/DefaultState.js';
+import { createLogger } from 'redux-logger';
+import AppComponent from './ui/AppComponent';
+import AppReducer from './model/reducers/AppReducer';
+import DefaultState from './model/DefaultState';
 import './index.css';
 
 const loggerMiddleware = createLogger();
 const store = createStore(
     AppReducer,
     DefaultState,
-    applyMiddleware(thunkMiddleware, loggerMiddleware));
+    applyMiddleware(thunkMiddleware, loggerMiddleware)
+);
 
 ReactDOM.render(
     <Provider store={store}>
-      <AppComponent />
+        <AppComponent />
     </Provider>,
     document.getElementById('root')
 );

@@ -62,12 +62,10 @@ export default class JoinGameForm extends React.PureComponent<JoinGameCombinedPr
 
   render() {
     return (
-        <div className="WelcomeScreen-formContainer">
-            <div onKeyUp={({ key }) => {
-              if (key === 'Enter' && this.canJoin()) {
-                this.joinGame();
-              }
-            }}>
+        <div
+            className="WelcomeScreen-formContainer"
+            role="form">
+            <div>
                 <div className="WelcomeScreen-inputRow">
                     <div className="WelcomeScreen-inputRowLabel">Player name</div>
                     <input
@@ -77,6 +75,11 @@ export default class JoinGameForm extends React.PureComponent<JoinGameCombinedPr
                         className="WelcomeScreen-textInput"
                         onInput={(inputEvent) => {
                           this.setState({ playerName: inputEvent.target.value });
+                        }}
+                        onKeyUp={({ key }) => {
+                          if (key === 'Enter' && this.canJoin()) {
+                            this.joinGame();
+                          }
                         }}
                     />
                 </div>
@@ -89,6 +92,11 @@ export default class JoinGameForm extends React.PureComponent<JoinGameCombinedPr
                         defaultValue={this.props.initialGameId}
                         onInput={(inputEvent) => {
                           this.setState({ gameRefId: inputEvent.target.value });
+                        }}
+                        onKeyUp={({ key }) => {
+                          if (key === 'Enter' && this.canJoin()) {
+                            this.joinGame();
+                          }
                         }}
                     />
                 </div>

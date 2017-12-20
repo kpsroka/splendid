@@ -47,7 +47,11 @@ function ResourceStackCircle(props:ResourceStackCircleProps) {
             backgroundColor: RESOURCE_COLORS[props.resource],
             backgroundImage: props.backgroundImage ? `url('${props.backgroundImage}')` : 'none'
           }}
-          onClick={() => props.onItemClick()}>
+          onKeyUp={({ key }) => {
+            if (key === 'Enter' || key === ' ') { props.onItemClick(); }
+          }}
+          onClick={() => props.onItemClick()}
+          role="presentation">
           <div className="ResourceStack-circle-overlay" />
           <div className="ResourceStack-circle-text">
               {props.text ? props.text : ''}
