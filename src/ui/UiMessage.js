@@ -18,6 +18,7 @@
 import React from 'react';
 import './UiMessage.css';
 import type { UiMessage as StateUiMessage } from '../model/State';
+import Clickable from './ClickableDecorator';
 
 export type UiMessageProps = {|
   message: ?StateUiMessage,
@@ -49,18 +50,14 @@ export default function UiMessage(props:UiMessageCombinedProps) {
                   role="alert">
                   {text}
               </div>
-              <div
-                  testId="dismiss"
-                  className="UiMessage-dismiss"
-                  onKeyUp={({ key }) => {
-                    if (key === 'Enter' || key === ' ') { props.onDismissMessage(); }
-                  }}
-                  onClick={() => props.onDismissMessage()}
-                  tabIndex={0}
-                  role="button"
-                  aria-label="Dismiss">
-                  ×
-              </div>
+              <Clickable callback={props.onDismissMessage}>
+                  <div
+                      testId="dismiss"
+                      className="UiMessage-dismiss"
+                      aria-label="Dismiss">
+                      ×
+                  </div>
+              </Clickable>
           </div>
       </div>
   );

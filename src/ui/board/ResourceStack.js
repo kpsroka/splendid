@@ -20,6 +20,7 @@ import RESOURCE_COLORS from '../ResourceColorMap';
 import RESOURCE_ICONS from '../ResourceIconMap';
 import './ResourceStack.css';
 import type { Resource } from '../../model/State';
+import Clickable from '../ClickableDecorator';
 
 type ResourceStackCircleProps = {|
   topShift?: string,
@@ -40,23 +41,20 @@ type ResourceStackProps = {|
 function ResourceStackCircle(props:ResourceStackCircleProps) {
   const extraStyles = props.extraStyles ? ` ${props.extraStyles}` : '';
   return (
-      <div
-          className={`ResourceStack-circle${extraStyles}`}
-          style={{
-            top: props.topShift ? props.topShift : 0,
-            backgroundColor: RESOURCE_COLORS[props.resource],
-            backgroundImage: props.backgroundImage ? `url('${props.backgroundImage}')` : 'none'
-          }}
-          onKeyUp={({ key }) => {
-            if (key === 'Enter' || key === ' ') { props.onItemClick(); }
-          }}
-          onClick={() => props.onItemClick()}
-          role="presentation">
-          <div className="ResourceStack-circle-overlay" />
-          <div className="ResourceStack-circle-text">
-              {props.text ? props.text : ''}
+      <Clickable callback={props.onItemClick}>
+          <div
+              className={`ResourceStack-circle${extraStyles}`}
+              style={{
+                top: props.topShift ? props.topShift : 0,
+                backgroundColor: RESOURCE_COLORS[props.resource],
+                backgroundImage: props.backgroundImage ? `url('${props.backgroundImage}')` : 'none'
+              }}>
+              <div className="ResourceStack-circle-overlay" />
+              <div className="ResourceStack-circle-text">
+                  {props.text ? props.text : ''}
+              </div>
           </div>
-      </div>
+      </Clickable>
   );
 }
 
