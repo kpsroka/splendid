@@ -133,6 +133,7 @@
     },
     "extends": "airbnb",
     "rules": {
+      "import/prefer-default-export": 0,
       "indent": ["error", 2, {
         "CallExpression": { "arguments": 2 },
         "FunctionDeclaration": { "parameters": 2 },
@@ -148,6 +149,8 @@
       "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
       "function-paren-newline": ["error", "consistent"],
       "comma-dangle": ["error", { "functions": "ignore" }],
+      "react/no-unused-prop-types": [1],
+      "react/require-default-props": [1],
       "react/sort-comp": [0],
       "react/jsx-boolean-value": ["always"],
       "react/jsx-closing-bracket-location": 0,
