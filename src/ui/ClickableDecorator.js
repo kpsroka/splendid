@@ -18,7 +18,7 @@
 import * as React from 'react';
 
 export type ClickableProps = {|
-  children: Array<React.Node>,
+  children: React.Node,
   callback: () => any,
   tabIndex?: number,
   keys?: Array<string>,
