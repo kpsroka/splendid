@@ -3,8 +3,8 @@
 import type { FetchConfig, FetchParams } from './FetchTypes';
 
 const FetchCfg = {
-  method: 'GET',
-  target: '/new',
+  method: 'POST',
+  target: '/g',
   rejectEmptyResponse: true
 };
 

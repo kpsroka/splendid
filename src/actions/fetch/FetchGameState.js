@@ -3,20 +3,19 @@
 import type { GameRef } from '../../model/State';
 import type { FetchConfig, FetchParams } from './FetchTypes';
 
-const FetchCfg = {
+const FetchCfg = gameRefId => ({
   method: 'GET',
-  target: '/game/getState',
+  target: `/g/${gameRefId}/state`,
   rejectEmptyResponse: false
-};
+});
 
 export function GetFetchOpts(gameRef:GameRef, lastRound:number):{
   config: FetchConfig,
   params: FetchParams
 } {
   return {
-    config: FetchCfg,
+    config: FetchCfg(gameRef.gameId),
     params: {
-      id: gameRef.gameId,
       playerToken: gameRef.playerToken,
       lastRound: lastRound.toString(10)
     }
