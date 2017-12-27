@@ -18,6 +18,7 @@
 }
 
 .ResourceStack-circle {
+  color: white;
   border-radius: 50%;
   box-shadow: black 0.5vh 0.5vh 0.5vh 0;
   width: 7vh;
