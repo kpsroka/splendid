@@ -24,8 +24,8 @@
   align-items: center;
   justify-content: center;
 
-  background-color: mediumblue;
-  color: white;
+  background-color: #dfdfdf;
+  color: #636363;
 }
 
 .WelcomeScreen-message {
@@ -89,8 +89,8 @@
 
 .WelcomeScreen-textInput {
   border: none;
-  border-bottom: 0.25vh solid white;
+  border-bottom: 0.25vh solid dimgray;
   background-color: transparent;
-  color: white;
+  color: #636363;
   text-align: center;
 }

@@ -51,7 +51,14 @@ function renderResourceSupplies(playerIndex, orientation) {
 }
 
 function renderCurrentPlayerElement(content:string) {
-  return <div testId="currentPlayerMarker" className="PlayerBox-currentPlayerMark">{content}</div>;
+  return (
+      <div
+          testId="currentPlayerMarker"
+          className="PlayerBox-currentPlayerMark"
+          role="presentation">
+          {content}
+      </div>
+  );
 }
 
 export default function PlayerBox(props:PlayerBoxCombinedProps) {
