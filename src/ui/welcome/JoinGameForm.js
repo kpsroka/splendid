@@ -67,8 +67,13 @@ export default class JoinGameForm extends React.PureComponent<JoinGameCombinedPr
             role="form">
             <div>
                 <div className="WelcomeScreen-inputRow">
-                    <div className="WelcomeScreen-inputRowLabel">Player name</div>
+                    <label
+                        htmlFor="JoinGameForm-playerName"
+                        className="WelcomeScreen-inputRowLabel">
+                        Player name
+                    </label>
                     <input
+                        id="JoinGameForm-playerName"
                         type="text"
                         name="playerName"
                         ref={(input) => { this.firstInput = input; }}
@@ -84,8 +89,13 @@ export default class JoinGameForm extends React.PureComponent<JoinGameCombinedPr
                     />
                 </div>
                 <div className="WelcomeScreen-inputRow">
-                    <div className="WelcomeScreen-inputRowLabel">Game ID</div>
+                    <label
+                        htmlFor="JoinGameForm-gameID"
+                        className="WelcomeScreen-inputRowLabel">
+                        Game ID
+                    </label>
                     <input
+                        id="JoinGameForm-gameID"
                         type="text"
                         name="gameRefId"
                         className="WelcomeScreen-textInput"

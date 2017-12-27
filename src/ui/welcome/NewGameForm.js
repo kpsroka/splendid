@@ -63,8 +63,13 @@ class NewGameForm extends React.Component<NewGameCombinedProps, NewGameState> {
             role="form">
             <div>
                 <div className="WelcomeScreen-inputRow">
-                    <div className="WelcomeScreen-inputRowLabel">Player name</div>
+                    <label
+                        htmlFor="NewGameForm-playerName"
+                        className="WelcomeScreen-inputRowLabel">
+                        Player name
+                    </label>
                     <input
+                        id="NewGameForm-playerName"
                         type="text"
                         name="playerName"
                         ref={(input) => { this.firstInput = input; }}
@@ -78,8 +83,13 @@ class NewGameForm extends React.Component<NewGameCombinedProps, NewGameState> {
                     />
                 </div>
                 <div className="WelcomeScreen-inputRow">
-                    <div className="WelcomeScreen-inputRowLabel">Number of players</div>
+                    <label
+                        className="WelcomeScreen-inputRowLabel"
+                        htmlFor="NewGameForm-playerCount">
+                        Number of players
+                    </label>
                     <input
+                        id="NewGameForm-playerCount"
                         testId="playerCount"
                         type="range"
                         min="2"
