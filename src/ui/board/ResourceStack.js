@@ -76,7 +76,7 @@ function renderStackCircles(props:ResourceStackProps) {
   const circles = [];
   for (let count = 0; count < props.stackSize; count++) {
     const highlighted = (count + props.highlight) >= props.stackSize;
-    const topShift = `${count * 1.2}${highlighted ? 0.7 : 0}vh`;
+    const topShift = `${(count * 1.2) + (highlighted ? 0.7 : 0)}vh`;
 
     circles.push(
         <ResourceStackCircle
