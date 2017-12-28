@@ -13,57 +13,6 @@
  * limitations under the License.
  */
 
-.ResourceStack-container {
+.ResourceStack {
   position: relative;
-}
-
-.ResourceStack-circle {
-  color: white;
-  border-radius: 50%;
-  box-shadow: black 0.5vh 0.5vh 0.5vh 0;
-  width: 7vh;
-  height: 7vh;
-  box-sizing: border-box;
-
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.ResourceStack-circle-overlay {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  border-radius: 50%;
-  background: radial-gradient(transparent 55%, black);
-}
-
-.ResourceStack-circle-base {
-  opacity: 0.5;
-  border-style: dotted;
-
-  background-size: 4vh 4vh;
-  background-repeat: no-repeat;
-  background-position: center center;
-}
-
-.ResourceStack-circle-highlighted {
-  border-color: black;
-  font-weight: bold;
-}
-
-.ResourceStack-circle-head {
-  position: relative;
-}
-
-.ResourceStack-circle-rest {
-  position: absolute;
-}
-
-.ResourceStack-circle-text {
-  user-select: none;
-  font-size: 3.5vh;
 }

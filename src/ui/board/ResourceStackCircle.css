@@ -1,0 +1,70 @@
+/*
+ * Copyright 2017 K. P. Sroka
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+.ResourceStackCircle {
+  color: white;
+  border-radius: 50%;
+  box-shadow: black 0.5vh 0.5vh 0.5vh 0;
+  width: 7vh;
+  height: 7vh;
+  box-sizing: border-box;
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ResourceStackCircle-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 50%;
+  background: radial-gradient(transparent 55%, black);
+}
+
+.ResourceStackCircle-base {
+  opacity: 0.5;
+  border-style: dotted;
+
+  background-size: 4vh 4vh;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.ResourceStackCircle-highlighted {
+  border-color: black;
+  font-weight: bold;
+}
+
+.ResourceStackCircle-head {
+  position: relative;
+}
+
+.ResourceStackCircle-head:hover {
+  cursor: pointer;
+}
+
+.ResourceStackCircle-rest {
+  position: absolute;
+}
+
+.ResourceStackCircle-text {
+  user-select: none;
+  font-size: 3.5vh;
+}
+
