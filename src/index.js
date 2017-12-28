@@ -23,6 +23,7 @@ import AppComponent from './ui/AppComponent';
 import AppReducer from './model/reducers/AppReducer';
 import DefaultState from './model/DefaultState';
 import './index.css';
+import './range.css';
 
 const loggerMiddleware = createLogger();
 const store = createStore(

@@ -1,0 +1,93 @@
+/* Made by K. P. Sroka with range.css utility created by Daniel Stern. */
+/* http://danielstern.ca/range.css/ */
+input[type=range] {
+  -webkit-appearance: none;
+  background-color: transparent;
+  margin: 7.3px 0;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 1.5vh;
+  cursor: pointer;
+  box-shadow: 0.15vh 0.15vh 0.15vh #000000, 0.15vh 0.15vh 0.15vh #0d0d0d;
+  background: #4477AA;
+  border-radius: 0.25vh;
+  border: 0.15vh solid rgba(255, 255, 255, 0.45);
+}
+
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 0.15vh 0.15vh 0.15vh #000031, 0.15vh 0.15vh 0.15vh #00004b;
+  height: 3.3vh;
+  width: 3.3vh;
+  border-radius: 3.6vh;
+  background: radial-gradient(white 55%, black);
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -1.1vh;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: royalblue;
+}
+
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 1.5vh;
+  cursor: pointer;
+  box-shadow: 0.15vh 0.15vh 0.15vh #000000, 0.15vh 0.15vh 0.15vh #0d0d0d;
+  background: #4477AA;
+  border-radius: 0.25vh;
+  border: 0.15vh solid rgba(255, 255, 255, 0.45);
+}
+
+input[type=range]:focus::-moz-range-track {
+  background: royalblue;
+}
+
+input[type=range]::-moz-range-thumb {
+  box-shadow: 0.15vh 0.15vh 0.15vh #000031, 0.15vh 0.15vh 0.15vh #00004b;
+  height: 3.3vh;
+  width: 3.3vh;
+  border-radius: 3.6vh;
+  background: radial-gradient(white 55%, black);
+  cursor: pointer;
+  margin-top: -1.1vh;
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 1.5vh;
+  cursor: pointer;
+  box-shadow: 0.15vh 0.15vh 0.15vh #000000, 0.15vh 0.15vh 0.15vh #0d0d0d;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+
+input[type=range]::-ms-fill-lower,
+input[type=range]::-ms-fill-upper {
+  background: #4477AA;
+  border: 0.15vh solid rgba(255, 255, 255, 0.45);
+  border-radius: 0.25vh;
+  box-shadow: 0.15vh 0.15vh 0.15vh #000000, 0.15vh 0.15vh 0.15vh #0d0d0d;
+}
+
+input[type=range]::-ms-thumb {
+  box-shadow: 0.15vh 0.15vh 0.15vh #000031, 0.15vh 0.15vh 0.15vh #00004b;
+  height: 3.3vh;
+  width: 3.3vh;
+  border-radius: 3.6vh;
+  background: radial-gradient(white 55%, black);
+  cursor: pointer;
+  margin-top: -1.1vh;
+}
+
+input[type=range]:focus::-ms-fill-lower,
+input[type=range]:focus::-ms-fill-upper {
+  background: royalblue;
+}
